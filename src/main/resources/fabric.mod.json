@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "id": "old_legends",
+  "version": "${version}",
+
+  "name": "Old Legends",
+  "description": "",
+  "authors": [],
+  "contact": {},
+
+  "license": "All-Rights-Reserved",
+  "icon": "assets/old_legends/icon.png",
+
+  "environment": "*",
+  "entrypoints": {},
+
+
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+        "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}
