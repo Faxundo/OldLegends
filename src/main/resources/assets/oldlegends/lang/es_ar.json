@@ -1,0 +1,26 @@
+{
+  "item.oldlegends.icon": "Old Legends",
+
+  "text.autoconfig.oldlegends.title": "Old Legends",
+  "text.autoconfig.oldlegends.option.enableAwakening": "Habilitar Despertar",
+  "text.autoconfig.oldlegends.option.enableEmeraldMourning": "Habilitar Luto Esmeralda",
+  "text.autoconfig.oldlegends.option.emeraldMourningWeight": "Probabilidad de Luto Esmeralda",
+  "text.autoconfig.oldlegends.option.emeraldMourningPercentage": "% de incremento de daño de Luto Esmeralda",
+  "text.autoconfig.oldlegends.option.paleGemDesertWellWeight": "Probabilidad de Gema Pálida en Fuente del Desierto",
+  "text.autoconfig.oldlegends.option.paleGemDesertPyramidWeight": "Probabilidad de Gema Pálida en Pirámide del Desierto",
+  "text.autoconfig.oldlegends.option.paleGemOceanRuinColdWeight": "Probabilidad de Gema Pálida en Ruina de Océano Frío",
+  "text.autoconfig.oldlegends.option.paleGemOceanRuinWarmWeight": "Probabilidad de Gema Pálida en Ruina de Océano Cálido",
+  "text.autoconfig.oldlegends.option.paleGemTrailsRuinsCommonWeight": "Probabilidad de Gema Pálida en Ruina Perdida Común",
+  "text.autoconfig.oldlegends.option.paleGemTrailsRuinsRareWeight": "Probabilidad de Gema Pálida en Ruina Perdida Rara",
+
+  "item.oldlegends.pale_gem": "Gema Pálida",
+  "item.oldlegends.end_extract": "Extracto del End",
+  "item.oldlegends.awakening_upgrade": "Plantilla del Despertar",
+
+  "item.oldlegends.emerald_mourning": "Luto Esmeralda",
+  "item.oldlegends.emerald_mourning_awake": "Luto Esmeralda Despierta",
+
+  "tooltip.oldlegends.shift": "▶ Shift",
+  "tooltip.oldlegends.emerald_mourning_1": "Causa +30% de Daño contra Illagers",
+  "tooltip.oldlegends.emerald_mourning_2": "Al eliminar a un Illager, deja caer 1 Esmeralda"
+}

@@ -1,6 +1,9 @@
 package com.github.faxundo.old_legends;
 
-import com.github.faxundo.old_legends.config.OldLegendsConfig;
+import com.github.faxundo.old_legends.config.OLConfig;
+import com.github.faxundo.old_legends.item.OLItem;
+import com.github.faxundo.old_legends.item.OLItemGroup;
+import com.github.faxundo.old_legends.util.LootTableModifiers;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
@@ -13,13 +16,18 @@ public class OldLegends implements ModInitializer {
     public static final String MOD_NAME = "Old Legends";
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
-    public static OldLegendsConfig CONFIG = new OldLegendsConfig();
+    public static OLConfig CONFIG = new OLConfig();
 
     @Override
     public void onInitialize() {
         LOGGER.info(MOD_NAME + "is here");
 
-        AutoConfig.register(OldLegendsConfig.class, JanksonConfigSerializer::new);
-        CONFIG = AutoConfig.getConfigHolder(OldLegendsConfig.class).getConfig();
+        OLItemGroup.registerItemGroup();
+
+        OLItem.registerOldLegendsItems();
+        LootTableModifiers.modifyLootTables();
+
+        AutoConfig.register(OLConfig.class, JanksonConfigSerializer::new);
+        CONFIG = AutoConfig.getConfigHolder(OLConfig.class).getConfig();
     }
 }

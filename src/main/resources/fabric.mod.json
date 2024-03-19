@@ -2,22 +2,29 @@
   "schemaVersion": 1,
   "id": "old_legends",
   "version": "${version}",
-
   "name": "Old Legends",
   "description": "",
-  "authors": [],
-  "contact": {},
-
-  "license": "All-Rights-Reserved",
-  "icon": "assets/old_legends/icon.png",
-
+  "authors": ["Faxu"],
+  "contact": {
+    "sources": "https://github.com/Faxundo/Old Legends"
+  },
+  "license": "MIT",
+  "icon": "assets/oldlegends/textures/item/icon.png",
   "environment": "*",
-  "entrypoints": {},
-
-
+  "entrypoints": {
+    "main": [
+      "com.github.faxundo.old_legends.OldLegends"
+    ],
+    "client": [
+      "com.github.faxundo.old_legends.OldLegendsClient"
+    ],
+    "modmenu": [
+      "com.github.faxundo.old_legends.integration.ModMenuIntegration"
+    ]
+  },
   "depends": {
     "fabricloader": ">=${loader_version}",
-        "fabric": "*",
+    "fabric": "*",
     "minecraft": "${minecraft_version}"
   }
 }

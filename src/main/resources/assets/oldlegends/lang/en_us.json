@@ -1,0 +1,30 @@
+{
+  "item.oldlegends.icon": "Old Legends",
+
+
+  "text.autoconfig.oldlegends.title": "Old Legends",
+  "text.autoconfig.oldlegends.option.enableAwakening": "Enable Awakening",
+  "text.autoconfig.oldlegends.option.enableEmeraldMourning": "Enable Emerald Mourning Sword",
+  "text.autoconfig.oldlegends.option.emeraldMourningWeight": "Emerald Mourning Sword Weight",
+  "text.autoconfig.oldlegends.option.emeraldMourningPercentage": "Emerald Mourning Sword % Damage increment",
+  "text.autoconfig.oldlegends.option.paleGemDesertWellWeight": "Pale Gem Desert Well Weight",
+  "text.autoconfig.oldlegends.option.paleGemDesertPyramidWeight": "Pale Gem Desert Pyramid Weight",
+  "text.autoconfig.oldlegends.option.paleGemOceanRuinColdWeight": "Pale Gem Ocean Ruin Cold Weight",
+  "text.autoconfig.oldlegends.option.paleGemOceanRuinWarmWeight": "Pale Gem Ocean Ruin Warm Weight",
+  "text.autoconfig.oldlegends.option.paleGemTrailsRuinsCommonWeight": "Pale Gem Trails Ruin Common Weight",
+  "text.autoconfig.oldlegends.option.paleGemTrailsRuinsRareWeight": "Pale Gem Trails Ruin Rare Weight",
+
+  "item.oldlegends.pale_gem": "Pale Gem",
+  "item.oldlegends.end_extract": "End Extract",
+  "item.oldlegends.awakening_upgrade": "Awakening Upgrade",
+
+  "item.oldlegends.emerald_mourning": "Emerald Mourning Sword",
+  "item.oldlegends.emerald_mourning_awake": "Emerald Mourning Sword Awake",
+
+  "tooltip.oldlegends.shift": "▶ Shift",
+  "tooltip.oldlegends.emerald_mourning_1": "Has +30% damage vs Illagers",
+  "tooltip.oldlegends.emerald_mourning_2": "At the kill a Illager obtaining 1 Emerald",
+  "tooltip.oldlegends.emerald_mourning_awake_1": "Has +60% damage vs Illagers",
+  "tooltip.oldlegends.emerald_mourning_awake_2": "At the kill a Illager obtaining 1-3 Emerald",
+  "tooltip.oldlegends.emerald_mourning_awake_3": "X"
+}
