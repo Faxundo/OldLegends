@@ -7,6 +7,7 @@ import me.shedaniel.autoconfig.annotation.ConfigEntry;
 @me.shedaniel.autoconfig.annotation.Config.Gui.Background("minecraft:textures/block/stone.png")
 public class OLConfig implements ConfigData {
 
+    @ConfigEntry.Gui.Tooltip
     public boolean enableAwakening = true;
     public int paleGemDesertWellWeight = 1;
     public int paleGemDesertPyramidWeight = 3;
@@ -23,9 +24,12 @@ public class OLConfig implements ConfigData {
         public boolean enableEmeraldMourning = true;
         public float emeraldMourningWeight = 0.6f;
         public int emeraldMourningPercentageIllager = 30;
+
+        public int emeraldMourningAwakePercentageIllager = 60;
+        @ConfigEntry.Gui.Tooltip
+        public int emeraldMourningAwakeCooldown = 140;
         public int emeraldMourningAwakePercentageConsumeDurability = 5;
         @ConfigEntry.Gui.Tooltip
         public int emeraldMourningAwakeMobTime = 600;
-        public int emeraldMourningAwakePercentage = 60;
     }
 }

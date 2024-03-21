@@ -21,8 +21,15 @@ public class EmeraldMourningSword extends OLGenericSword {
         if (!attacker.getWorld().isClient()) {
             if (target instanceof IllagerEntity) {
                 target.damage(attacker.getWorld().getDamageSources().generic(), (this.getAttackDamage() * OldLegends.CONFIG.emeraldMourning.emeraldMourningPercentageIllager)/100);
-                if (target.isDead() && attacker.isPlayer()) {
-                    target.dropStack(new ItemStack(Items.EMERALD));
+                if (attacker.isPlayer()) {
+//                    World world = target.getWorld();
+//                    double posX = target.getX();
+//                    double posY = target.getY();
+//                    double posZ = target.getZ();
+                    if (target.isDead()) {
+//                        world.addParticle(ParticleTypes.BUBBLE, posX, posY, posZ, 0.0d, 0.0d, 0.0d);
+                        target.dropStack(new ItemStack(Items.EMERALD));
+                    }
                 }
             }
         }

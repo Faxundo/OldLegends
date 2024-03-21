@@ -19,7 +19,7 @@ import net.minecraft.world.World;
 public class EmeraldMourningSwordAwake extends OLGenericSword {
     public EmeraldMourningSwordAwake(ToolMaterial toolMaterial, int attackDamage, float attackSpeed, Settings settings) {
         super(toolMaterial, attackDamage, attackSpeed, settings);
-        setId("emerald_mourning_awake");
+        setId("emerald_mourning");
         setAwake(true);
     }
 
@@ -27,7 +27,7 @@ public class EmeraldMourningSwordAwake extends OLGenericSword {
     public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
         if (!attacker.getWorld().isClient()) {
             if (target instanceof IllagerEntity) {
-                target.damage(attacker.getWorld().getDamageSources().generic(), (this.getAttackDamage() * OldLegends.CONFIG.emeraldMourning.emeraldMourningAwakePercentage) / 100);
+                target.damage(attacker.getWorld().getDamageSources().generic(), (this.getAttackDamage() * OldLegends.CONFIG.emeraldMourning.emeraldMourningAwakePercentageIllager) / 100);
                 if (target.isDead() && attacker.isPlayer()) {
                     for (int i = 1; i <= OLHelpers.getRandomNumber(1, 3); i++) {
                         target.dropStack(new ItemStack(Items.EMERALD));
@@ -43,11 +43,16 @@ public class EmeraldMourningSwordAwake extends OLGenericSword {
         World playerWorld = context.getWorld();
         PlayerEntity playerEntity = context.getPlayer();
         if (!playerWorld.isClient) {
-            playerEntity.getItemCooldownManager().set(this, 100);
+            playerEntity.getItemCooldownManager().set(this, OldLegends.CONFIG.emeraldMourning.emeraldMourningAwakeCooldown);
             context.getStack().damage((this.getMaxDamage() * OldLegends.CONFIG.emeraldMourning.emeraldMourningAwakePercentageConsumeDurability) / 100,
                     playerEntity, (e) -> {
                         e.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND);
                     });
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
             for (int i = 1; i <= 3; i++) {
                 MourningMob mourningMob = new MourningMob(EntityType.ZOMBIE_VILLAGER, playerWorld);
                 mourningMob.setPosition(

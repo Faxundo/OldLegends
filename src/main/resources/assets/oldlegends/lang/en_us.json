@@ -1,9 +1,10 @@
 {
   "item.oldlegends.icon": "Old Legends",
 
-
   "text.autoconfig.oldlegends.title": "Old Legends",
   "text.autoconfig.oldlegends.option.enableAwakening": "Enable Awakening",
+  "text.autoconfig.oldlegends.option.enableAwakening.@Tooltip": "This disable drop of Pale Gem and End Extract",
+
   "text.autoconfig.oldlegends.option.paleGemDesertWellWeight": "Pale Gem Desert Well Weight",
   "text.autoconfig.oldlegends.option.paleGemDesertPyramidWeight": "Pale Gem Desert Pyramid Weight",
   "text.autoconfig.oldlegends.option.paleGemOceanRuinColdWeight": "Pale Gem Ocean Ruin Cold Weight",
@@ -11,14 +12,16 @@
   "text.autoconfig.oldlegends.option.paleGemTrailsRuinsCommonWeight": "Pale Gem Trails Ruin Common Weight",
   "text.autoconfig.oldlegends.option.paleGemTrailsRuinsRareWeight": "Pale Gem Trails Ruin Rare Weight",
 
+  "text.autoconfig.oldlegends.option.emeraldMourning": "Emerald Mourning Sword",
   "text.autoconfig.oldlegends.option.emeraldMourning.enableEmeraldMourning": "Enable Emerald Mourning Sword",
-  "text.autoconfig.oldlegends.option.emeraldMourning.emeraldMourningWeight": "Emerald Mourning Sword Weight",
-  "text.autoconfig.oldlegends.option.emeraldMourning.emeraldMourningPercentageIllager": "Emerald Mourning Sword % Damage increment",
-  "text.autoconfig.oldlegends.option.emeraldMourning.emeraldMourningAwakePercentageConsumeDurability": "Emerald Mourning Awake Sword % Consumed Durability Ability",
-  "text.autoconfig.oldlegends.option.emeraldMourning.emeraldMourningAwakeMobTime": "Emerald Mourning Awake Sword Mob Alive Time",
+  "text.autoconfig.oldlegends.option.emeraldMourning.emeraldMourningWeight": "Loot Weight",
+  "text.autoconfig.oldlegends.option.emeraldMourning.emeraldMourningPercentageIllager": "% Damage Incrase vs Illagers",
+  "text.autoconfig.oldlegends.option.emeraldMourning.emeraldMourningAwakePercentageIllager": "Awake % Damage Incrase vs Illagers",
+  "text.autoconfig.oldlegends.option.emeraldMourning.emeraldMourningAwakePercentageConsumeDurability": "% Durability consumed to use Active Ability",
+  "text.autoconfig.oldlegends.option.emeraldMourning.emeraldMourningAwakeMobTime": "Life Time Mourning Mob",
   "text.autoconfig.oldlegends.option.emeraldMourning.emeraldMourningAwakeMobTime.@Tooltip": "Time in Ticks. 20 Ticks = 1 second.",
-
-
+  "text.autoconfig.oldlegends.option.emeraldMourning.emeraldMourningAwakeCooldown": "Cooldown for Active Ability",
+  "text.autoconfig.oldlegends.option.emeraldMourning.emeraldMourningAwakeCooldown.@Tooltip": "Time in Ticks. 20 Ticks = 1 second.",
 
   "item.oldlegends.pale_gem": "Pale Gem",
   "item.oldlegends.end_extract": "End Extract",
@@ -28,9 +31,12 @@
   "item.oldlegends.emerald_mourning_awake": "Emerald Mourning Sword Awake",
 
   "tooltip.oldlegends.shift": "▶ Shift",
+  "tooltip.oldlegends.emerald_mourning_name_1": "Emerald Revenge",
   "tooltip.oldlegends.emerald_mourning_1": "Has +30% damage vs Illagers",
+  "tooltip.oldlegends.emerald_mourning_name_2": "Heritage of the Fallen",
   "tooltip.oldlegends.emerald_mourning_2": "At the kill a Illager obtaining 1 Emerald",
   "tooltip.oldlegends.emerald_mourning_awake_1": "Has +60% damage vs Illagers",
   "tooltip.oldlegends.emerald_mourning_awake_2": "At the kill a Illager obtaining 1-3 Emerald",
-  "tooltip.oldlegends.emerald_mourning_awake_3": "X"
+  "tooltip.oldlegends.emerald_mourning_name_3": "Time of Revenge",
+  "tooltip.oldlegends.emerald_mourning_awake_3": "Summon 3 Villagers to carry out their revenge"
 }
