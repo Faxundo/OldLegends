@@ -4,15 +4,21 @@
 
   "text.autoconfig.oldlegends.title": "Old Legends",
   "text.autoconfig.oldlegends.option.enableAwakening": "Enable Awakening",
-  "text.autoconfig.oldlegends.option.enableEmeraldMourning": "Enable Emerald Mourning Sword",
-  "text.autoconfig.oldlegends.option.emeraldMourningWeight": "Emerald Mourning Sword Weight",
-  "text.autoconfig.oldlegends.option.emeraldMourningPercentage": "Emerald Mourning Sword % Damage increment",
   "text.autoconfig.oldlegends.option.paleGemDesertWellWeight": "Pale Gem Desert Well Weight",
   "text.autoconfig.oldlegends.option.paleGemDesertPyramidWeight": "Pale Gem Desert Pyramid Weight",
   "text.autoconfig.oldlegends.option.paleGemOceanRuinColdWeight": "Pale Gem Ocean Ruin Cold Weight",
   "text.autoconfig.oldlegends.option.paleGemOceanRuinWarmWeight": "Pale Gem Ocean Ruin Warm Weight",
   "text.autoconfig.oldlegends.option.paleGemTrailsRuinsCommonWeight": "Pale Gem Trails Ruin Common Weight",
   "text.autoconfig.oldlegends.option.paleGemTrailsRuinsRareWeight": "Pale Gem Trails Ruin Rare Weight",
+
+  "text.autoconfig.oldlegends.option.emeraldMourning.enableEmeraldMourning": "Enable Emerald Mourning Sword",
+  "text.autoconfig.oldlegends.option.emeraldMourning.emeraldMourningWeight": "Emerald Mourning Sword Weight",
+  "text.autoconfig.oldlegends.option.emeraldMourning.emeraldMourningPercentageIllager": "Emerald Mourning Sword % Damage increment",
+  "text.autoconfig.oldlegends.option.emeraldMourning.emeraldMourningAwakePercentageConsumeDurability": "Emerald Mourning Awake Sword % Consumed Durability Ability",
+  "text.autoconfig.oldlegends.option.emeraldMourning.emeraldMourningAwakeMobTime": "Emerald Mourning Awake Sword Mob Alive Time",
+  "text.autoconfig.oldlegends.option.emeraldMourning.emeraldMourningAwakeMobTime.@Tooltip": "Time in Ticks. 20 Ticks = 1 second.",
+
+
 
   "item.oldlegends.pale_gem": "Pale Gem",
   "item.oldlegends.end_extract": "End Extract",

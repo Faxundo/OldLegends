@@ -26,4 +26,8 @@ public class OLHelpers {
             default -> COMMON;
         };
     }
+
+    public static double getRandomNumber (int min, int max) {
+        return Math.floor(Math.random() * (max - min + 1) + min);
+    }
 }

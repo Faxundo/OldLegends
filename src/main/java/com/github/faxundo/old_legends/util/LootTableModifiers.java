@@ -22,10 +22,10 @@ public class LootTableModifiers {
 
     public static void modifyLootTables() {
         LootTableEvents.MODIFY.register((resourceManager, lootManager, id, tableBuilder, source) -> {
-            if (OldLegends.CONFIG.enableEmeraldMourning && PILLAGER_OUTPOST.equals(id)) {
+            if (OldLegends.CONFIG.emeraldMourning.enableEmeraldMourning && PILLAGER_OUTPOST.equals(id)) {
                 LootPool.Builder poolBuilder = LootPool.builder()
                         .rolls(ConstantLootNumberProvider.create(1))
-                        .conditionally(RandomChanceLootCondition.builder(OldLegends.CONFIG.emeraldMourningWeight))
+                        .conditionally(RandomChanceLootCondition.builder(OldLegends.CONFIG.emeraldMourning.emeraldMourningWeight))
                         .with(ItemEntry.builder(OLItem.EMERALD_MOURNING))
                         .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 1.0f)).build());
                 tableBuilder.pool(poolBuilder.build());

@@ -1,6 +1,7 @@
 package com.github.faxundo.old_legends;
 
-import com.github.faxundo.old_legends.config.OLConfig;
+import com.github.faxundo.old_legends.entity.MourningMob;
+import com.github.faxundo.old_legends.util.config.OLConfig;
 import com.github.faxundo.old_legends.item.OLItem;
 import com.github.faxundo.old_legends.item.OLItemGroup;
 import com.github.faxundo.old_legends.util.LootTableModifiers;
@@ -26,6 +27,8 @@ public class OldLegends implements ModInitializer {
 
         OLItem.registerOldLegendsItems();
         LootTableModifiers.modifyLootTables();
+
+        MourningMob.createMourningMobAttributes();
 
         AutoConfig.register(OLConfig.class, JanksonConfigSerializer::new);
         CONFIG = AutoConfig.getConfigHolder(OLConfig.class).getConfig();

@@ -20,7 +20,7 @@ public class EmeraldMourningSword extends OLGenericSword {
     public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
         if (!attacker.getWorld().isClient()) {
             if (target instanceof IllagerEntity) {
-                target.damage(attacker.getWorld().getDamageSources().generic(), (this.getAttackDamage() * OldLegends.CONFIG.emeraldMourningPercentage)/100);
+                target.damage(attacker.getWorld().getDamageSources().generic(), (this.getAttackDamage() * OldLegends.CONFIG.emeraldMourning.emeraldMourningPercentageIllager)/100);
                 if (target.isDead() && attacker.isPlayer()) {
                     target.dropStack(new ItemStack(Items.EMERALD));
                 }
