@@ -1,10 +1,11 @@
 package com.github.faxundo.old_legends;
 
 import com.github.faxundo.old_legends.entity.MourningMob;
-import com.github.faxundo.old_legends.util.config.OLConfig;
 import com.github.faxundo.old_legends.item.OLItem;
 import com.github.faxundo.old_legends.item.OLItemGroup;
+import com.github.faxundo.old_legends.sound.OLSound;
 import com.github.faxundo.old_legends.util.LootTableModifiers;
+import com.github.faxundo.old_legends.util.config.OLConfig;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
@@ -28,6 +29,7 @@ public class OldLegends implements ModInitializer {
         OLItem.registerOldLegendsItems();
         LootTableModifiers.modifyLootTables();
 
+        OLSound.registerSounds();
         MourningMob.createMourningMobAttributes();
 
         AutoConfig.register(OLConfig.class, JanksonConfigSerializer::new);

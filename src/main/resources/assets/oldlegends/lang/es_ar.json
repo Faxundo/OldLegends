@@ -31,12 +31,12 @@
   "item.oldlegends.emerald_mourning_awake": "Luto Esmeralda Despierta",
 
   "tooltip.oldlegends.shift": "▶ Shift",
-  "tooltip.oldlegends.emerald_mourning_name_1": "Venganza Esmeralda",
-  "tooltip.oldlegends.emerald_mourning_1": "Hace +30% Daño a los Illagers",
-  "tooltip.oldlegends.emerald_mourning_name_2": "Herencia de los Caídos",
-  "tooltip.oldlegends.emerald_mourning_2": "Al eliminar a un Illager, este suelta 1 Esmeralda",
-  "tooltip.oldlegends.emerald_mourning_awake_1": "Hace +60% Daño a los Illagers",
-  "tooltip.oldlegends.emerald_mourning_awake_2": "Al eliminar a un Illager, este suelta 1-3 Esmeraldas",
-  "tooltip.oldlegends.emerald_mourning_name_3": "Tiempo de Venganza",
-  "tooltip.oldlegends.emerald_mourning_awake_3": "Invoca 3 Aldeanos para que cumplan con su venganza"
+  "tooltip.oldlegends.emerald_mourning_name_1": "✦ Venganza Esmeralda",
+  "tooltip.oldlegends.emerald_mourning_1": "  Hace +30% Daño a los Illagers",
+  "tooltip.oldlegends.emerald_mourning_name_2": "✦ Herencia de los Caídos",
+  "tooltip.oldlegends.emerald_mourning_2": "  Al eliminar a un Illager, este suelta 1 Esmeralda",
+  "tooltip.oldlegends.emerald_mourning_awake_1": "  Hace +60% Daño a los Illagers",
+  "tooltip.oldlegends.emerald_mourning_awake_2": "  Al eliminar a un Illager, este suelta 1-3 Esmeraldas",
+  "tooltip.oldlegends.emerald_mourning_name_3": "✦ Tiempo de Venganza",
+  "tooltip.oldlegends.emerald_mourning_awake_3": "  Invoca 3 Aldeanos para que cumplan con su venganza"
 }

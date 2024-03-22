@@ -1,7 +1,10 @@
 package com.github.faxundo.old_legends.util;
 
+import net.minecraft.particle.ParticleEffect;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Style;
 import net.minecraft.text.TextColor;
+import net.minecraft.world.World;
 
 public class OLHelpers {
 
@@ -38,5 +41,14 @@ public class OLHelpers {
 
     public static double getRandomNumber (int min, int max) {
         return Math.floor(Math.random() * (max - min + 1) + min);
+    }
+
+    public static void spawnParticle(World world, ParticleEffect particle, double xpos, double ypos, double zpos,
+                                     double xvelocity, double yvelocity, double zvelocity) {
+        if (world.isClient) {
+            world.addParticle(particle, xpos, ypos, zpos, xvelocity, yvelocity, zvelocity);
+        } else if (world instanceof ServerWorld serverWorld) {
+            serverWorld.spawnParticles(particle, xpos, ypos, zpos, 1, xvelocity, yvelocity, zvelocity, 0.1);
+        }
     }
 }

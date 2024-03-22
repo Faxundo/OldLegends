@@ -31,12 +31,12 @@
   "item.oldlegends.emerald_mourning_awake": "Emerald Mourning Sword Awake",
 
   "tooltip.oldlegends.shift": "▶ Shift",
-  "tooltip.oldlegends.emerald_mourning_name_1": "Emerald Revenge",
-  "tooltip.oldlegends.emerald_mourning_1": "Has +30% damage vs Illagers",
-  "tooltip.oldlegends.emerald_mourning_name_2": "Heritage of the Fallen",
-  "tooltip.oldlegends.emerald_mourning_2": "At the kill a Illager obtaining 1 Emerald",
-  "tooltip.oldlegends.emerald_mourning_awake_1": "Has +60% damage vs Illagers",
-  "tooltip.oldlegends.emerald_mourning_awake_2": "At the kill a Illager obtaining 1-3 Emerald",
-  "tooltip.oldlegends.emerald_mourning_name_3": "Time of Revenge",
-  "tooltip.oldlegends.emerald_mourning_awake_3": "Summon 3 Villagers to carry out their revenge"
+  "tooltip.oldlegends.emerald_mourning_name_1": "✦ Emerald Revenge",
+  "tooltip.oldlegends.emerald_mourning_1": "  Has +30% damage vs Illagers",
+  "tooltip.oldlegends.emerald_mourning_name_2": "✦ Heritage of the Fallen",
+  "tooltip.oldlegends.emerald_mourning_2": "  At the kill a Illager obtaining 1 Emerald",
+  "tooltip.oldlegends.emerald_mourning_awake_1": "  Has +60% damage vs Illagers",
+  "tooltip.oldlegends.emerald_mourning_awake_2": "  At the kill a Illager obtaining 1-3 Emerald",
+  "tooltip.oldlegends.emerald_mourning_name_3": "✦ Time of Revenge",
+  "tooltip.oldlegends.emerald_mourning_awake_3": "  Summon 3 Villagers to carry out their revenge"
 }

@@ -1,17 +1,20 @@
 package com.github.faxundo.old_legends.entity;
 
 import com.github.faxundo.old_legends.OldLegends;
+import com.github.faxundo.old_legends.sound.OLSound;
 import me.shedaniel.cloth.clothconfig.shadowed.blue.endless.jankson.annotation.Nullable;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.goal.ActiveTargetGoal;
+import net.minecraft.entity.ai.goal.LookAtEntityGoal;
 import net.minecraft.entity.ai.goal.MeleeAttackGoal;
-import net.minecraft.entity.ai.goal.WanderNearTargetGoal;
+import net.minecraft.entity.ai.goal.WanderAroundGoal;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
+import net.minecraft.entity.mob.IllagerEntity;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.mob.Monster;
 import net.minecraft.entity.mob.ZombieVillagerEntity;
@@ -42,13 +45,16 @@ public class MourningMob extends ZombieVillagerEntity {
     @Override
     protected void initGoals() {
         this.goalSelector.add(1, new MeleeAttackGoal(this, 1.0, true));
-        this.goalSelector.add(2, new WanderNearTargetGoal(this, 0.9, 32.0F));
+        this.goalSelector.add(2, new LookAtEntityGoal(this, PlayerEntity.class, 3.0F, 1.0F));
+        this.goalSelector.add(3, new LookAtEntityGoal(this, MobEntity.class, 8.0F));
+        this.goalSelector.add(4, new WanderAroundGoal(this, 0.6));
+        this.targetSelector.add(1, new ActiveTargetGoal(this, IllagerEntity.class, true));
         this.targetSelector.add(2, new ActiveTargetGoal(this, PlayerEntity.class, 5, false, false, (player) -> {
             PlayerEntity playerEntity = (PlayerEntity) player;
             String uUUID = playerEntity.getUuid().toString();
             return !uUUID.equals(getOwnerUuid());
         }));
-        this.targetSelector.add(2, new ActiveTargetGoal(this, MobEntity.class, 5, false, false, (entity) -> {
+        this.targetSelector.add(3, new ActiveTargetGoal(this, MobEntity.class, 5, false, false, (entity) -> {
             if (!(entity instanceof MourningMob)) {
                 return entity instanceof Monster;
             }
@@ -113,19 +119,19 @@ public class MourningMob extends ZombieVillagerEntity {
     @Nullable
     @Override
     public SoundEvent getAmbientSound() {
-        return SoundEvents.ENTITY_FOX_AMBIENT;
+        return SoundEvents.ENTITY_ZOMBIE_VILLAGER_AMBIENT;
     }
 
     @Nullable
     @Override
     public SoundEvent getHurtSound(DamageSource source) {
-        return SoundEvents.ENTITY_CAT_HURT;
+        return SoundEvents.ENTITY_VILLAGER_NO;
     }
 
     @Nullable
     @Override
     public SoundEvent getDeathSound() {
-        return SoundEvents.ENTITY_DOLPHIN_DEATH;
+        return OLSound.MOURNING_MOB_DEATH;
     }
 
     static {

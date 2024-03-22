@@ -2,11 +2,13 @@ package com.github.faxundo.old_legends.item.custom;
 
 import com.github.faxundo.old_legends.OldLegends;
 import com.github.faxundo.old_legends.item.OLGenericSword;
+import com.github.faxundo.old_legends.util.OLHelpers;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.mob.IllagerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.ToolMaterial;
+import net.minecraft.particle.ParticleTypes;
 
 public class EmeraldMourningSword extends OLGenericSword {
 
@@ -22,12 +24,9 @@ public class EmeraldMourningSword extends OLGenericSword {
             if (target instanceof IllagerEntity) {
                 target.damage(attacker.getWorld().getDamageSources().generic(), (this.getAttackDamage() * OldLegends.CONFIG.emeraldMourning.emeraldMourningPercentageIllager)/100);
                 if (attacker.isPlayer()) {
-//                    World world = target.getWorld();
-//                    double posX = target.getX();
-//                    double posY = target.getY();
-//                    double posZ = target.getZ();
                     if (target.isDead()) {
-//                        world.addParticle(ParticleTypes.BUBBLE, posX, posY, posZ, 0.0d, 0.0d, 0.0d);
+                        OLHelpers.spawnParticle(target.getWorld(), ParticleTypes.ANGRY_VILLAGER, target.getX(), target.getY(), target.getZ(),
+                                0.5, 0, 0.5);
                         target.dropStack(new ItemStack(Items.EMERALD));
                     }
                 }
