@@ -2,15 +2,29 @@ package com.github.faxundo.old_legends.item;
 
 import com.github.faxundo.old_legends.OldLegends;
 import com.github.faxundo.old_legends.item.custom.EmeraldMourningSword;
+import com.github.faxundo.old_legends.item.custom.SwallowsStormItem;
+import com.github.faxundo.old_legends.item.custom.TestSword;
 import com.github.faxundo.old_legends.item.custom.awake.EmeraldMourningSwordAwake;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.item.Item;
 import net.minecraft.item.ToolMaterials;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.registry.RegistryKeys;
+import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
 
+import static com.github.faxundo.old_legends.OldLegends.LOGGER;
+import static com.github.faxundo.old_legends.OldLegends.MOD_NAME;
+
 public class OLItem {
+
+    public static final TagKey<Item> SKY_RUNE_TAG =
+            TagKey.of(RegistryKeys.ITEM, new Identifier("old_legends", "sky_rune"));
+
+    public static final Item TEST_SWORD = registerItem("test_sword",
+            new TestSword(ToolMaterials.DIAMOND, 3, -2.4f,
+                    new FabricItemSettings()));
 
     public static final Item ICON = registerItem("icon",
             new Item(new FabricItemSettings()));
@@ -19,8 +33,15 @@ public class OLItem {
             new EmeraldMourningSword(ToolMaterials.DIAMOND, 3, -2.4f,
                     new FabricItemSettings()));
     public static final Item EMERALD_MOURNING_AWAKE = registerItem("emerald_mourning_awake",
-            new EmeraldMourningSwordAwake(ToolMaterials.DIAMOND, 5, -2.4f,
+            new EmeraldMourningSwordAwake(ToolMaterials.NETHERITE, 3, -2.4f,
                     new FabricItemSettings()));
+
+    public static final Item SWALLOWS_STORM = registerItem("swallows_storm",
+            new SwallowsStormItem(new FabricItemSettings().maxDamage(672), 90, 15, SKY_RUNE_TAG));
+//    public static final Item SWALLOWS_STORM_AWAKE = registerItem("swallows_storm_awake",
+//            new SwallowsStormItem(new FabricItemSettings().maxDamage(672+128), 90, 16, SKY_RUNE_TAG));
+    public static final Item SKY_RUNE = registerItem("sky_rune",
+            new Item(new FabricItemSettings()));
 
     public static final Item PALE_GEM = registerItem("pale_gem",
             new Item(new FabricItemSettings()));
@@ -34,6 +55,6 @@ public class OLItem {
     }
 
     public static void registerOldLegendsItems() {
-        OldLegends.LOGGER.info("Registering Mod Items for" + OldLegends.MOD_NAME);
+        LOGGER.info(">>> Registering " + MOD_NAME + " items.");
     }
 }

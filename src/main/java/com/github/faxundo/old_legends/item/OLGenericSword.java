@@ -15,8 +15,8 @@ import java.util.List;
 
 public class OLGenericSword extends SwordItem {
 
-    private String id;
-    private boolean isAwake;
+    String id = "";
+    boolean isAwake = false;
     protected Style NAME = OLHelpers.getStyle("name");
     protected Style NAME_AWAKE = OLHelpers.getStyle("name_awake");
     protected Style ABILITY_NAME = OLHelpers.getStyle("ability_name");
@@ -30,7 +30,7 @@ public class OLGenericSword extends SwordItem {
     }
 
     public void setId(String id) {
-        this.id = "tooltip.oldlegends." + id;
+        this.id = "tooltip.old_legends." + id;
     }
 
     public void setAwake(boolean awake) {
@@ -67,7 +67,7 @@ public class OLGenericSword extends SwordItem {
             }
         } else {
             tooltip.add(Text.literal(""));
-            tooltip.add(Text.translatable("tooltip.oldlegends.shift").setStyle(SHIFT));
+            tooltip.add(Text.translatable("tooltip.old_legends.shift").setStyle(SHIFT));
             tooltip.add(Text.literal(""));
         }
         super.appendTooltip(stack, world, tooltip, context);

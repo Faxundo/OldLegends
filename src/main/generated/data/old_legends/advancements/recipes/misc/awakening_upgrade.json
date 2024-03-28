@@ -1,0 +1,47 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_netherite_ingot": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:netherite_ingot"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_pale_gem": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "old_legends:pale_gem"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "minecraft:awakening_upgrade"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_netherite_ingot",
+      "has_pale_gem"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "minecraft:awakening_upgrade"
+    ]
+  }
+}

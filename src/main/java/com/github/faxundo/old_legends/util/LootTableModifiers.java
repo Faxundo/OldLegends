@@ -17,19 +17,13 @@ public class LootTableModifiers {
 
     private static final Identifier PILLAGER_OUTPOST =
             new Identifier("minecraft", "chests/pillager_outpost");
+    private static final Identifier ANCIENT_CITY =
+            new Identifier("minecraft", "chests/ancient_city");
     private static final Identifier END_DRAGON =
             new Identifier("minecraft", "entities/ender_dragon");
 
     public static void modifyLootTables() {
         LootTableEvents.MODIFY.register((resourceManager, lootManager, id, tableBuilder, source) -> {
-            if (OldLegends.CONFIG.emeraldMourning.enableEmeraldMourning && PILLAGER_OUTPOST.equals(id)) {
-                LootPool.Builder poolBuilder = LootPool.builder()
-                        .rolls(ConstantLootNumberProvider.create(1))
-                        .conditionally(RandomChanceLootCondition.builder(OldLegends.CONFIG.emeraldMourning.emeraldMourningWeight))
-                        .with(ItemEntry.builder(OLItem.EMERALD_MOURNING))
-                        .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 1.0f)).build());
-                tableBuilder.pool(poolBuilder.build());
-            }
             if (OldLegends.CONFIG.enableAwakening) {
                 if (END_DRAGON.equals(id)) {
                     LootPool.Builder poolBuilder = LootPool.builder()
@@ -55,6 +49,22 @@ public class LootTableModifiers {
                 if (LootTables.TRAIL_RUINS_RARE_ARCHAEOLOGY.equals(id)) {
                     addPaleGem(tableBuilder, OldLegends.CONFIG.paleGemTrailsRuinsRareWeight);
                 }
+            }
+            if (OldLegends.CONFIG.emeraldMourning.enableEmeraldMourning && PILLAGER_OUTPOST.equals(id)) {
+                LootPool.Builder poolBuilder = LootPool.builder()
+                        .rolls(ConstantLootNumberProvider.create(1))
+                        .conditionally(RandomChanceLootCondition.builder(OldLegends.CONFIG.emeraldMourning.emeraldMourningWeight))
+                        .with(ItemEntry.builder(OLItem.EMERALD_MOURNING))
+                        .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 1.0f)).build());
+                tableBuilder.pool(poolBuilder.build());
+            }
+            if (OldLegends.CONFIG.swallowsStorm.enableSwallowsStorm && ANCIENT_CITY.equals(id)) {
+                LootPool.Builder poolBuilder = LootPool.builder()
+                        .rolls(ConstantLootNumberProvider.create(1))
+                        .conditionally(RandomChanceLootCondition.builder(OldLegends.CONFIG.swallowsStorm.swallowsStormWeight))
+                        .with(ItemEntry.builder(OLItem.SWALLOWS_STORM))
+                        .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 1.0f)).build());
+                tableBuilder.pool(poolBuilder.build());
             }
         });
     }

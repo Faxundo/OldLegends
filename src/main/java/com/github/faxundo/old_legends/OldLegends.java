@@ -3,6 +3,7 @@ package com.github.faxundo.old_legends;
 import com.github.faxundo.old_legends.entity.MourningMob;
 import com.github.faxundo.old_legends.item.OLItem;
 import com.github.faxundo.old_legends.item.OLItemGroup;
+import com.github.faxundo.old_legends.item.OLPredicateProvider;
 import com.github.faxundo.old_legends.sound.OLSound;
 import com.github.faxundo.old_legends.util.LootTableModifiers;
 import com.github.faxundo.old_legends.util.config.OLConfig;
@@ -14,7 +15,7 @@ import org.slf4j.LoggerFactory;
 
 public class OldLegends implements ModInitializer {
 
-    public static final String MOD_ID = "oldlegends";
+    public static final String MOD_ID = "old_legends";
     public static final String MOD_NAME = "Old Legends";
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
@@ -24,9 +25,10 @@ public class OldLegends implements ModInitializer {
     public void onInitialize() {
         LOGGER.info(MOD_NAME + "is here");
 
+        OLPredicateProvider.registerPredicateProvider();
+        OLItem.registerOldLegendsItems();
         OLItemGroup.registerItemGroup();
 
-        OLItem.registerOldLegendsItems();
         LootTableModifiers.modifyLootTables();
 
         OLSound.registerSounds();

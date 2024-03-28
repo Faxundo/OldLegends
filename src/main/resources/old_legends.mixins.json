@@ -1,0 +1,16 @@
+{
+  "required": true,
+  "package": "com.github.faxundo.old_legends.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "ItemMixin"
+  ],
+  "client": [
+    "ItemRendererAccessor",
+    "ItemRendererMixin",
+    "ModelLoaderMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

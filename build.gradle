@@ -13,6 +13,8 @@ base {
 repositories {
     maven { url "https://maven.shedaniel.me/" }
     maven { url "https://maven.terraformersmc.com/releases/" }
+    maven { url "https://jitpack.io" }
+    maven { url "https://api.modrinth.com/maven"}
 }
 
 dependencies {
@@ -31,6 +33,11 @@ dependencies {
     modApi("me.shedaniel.cloth:cloth-config-fabric:${project.cloth_version}") {
         exclude(group: "net.fabricmc.fabric-api")
     }
+
+    //Fabric Shield Lib
+    modImplementation "com.github.CrimsonDawn45:Fabric-Shield-Lib:v${project.fabric_shield_lib_version}"
+    modImplementation "maven.modrinth:midnightlib:${project.midnightlib_version}"
+    modImplementation "com.github.Chocohead:Fabric-ASM:v${project.fabricasm_version}"
 }
 
 processResources {
@@ -90,4 +97,9 @@ publishing {
         // The repositories here will be used for publishing your artifact, not for
         // retrieving dependencies.
     }
+
+    fabricApi {
+        configureDataGeneration()
+    }
+
 }

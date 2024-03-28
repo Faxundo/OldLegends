@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "old_legends:item/emerald_mourning_awake"
+  }
+}

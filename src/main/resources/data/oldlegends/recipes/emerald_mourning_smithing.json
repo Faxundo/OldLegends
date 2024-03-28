@@ -1,15 +1,15 @@
 {
   "type": "minecraft:smithing_transform",
   "base": {
-    "item": "oldlegends:emerald_mourning"
+    "item": "old_legends:emerald_mourning"
   },
   "template": {
-    "item": "oldlegends:awakening_upgrade"
+    "item": "old_legends:awakening_upgrade"
   },
   "addition": {
-    "item": "oldlegends:end_extract"
+    "item": "old_legends:end_extract"
   },
   "result": {
-    "item": "oldlegends:emerald_mourning_awake"
+    "item": "old_legends:emerald_mourning_awake"
   }
 }

@@ -25,8 +25,11 @@ Then put the Old Legend Item, Awakening Upgrade and End Extract in the Smithing 
 
 Congratulations! You have revived an old legend
 
+## Languages:
+- English: en_us
+- Español: es_ar
 
-### Future Plans
+## Future Plans
 - Add more singular items:
   - ~~Emerald Mourning~~
   - ...

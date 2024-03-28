@@ -6,6 +6,9 @@ import net.minecraft.registry.Registry;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
 
+import static com.github.faxundo.old_legends.OldLegends.LOGGER;
+import static com.github.faxundo.old_legends.OldLegends.MOD_NAME;
+
 public class OLSound {
 
     public static final SoundEvent MOURNING_MOB_DEATH = registerSoundEvent("mourning_mob_death");
@@ -16,6 +19,6 @@ public class OLSound {
     }
 
     public static void registerSounds() {
-        OldLegends.LOGGER.info("Registering Sounds for " + OldLegends.MOD_NAME);
+        LOGGER.info(">>> Registering " + MOD_NAME + " sounds.");
     }
 }

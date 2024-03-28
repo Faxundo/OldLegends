@@ -9,7 +9,7 @@
     "sources": "https://github.com/Faxundo/Old Legends"
   },
   "license": "MIT",
-  "icon": "assets/oldlegends/textures/item/icon.png",
+  "icon": "assets/old_legends/textures/item/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
@@ -18,13 +18,22 @@
     "client": [
       "com.github.faxundo.old_legends.OldLegendsClient"
     ],
+    "fabric-datagen": [
+      "com.github.faxundo.old_legends.OLDataGen"
+    ],
     "modmenu": [
       "com.github.faxundo.old_legends.integration.ModMenuIntegration"
     ]
   },
+  "mixins": [
+    "old_legends.mixins.json"
+  ],
   "depends": {
     "fabricloader": ">=${loader_version}",
     "fabric": "*",
     "minecraft": "${minecraft_version}"
+  },
+  "suggests": {
+    "mod-menu": "9.0.0"
   }
 }

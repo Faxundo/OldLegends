@@ -3,7 +3,7 @@ package com.github.faxundo.old_legends.util.config;
 import me.shedaniel.autoconfig.ConfigData;
 import me.shedaniel.autoconfig.annotation.ConfigEntry;
 
-@me.shedaniel.autoconfig.annotation.Config(name = "oldlegends")
+@me.shedaniel.autoconfig.annotation.Config(name = "old_legends")
 @me.shedaniel.autoconfig.annotation.Config.Gui.Background("minecraft:textures/block/stone.png")
 public class OLConfig implements ConfigData {
 
@@ -19,7 +19,6 @@ public class OLConfig implements ConfigData {
     @ConfigEntry.Gui.CollapsibleObject
     public final EmeraldMourning emeraldMourning = new EmeraldMourning();
 
-
     public static class EmeraldMourning {
         public boolean enableEmeraldMourning = true;
         public float emeraldMourningWeight = 0.6f;
@@ -31,5 +30,13 @@ public class OLConfig implements ConfigData {
         public int emeraldMourningAwakePercentageConsumeDurability = 5;
         @ConfigEntry.Gui.Tooltip
         public int emeraldMourningAwakeMobTime = 600;
+    }
+
+    @ConfigEntry.Gui.CollapsibleObject
+    public final SwallowsStorm swallowsStorm = new SwallowsStorm();
+
+    public static class SwallowsStorm {
+        public boolean enableSwallowsStorm = true;
+        public float swallowsStormWeight = 0.5f;
     }
 }

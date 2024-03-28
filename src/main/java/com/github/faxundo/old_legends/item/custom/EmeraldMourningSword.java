@@ -12,6 +12,7 @@ import net.minecraft.particle.ParticleTypes;
 
 public class EmeraldMourningSword extends OLGenericSword {
 
+
     public EmeraldMourningSword(ToolMaterial toolMaterial, int attackDamage, float attackSpeed, Settings settings) {
         super(toolMaterial, attackDamage, attackSpeed, settings);
         setId("emerald_mourning");
