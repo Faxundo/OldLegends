@@ -1,10 +1,9 @@
 package com.github.faxundo.old_legends.item;
 
 import com.github.faxundo.old_legends.OldLegends;
-import com.github.faxundo.old_legends.item.custom.EmeraldMourningSword;
+import com.github.faxundo.old_legends.item.custom.EmeraldMourning;
 import com.github.faxundo.old_legends.item.custom.SwallowsStormItem;
-import com.github.faxundo.old_legends.item.custom.TestSword;
-import com.github.faxundo.old_legends.item.custom.awake.EmeraldMourningSwordAwake;
+import com.github.faxundo.old_legends.item.custom.awake.EmeraldMourningAwake;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.item.Item;
 import net.minecraft.item.ToolMaterials;
@@ -22,33 +21,29 @@ public class OLItem {
     public static final TagKey<Item> SKY_RUNE_TAG =
             TagKey.of(RegistryKeys.ITEM, new Identifier("old_legends", "sky_rune"));
 
-    public static final Item TEST_SWORD = registerItem("test_sword",
-            new TestSword(ToolMaterials.DIAMOND, 3, -2.4f,
-                    new FabricItemSettings()));
-
     public static final Item ICON = registerItem("icon",
             new Item(new FabricItemSettings()));
 
     public static final Item EMERALD_MOURNING = registerItem("emerald_mourning",
-            new EmeraldMourningSword(ToolMaterials.DIAMOND, 3, -2.4f,
-                    new FabricItemSettings()));
+            new EmeraldMourning(ToolMaterials.DIAMOND, 3, -2.4f,
+                    new FabricItemSettings().fireproof()));
     public static final Item EMERALD_MOURNING_AWAKE = registerItem("emerald_mourning_awake",
-            new EmeraldMourningSwordAwake(ToolMaterials.NETHERITE, 3, -2.4f,
-                    new FabricItemSettings()));
+            new EmeraldMourningAwake(ToolMaterials.NETHERITE, 3, -2.4f,
+                    new FabricItemSettings().fireproof()));
 
     public static final Item SWALLOWS_STORM = registerItem("swallows_storm",
-            new SwallowsStormItem(new FabricItemSettings().maxDamage(672), 90, 15, SKY_RUNE_TAG));
+            new SwallowsStormItem(new FabricItemSettings().maxDamage(672).fireproof(), 90, 15, SKY_RUNE_TAG));
 //    public static final Item SWALLOWS_STORM_AWAKE = registerItem("swallows_storm_awake",
 //            new SwallowsStormItem(new FabricItemSettings().maxDamage(672+128), 90, 16, SKY_RUNE_TAG));
     public static final Item SKY_RUNE = registerItem("sky_rune",
-            new Item(new FabricItemSettings()));
+            new Item(new FabricItemSettings().fireproof()));
 
     public static final Item PALE_GEM = registerItem("pale_gem",
             new Item(new FabricItemSettings()));
     public static final Item END_EXTRACT = registerItem("end_extract",
-            new Item(new FabricItemSettings()));
+            new Item(new FabricItemSettings().fireproof()));
     public static final Item AWAKENING_UPGRADE = registerItem("awakening_upgrade",
-            new Item(new FabricItemSettings()));
+            new Item(new FabricItemSettings().fireproof()));
 
     private static Item registerItem(String name, Item item) {
         return Registry.register(Registries.ITEM, new Identifier(OldLegends.MOD_ID, name), item);

@@ -10,10 +10,9 @@ import net.minecraft.item.Items;
 import net.minecraft.item.ToolMaterial;
 import net.minecraft.particle.ParticleTypes;
 
-public class EmeraldMourningSword extends OLGenericSword {
+public class EmeraldMourning extends OLGenericSword {
 
-
-    public EmeraldMourningSword(ToolMaterial toolMaterial, int attackDamage, float attackSpeed, Settings settings) {
+    public EmeraldMourning(ToolMaterial toolMaterial, int attackDamage, float attackSpeed, Settings settings) {
         super(toolMaterial, attackDamage, attackSpeed, settings);
         setId("emerald_mourning");
         setAwake(false);

@@ -1,6 +1,9 @@
 package com.github.faxundo.old_legends;
 
+import com.github.crimsondawn45.fabricshieldlib.lib.event.ShieldBlockCallback;
 import com.github.faxundo.old_legends.entity.MourningMob;
+import com.github.faxundo.old_legends.event.ServerTickHandler;
+import com.github.faxundo.old_legends.event.ShieldBlockHandler;
 import com.github.faxundo.old_legends.item.OLItem;
 import com.github.faxundo.old_legends.item.OLItemGroup;
 import com.github.faxundo.old_legends.item.OLPredicateProvider;
@@ -33,6 +36,9 @@ public class OldLegends implements ModInitializer {
 
         OLSound.registerSounds();
         MourningMob.createMourningMobAttributes();
+
+        ShieldBlockCallback.EVENT.register(new ShieldBlockHandler());
+        ServerTickHandler.EVENT.register(new ServerTickHandler());
 
         AutoConfig.register(OLConfig.class, JanksonConfigSerializer::new);
         CONFIG = AutoConfig.getConfigHolder(OLConfig.class).getConfig();

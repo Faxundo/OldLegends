@@ -17,6 +17,7 @@ public class OLHelpers {
         int ability_name_awake = 0xBA5BFF;
         int ability = 0xFECB2D;
         int ability_awake = 0xF2A125;
+        int charges = 0xCDFF00;
 
         Style COMMON = Style.EMPTY.withColor(TextColor.fromRgb(common));
         Style NAME = Style.EMPTY.withColor(TextColor.fromRgb(name));
@@ -26,6 +27,7 @@ public class OLHelpers {
         Style ABILITY_NAME_AWAKE = Style.EMPTY.withColor(TextColor.fromRgb(ability_name_awake)).withItalic(true);
         Style ABILITY = Style.EMPTY.withColor(TextColor.fromRgb(ability));
         Style ABILITY_AWAKE = Style.EMPTY.withColor(TextColor.fromRgb(ability_awake));
+        Style CHARGES = Style.EMPTY.withColor(TextColor.fromRgb(charges));
 
         return switch (styleType) {
             case "name" -> NAME;
@@ -35,6 +37,7 @@ public class OLHelpers {
             case "ability_name_awake" -> ABILITY_NAME_AWAKE;
             case "ability" -> ABILITY;
             case "ability_awake" -> ABILITY_AWAKE;
+            case "charges" -> CHARGES;
             default -> COMMON;
         };
     }

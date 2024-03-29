@@ -5,9 +5,11 @@ The old legends echo again in the world. It's time to remember the greatest in h
 This is my first public mod. Any help or suggestions is well received.
 
 # Freatures:
+- Very customizable. 
 - Add 3 new items.
-- Add 1 new weapon:
+- Add 2 new weapons:
   - **Emerald Mourning**: Is a powerful sword with 2 passive abilities and 1 active ability.
+  - **Swallows Storm**: A mystic shield with 3 passive abilities and 1 active ability.
 - Unique mechanic of old legends items: **Awake**. 
 
 ## Awake
@@ -32,8 +34,12 @@ Congratulations! You have revived an old legend
 ## Future Plans
 - Add more singular items:
   - ~~Emerald Mourning~~
+  - Swallows Storm
+  - Dual Swrods
+  - Boomerang Pickaxe
   - ...
 - Improve the visual section.
 - Add lore for each weapon:
   - Emerald Mourning
+  - Swallows Storm
 - Questline of special misions for each weapon.

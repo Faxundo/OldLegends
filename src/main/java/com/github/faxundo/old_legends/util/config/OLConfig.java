@@ -38,5 +38,16 @@ public class OLConfig implements ConfigData {
     public static class SwallowsStorm {
         public boolean enableSwallowsStorm = true;
         public float swallowsStormWeight = 0.5f;
+        public int swallowsStormMaxCharges = 30;
+        public int swallowsStormHeal = 6;
+        @ConfigEntry.Gui.Tooltip
+        public int swallowsStormHealLost = 10;
+        public int swallowsStormChance = 5;
+        @ConfigEntry.Gui.Tooltip
+        public int swallowsStormPercentageConsumeDurability = 1;
+        @ConfigEntry.Gui.Tooltip
+        public int swallowsStormElectrifiedDamage = 10;
+        public double swallowsStormElectrifiedStrength = 0.5d;
+
     }
 }
