@@ -31,7 +31,7 @@ public class OLItemGroup {
                     entries.add(OLItem.EMERALD_MOURNING);
                     entries.add(OLItem.EMERALD_MOURNING_AWAKE);
                     entries.add(OLItem.SWALLOWS_STORM);
-//                    entries.add(OLItem.SWALLOWS_STORM_AWAKE);
+                    entries.add(OLItem.SWALLOWS_STORM_AWAKE);
                 })
                 .build()
         );

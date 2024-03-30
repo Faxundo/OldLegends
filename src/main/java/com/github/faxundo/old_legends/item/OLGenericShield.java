@@ -75,22 +75,24 @@ public class OLGenericShield extends FabricShieldItem {
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         if (Screen.hasShiftDown()) {
             tooltip.add(Text.literal(""));
-            for (int i = 1; i <= amountPassives; i++) {
-                String j = String.valueOf(i);
-                tooltip.add(Text.translatable(id + "_name_" + j).setStyle(ABILITY_NAME));
-                tooltip.add(Text.translatable(id + "_" + j).setStyle(ABILITY));
-            }
             if (isAwake) {
                 for (int i = 1; i <= amountPassives; i++) {
                     String j = String.valueOf(i);
                     tooltip.add(Text.translatable(id + "_name_" + j).setStyle(ABILITY_NAME));
                     tooltip.add(Text.translatable(id + "_awake_" + j).setStyle(ABILITY));
                 }
-                Text textActiveAbility = Text.literal("[ " + "←" + " ]")
-                        .append(id + "_awake_" + amountPassives + 1)
+
+                tooltip.add(Text.translatable(id + "_name_active").setStyle(ABILITY_NAME_AWAKE));
+                Text textActiveAbility = Text.literal(" [ " + "←" + " ] ")
+                        .append(Text.translatable(id + "_awake_active"))
                         .setStyle(ABILITY_AWAKE);
-                tooltip.add(Text.translatable(id + "_name_" + amountPassives + 1).setStyle(ABILITY_NAME_AWAKE));
                 tooltip.add(textActiveAbility);
+            } else {
+                for (int i = 1; i <= amountPassives; i++) {
+                    String j = String.valueOf(i);
+                    tooltip.add(Text.translatable(id + "_name_" + j).setStyle(ABILITY_NAME));
+                    tooltip.add(Text.translatable(id + "_" + j).setStyle(ABILITY));
+                }
             }
 
         } else {

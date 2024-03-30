@@ -48,6 +48,9 @@ public class OLConfig implements ConfigData {
         @ConfigEntry.Gui.Tooltip
         public int swallowsStormElectrifiedDamage = 10;
         public double swallowsStormElectrifiedStrength = 0.5d;
+        public int swallowsStormAwakeHeal = 10;
+        public int swallowsStormAwakeMaxCharges = 60;
+        public double swallowsStormAwakeElectrifiedStrength = 1d;
 
     }
 }

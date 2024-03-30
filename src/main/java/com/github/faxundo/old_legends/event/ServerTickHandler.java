@@ -22,7 +22,7 @@ public class ServerTickHandler implements ServerTickCallback {
                 if (player.getMainHandStack().getItem() instanceof SwallowsStormItem swallowsStormItem) {
                     if (player.isBlocking()
                             && OLHelpers.getRandomNumber(1, 100) < stormChance
-                            && player.getMainHandStack().getNbt().getInt("old_legends") < swallowsStormItem.getMaxCharges()
+                            && player.getMainHandStack().getNbt().getInt(OldLegends.MOD_ID) < swallowsStormItem.getMaxCharges()
                             && player.getWorld().isSkyVisible(player.getBlockPos())
                             && !player.getAbilities().creativeMode) {
                         double x = player.getX();

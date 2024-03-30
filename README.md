@@ -43,3 +43,9 @@ Congratulations! You have revived an old legend
   - Emerald Mourning
   - Swallows Storm
 - Questline of special misions for each weapon.
+
+## Changelogs
+1.0.0 - First Release
+2.0.0
+  - Added Swallows Storm
+  - Old Legends weapons now are fireproof

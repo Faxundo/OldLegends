@@ -1,5 +1,8 @@
 {
   "item.old_legends.icon": "Old Legends",
+  "key.category.old_legends": "Old Legends Keys",
+  "key.old_legends.main_hand_ability": "Habilidad de Mano Principal",
+  "key.old_legends.off_hand_ability": "Habilidad de Mano Secundaria",
 
   "text.autoconfig.old_legends.title": "Old Legends",
   "text.autoconfig.old_legends.option.enableAwakening": "Habilitar Despertar",
@@ -36,6 +39,9 @@
   "text.autoconfig.old_legends.option.swallowsStorm.swallowsStormElectrifiedDamage": "Daño de Electrificado",
   "text.autoconfig.old_legends.option.swallowsStorm.swallowsStormElectrifiedDamage.@Tooltip": "Este número es dividido por 'Límite de Cargas de Tormenta´y el resultado es el daño causado",
   "text.autoconfig.old_legends.option.swallowsStorm.swallowsStormElectrifiedStrength": "Fuerza de Empuje de Electrificado",
+  "text.autoconfig.old_legends.option.swallowsStorm.swallowsStormAwakeHeal": "(Despertado) Curación de Electroshock Refrescante",
+  "text.autoconfig.old_legends.option.swallowsStorm.swallowsStormAwakeMaxCharges": "(Despertado) Límite de Cargas de Tormenta",
+  "text.autoconfig.old_legends.option.swallowsStorm.swallowsStormAwakeElectrifiedStrength": "(Despertado) Fuerza de Empuje de Electrificado",
 
   "item.old_legends.pale_gem": "Gema Pálida",
   "item.old_legends.end_extract": "Extracto del End",
@@ -66,6 +72,6 @@
   "tooltip.old_legends.swallows_storm_awake_1": "  Obtiene 2 Cargas de Tormenta al bloquear un ataque y si bloquea un rayo, se cargará completamente. Durante una tormenta existe 30% posibilidad de ser objetivo de un rayo al bloquear",
   "tooltip.old_legends.swallows_storm_awake_2": "  Si tienes menos del 50% de Vida y tienes a Tragatormentas cargada, al bloquear, recuperarás 10 de Vida",
   "tooltip.old_legends.swallows_storm_awake_3": "  Cuando bloqueas, el atacante recibe daño y un leve retroceso. Por cada 10 Cargas de Tormenta que poseas, causa +2 de Daño",
-  "tooltip.old_legends.swallows_storm_name_4": "✦ ",
-  "tooltip.old_legends.swallows_storm_awake_4": "  X"
+  "tooltip.old_legends.swallows_storm_name_active": "✦ Explosión Explosiva",
+  "tooltip.old_legends.swallows_storm_awake_active": "  X"
 }
