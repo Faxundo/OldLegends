@@ -27,11 +27,11 @@ Then put the Old Legend Item, Awakening Upgrade and End Extract in the Smithing 
 
 Congratulations! You have revived an old legend
 
-## Languages:
+# Languages:
 - English: en_us
 - Español: es_ar
 
-## Future Plans
+# Future Plans
 - Add more singular items:
   - ~~Emerald Mourning~~
   - Swallows Storm
@@ -39,13 +39,17 @@ Congratulations! You have revived an old legend
   - Boomerang Pickaxe
   - ...
 - Improve the visual section.
-- Add lore for each weapon:
+- Add lore for each item:
   - Emerald Mourning
   - Swallows Storm
-- Questline of special misions for each weapon.
+- Questline of special misions for each item.
 
-## Changelogs
-1.0.0 - First Release
-2.0.0
+# Changelogs
+## 1.0.0
+  - First Release
+## 2.0.0
   - Added Swallows Storm
   - Old Legends weapons now are fireproof
+  - EmeraldMourning has +1 Damage
+  - Changes in how active ability works. Now uses Keybinding, per default is 'Z' for Main Hand and 'X' for Off Hand.
+  - Lyfecicle changes

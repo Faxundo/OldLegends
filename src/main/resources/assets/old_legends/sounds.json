@@ -3,5 +3,15 @@
     "sounds": [
       "old_legends:mourning_mob_death"
     ]
+  },
+  "swallows_storm_heal": {
+    "sounds": [
+      "old_legends:swallows_storm_heal"
+    ]
+  },
+  "swallows_storm_explosion": {
+    "sounds": [
+      "old_legends:swallows_storm_explosion"
+    ]
   }
 }

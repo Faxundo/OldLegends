@@ -29,7 +29,7 @@ public class OLItem {
             new EmeraldMourning(ToolMaterials.DIAMOND, 3, -2.4f,
                     new FabricItemSettings().fireproof()));
     public static final Item EMERALD_MOURNING_AWAKE = registerItem("emerald_mourning_awake",
-            new EmeraldMourningAwake(ToolMaterials.NETHERITE, 3, -2.4f,
+            new EmeraldMourningAwake(ToolMaterials.NETHERITE, 4, -2.4f,
                     new FabricItemSettings().fireproof()));
 
     public static final Item SWALLOWS_STORM = registerItem("swallows_storm",

@@ -2,83 +2,64 @@ package com.github.faxundo.old_legends.item.custom.awake;
 
 import com.github.faxundo.old_legends.OldLegends;
 import com.github.faxundo.old_legends.entity.MourningMob;
-import com.github.faxundo.old_legends.item.OLGenericSword;
-import com.github.faxundo.old_legends.util.OLHelpers;
+import com.github.faxundo.old_legends.item.custom.EmeraldMourning;
+import com.github.faxundo.old_legends.util.OLHelper;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.mob.IllagerEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUsageContext;
-import net.minecraft.item.Items;
 import net.minecraft.item.ToolMaterial;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.ActionResult;
 import net.minecraft.world.World;
 
-public class EmeraldMourningAwake extends OLGenericSword {
+public class EmeraldMourningAwake extends EmeraldMourning {
 
-    private final int damageIllager = OldLegends.CONFIG.emeraldMourning.emeraldMourningAwakePercentageIllager;
     private final int cooldown = OldLegends.CONFIG.emeraldMourning.emeraldMourningAwakeCooldown;
     private final int durabilityConsumed = OldLegends.CONFIG.emeraldMourning.emeraldMourningAwakePercentageConsumeDurability;
 
 
     public EmeraldMourningAwake(ToolMaterial toolMaterial, int attackDamage, float attackSpeed, Settings settings) {
         super(toolMaterial, attackDamage, attackSpeed, settings);
-        setId("emerald_mourning");
         setAwake(true);
     }
 
-    @Override
-    public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-        if (!attacker.getWorld().isClient()) {
-            if (target instanceof IllagerEntity) {
-                target.damage(attacker.getWorld().getDamageSources().generic(), (this.getAttackDamage() * damageIllager) / 100);
-                if (target.isDead() && attacker.isPlayer()) {
-                    for (int i = 1; i <= OLHelpers.getRandomNumber(1, 3); i++) {
-                        OLHelpers.spawnParticle(target.getWorld(), ParticleTypes.ANGRY_VILLAGER, target.getX(), target.getY(), target.getZ(),
-                                0.5, 0, 0.5);
-                        target.dropStack(new ItemStack(Items.EMERALD));
-                    }
-                }
-            }
-        }
-        return super.postHit(stack, target, attacker);
-    }
+    public void useAbility(PlayerEntity player) {
+        World world = player.getWorld();
+        if (!world.isClient) {
 
-    @Override
-    public ActionResult useOnBlock(ItemUsageContext context) {
-        World playerWorld = context.getWorld();
-        PlayerEntity playerEntity = context.getPlayer();
-        if (!playerWorld.isClient) {
-            playerEntity.getItemCooldownManager().set(this, cooldown);
-            context.getStack().damage((this.getMaxDamage() * durabilityConsumed) / 100,
-                    playerEntity, (e) -> {
+            if (player.getItemCooldownManager().isCoolingDown(this)) {
+                return;
+            }
+
+            ItemStack abilityStack = OLHelper.getAbilityItemStack(player, this.getDefaultStack());
+
+            abilityStack.damage((this.getMaxDamage() * durabilityConsumed) / 100,
+                    player, (e) -> {
                         e.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND);
                     });
-            playerEntity.playSound(SoundEvents.ENTITY_WITHER_SKELETON_STEP, SoundCategory.PLAYERS, 5.0f, 0f);
-            playerEntity.playSound(SoundEvents.ENTITY_WITHER_SKELETON_STEP, SoundCategory.PLAYERS, 5.0f, 0f);
+
+            player.getItemCooldownManager().set(this, cooldown);
+            player.playSound(SoundEvents.ENTITY_WITHER_SKELETON_STEP, SoundCategory.PLAYERS, 5.0f, 0f);
+            player.playSound(SoundEvents.ENTITY_WITHER_SKELETON_STEP, SoundCategory.PLAYERS, 5.0f, 0f);
             for (int i = 1; i <= 3; i++) {
-                MourningMob mourningMob = new MourningMob(EntityType.ZOMBIE_VILLAGER, playerWorld);
+                MourningMob mourningMob = new MourningMob(EntityType.ZOMBIE_VILLAGER, world);
                 mourningMob.setPosition(
-                        playerEntity.getX() + OLHelpers.getRandomNumber(0, 4),
-                        playerEntity.getY() + 1,
-                        playerEntity.getZ() - OLHelpers.getRandomNumber(0, 4));
+                        player.getX() + OLHelper.getRandomNumber(0, 4),
+                        player.getY() + 1,
+                        player.getZ() - OLHelper.getRandomNumber(0, 4));
                 if (mourningMob.getOwnerUuid().isEmpty()) {
-                    mourningMob.setOwner(playerEntity);
+                    mourningMob.setOwner(player);
                 }
                 for (int j = 1; j < 4; j++) {
-                    OLHelpers.spawnParticle(mourningMob.getWorld(), ParticleTypes.LARGE_SMOKE, mourningMob.getBlockX(), mourningMob.getBlockY()-0.2, mourningMob.getBlockZ(),
+                    OLHelper.spawnParticle(mourningMob.getWorld(), ParticleTypes.LARGE_SMOKE, mourningMob.getBlockX(), mourningMob.getBlockY() - 0.2, mourningMob.getBlockZ(),
                             0, 0.1, 0);
-                    OLHelpers.spawnParticle(mourningMob.getWorld(), ParticleTypes.SOUL, mourningMob.getBlockX(), mourningMob.getBlockY()-0.3, mourningMob.getBlockZ(),
+                    OLHelper.spawnParticle(mourningMob.getWorld(), ParticleTypes.SOUL, mourningMob.getBlockX(), mourningMob.getBlockY() - 0.3, mourningMob.getBlockZ(),
                             0.1, 0.1, 0.1);
                 }
-                playerWorld.spawnEntity(mourningMob);
+                world.spawnEntity(mourningMob);
             }
         }
-        return ActionResult.SUCCESS;
     }
 }

@@ -13,7 +13,7 @@ import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
 import net.minecraft.loot.provider.number.UniformLootNumberProvider;
 import net.minecraft.util.Identifier;
 
-public class LootTableModifiers {
+public class LootTableModifier {
 
     private static final Identifier PILLAGER_OUTPOST =
             new Identifier("minecraft", "chests/pillager_outpost");

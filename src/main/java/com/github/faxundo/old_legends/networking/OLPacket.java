@@ -6,7 +6,7 @@ import com.github.faxundo.old_legends.networking.packet.OffHandAbilityC2SPacket;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.util.Identifier;
 
-public class OLPackets {
+public class OLPacket {
 
     public static final Identifier MAIN_HAND_ABILITY = new Identifier(OldLegends.MOD_ID, "main_hand_ability");
     public static final Identifier OFF_HAND_ABILITY = new Identifier(OldLegends.MOD_ID, "off_hand_ability");
