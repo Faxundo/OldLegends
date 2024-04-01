@@ -45,6 +45,7 @@ public class OLConfig implements ConfigData {
         @ConfigEntry.Gui.Tooltip
         public int swallowsStormHealLost = 10;
         public int swallowsStormChance = 5;
+        public int swallowsStormCooldown = 200;
         @ConfigEntry.Gui.Tooltip
         public int swallowsStormPercentageConsumeDurability = 1;
         @ConfigEntry.Gui.Tooltip
@@ -53,6 +54,7 @@ public class OLConfig implements ConfigData {
         public int swallowsStormAwakeHeal = 10;
         public int swallowsStormAwakeMaxCharges = 60;
         public double swallowsStormAwakeElectrifiedStrength = 1d;
+        public int swallowsStormAwakeExplosiveCooldown = 100;
         public int swallowsStormAwakeExplosiveDamage = 15;
         public int swallowsStormAwakeExplosiveRange = 10;
         public int swallowsStormAwakeExplosiveKnockback = 2;

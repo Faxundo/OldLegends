@@ -36,6 +36,9 @@ public class OLItem {
             new SwallowsStormItem(new FabricItemSettings().maxDamage(672).fireproof(), 90, 15, SKY_RUNE_TAG));
     public static final Item SWALLOWS_STORM_AWAKE = registerItem("swallows_storm_awake",
             new SwallowsStormAwakeItem(new FabricItemSettings().maxDamage(672+256).fireproof(), 80, 17, SKY_RUNE_TAG));
+
+    public static final Item DEATH_RUNE = registerItem("death_rune",
+            new Item(new FabricItemSettings().fireproof()));
     public static final Item SKY_RUNE = registerItem("sky_rune",
             new Item(new FabricItemSettings().fireproof()));
 

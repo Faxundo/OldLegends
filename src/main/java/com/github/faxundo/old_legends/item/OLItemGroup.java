@@ -28,6 +28,7 @@ public class OLItemGroup {
                     entries.add(OLItem.END_EXTRACT);
                     entries.add(OLItem.AWAKENING_UPGRADE);
                     entries.add(OLItem.SKY_RUNE);
+                    entries.add(OLItem.DEATH_RUNE);
                     entries.add(OLItem.EMERALD_MOURNING);
                     entries.add(OLItem.EMERALD_MOURNING_AWAKE);
                     entries.add(OLItem.SWALLOWS_STORM);

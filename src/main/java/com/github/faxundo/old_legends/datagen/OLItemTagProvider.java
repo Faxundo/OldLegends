@@ -29,9 +29,10 @@ public class OLItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(OLItem.EMERALD_MOURNING)
                 .add(OLItem.SWALLOWS_STORM);
         getOrCreateTagBuilder(OLTag.Items.SKY_REPAIR)
-                .add(OLItem.SKY_RUNE);
+                .add(OLItem.SKY_RUNE)
+                .add(OLItem.DEATH_RUNE);
         getOrCreateTagBuilder(OLTag.Items.SHIELD)
-                .add(OLItem.SWALLOWS_STORM);
-//                .add(OLItem.SWALLOWS_STORM_AWAKE);
+                .add(OLItem.SWALLOWS_STORM)
+                .add(OLItem.SWALLOWS_STORM_AWAKE);
     }
 }

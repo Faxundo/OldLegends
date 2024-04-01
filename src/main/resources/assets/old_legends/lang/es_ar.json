@@ -45,6 +45,7 @@
   "text.autoconfig.old_legends.option.swallowsStorm.swallowsStormAwakeExplosiveDamage": "(Despierto) Daño de Expulsión Explosiva",
   "text.autoconfig.old_legends.option.swallowsStorm.swallowsStormAwakeExplosiveRange": "(Despierto) Knockback Rango de Expulsión Explosiva",
   "text.autoconfig.old_legends.option.swallowsStorm.swallowsStormAwakeExplosiveKnockback": "(Despierto) Knockback Fuerza de Empuje de Expulsión Explosiva",
+  "text.autoconfig.old_legends.option.swallowsStorm.swallowsStormAwakeExplosiveCooldown": "(Despierto) Cooldown de Expulsión Explosiva",
 
   "item.old_legends.pale_gem": "Gema Pálida",
   "item.old_legends.end_extract": "Extracto del End",

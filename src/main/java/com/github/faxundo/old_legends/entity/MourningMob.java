@@ -27,12 +27,11 @@ import net.minecraft.world.World;
 public class MourningMob extends ZombieVillagerEntity {
 
     int TIME_LIVED = 0;
-    int LIFE = OldLegends.CONFIG.emeraldMourning.emeraldMourningAwakeMobTime;
     protected static final TrackedData<String> OWNER_UUID;
 
     public MourningMob(EntityType<? extends ZombieVillagerEntity> entityType, World world) {
         super(entityType, world);
-        experiencePoints = 0;
+        this.experiencePoints = 0;
     }
 
     public static DefaultAttributeContainer.Builder createMourningMobAttributes() {
@@ -94,8 +93,9 @@ public class MourningMob extends ZombieVillagerEntity {
 
     @Override
     protected void mobTick() {
+        int life = OldLegends.CONFIG.emeraldMourning.emeraldMourningAwakeMobTime;
         TIME_LIVED++;
-        if (TIME_LIVED == LIFE) {
+        if (TIME_LIVED == life) {
             this.kill();
         }
         super.mobTick();
@@ -136,6 +136,5 @@ public class MourningMob extends ZombieVillagerEntity {
 
     static {
         OWNER_UUID = DataTracker.registerData(MourningMob.class, TrackedDataHandlerRegistry.STRING);
-
     }
 }

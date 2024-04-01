@@ -6,7 +6,7 @@ import com.github.faxundo.old_legends.event.ServerTickHandler;
 import com.github.faxundo.old_legends.event.ShieldBlockHandler;
 import com.github.faxundo.old_legends.item.OLItem;
 import com.github.faxundo.old_legends.item.OLItemGroup;
-import com.github.faxundo.old_legends.item.OLPredicateProvider;
+import com.github.faxundo.old_legends.util.OLPredicateProvider;
 import com.github.faxundo.old_legends.networking.OLPacket;
 import com.github.faxundo.old_legends.sound.OLSound;
 import com.github.faxundo.old_legends.util.LootTableModifier;

@@ -25,6 +25,7 @@ public class OLModelProvider extends FabricModelProvider {
         itemModelGenerator.register(OLItem.END_EXTRACT, Models.GENERATED);
         itemModelGenerator.register(OLItem.AWAKENING_UPGRADE, Models.GENERATED);
         itemModelGenerator.register(OLItem.SKY_RUNE, Models.GENERATED);
+        itemModelGenerator.register(OLItem.DEATH_RUNE, Models.GENERATED);
         itemModelGenerator.register(OLItem.EMERALD_MOURNING, Models.HANDHELD);
         itemModelGenerator.register(OLItem.EMERALD_MOURNING_AWAKE, Models.HANDHELD);
     }

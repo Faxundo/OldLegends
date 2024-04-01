@@ -16,8 +16,8 @@ import net.minecraft.world.World;
 
 public class EmeraldMourningAwake extends EmeraldMourning {
 
-    private final int cooldown = OldLegends.CONFIG.emeraldMourning.emeraldMourningAwakeCooldown;
-    private final int durabilityConsumed = OldLegends.CONFIG.emeraldMourning.emeraldMourningAwakePercentageConsumeDurability;
+    private int cooldown;
+    private int durabilityConsumed;
 
 
     public EmeraldMourningAwake(ToolMaterial toolMaterial, int attackDamage, float attackSpeed, Settings settings) {
@@ -34,6 +34,9 @@ public class EmeraldMourningAwake extends EmeraldMourning {
             }
 
             ItemStack abilityStack = OLHelper.getAbilityItemStack(player, this.getDefaultStack());
+            cooldown = OldLegends.CONFIG.emeraldMourning.emeraldMourningAwakeCooldown;
+            durabilityConsumed = OldLegends.CONFIG.emeraldMourning.emeraldMourningAwakePercentageConsumeDurability;
+
 
             abilityStack.damage((this.getMaxDamage() * durabilityConsumed) / 100,
                     player, (e) -> {

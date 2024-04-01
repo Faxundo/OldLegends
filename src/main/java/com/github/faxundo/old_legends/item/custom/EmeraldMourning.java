@@ -12,8 +12,8 @@ import net.minecraft.particle.ParticleTypes;
 
 public class EmeraldMourning extends OLGenericSword {
 
-    private final int damageIllager = OldLegends.CONFIG.emeraldMourning.emeraldMourningPercentageIllager;
-    private final int damageIllagerAwake = OldLegends.CONFIG.emeraldMourning.emeraldMourningAwakePercentageIllager;
+    private int damageIllager;
+    private int damageIllagerAwake;
 
     public EmeraldMourning(ToolMaterial toolMaterial, int attackDamage, float attackSpeed, Settings settings) {
         super(toolMaterial, attackDamage, attackSpeed, settings);
@@ -24,6 +24,10 @@ public class EmeraldMourning extends OLGenericSword {
 
     @Override
     public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+
+        damageIllager = OldLegends.CONFIG.emeraldMourning.emeraldMourningPercentageIllager;
+        damageIllagerAwake = OldLegends.CONFIG.emeraldMourning.emeraldMourningAwakePercentageIllager;
+
         if (!attacker.getWorld().isClient()) {
             if (target instanceof IllagerEntity) {
                 if (isAwake()) {
