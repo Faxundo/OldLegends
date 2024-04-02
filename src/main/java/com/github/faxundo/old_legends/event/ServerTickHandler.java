@@ -6,6 +6,8 @@ import com.github.faxundo.old_legends.util.OLHelper;
 import net.fabricmc.fabric.api.event.server.ServerTickCallback;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LightningEntity;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
@@ -33,6 +35,7 @@ public class ServerTickHandler implements ServerTickCallback {
 
             for (PlayerEntity player : world.getPlayers()) {
                 if (player.isBlocking() && canSpawnLightning(player, stormChance, maxCharges, maxChargesAwake)) {
+                    player.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 40, 4));
                     spawnLightning(player);
                     cooldownMap.put(player.getUuid(), cooldownTicks);
                 }

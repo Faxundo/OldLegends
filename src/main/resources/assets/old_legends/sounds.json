@@ -13,5 +13,10 @@
     "sounds": [
       "old_legends:swallows_storm_explosion"
     ]
+  },
+  "book_of_the_legends_open": {
+    "sounds": [
+      "old_legends:book_of_the_legends_open"
+    ]
   }
 }

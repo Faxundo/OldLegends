@@ -12,10 +12,13 @@ public class OLTag {
 
         public static final TagKey<Item> CAN_AWAKE =
                 createTag("can_awake");
+        public static final TagKey<Item> RUNE =
+                createTag("rune");
         public static final TagKey<Item> SKY_REPAIR =
                 createTag("sky_repair");
         public static final TagKey<Item> SHIELD =
                 createTag("shield");
+
 
         private static TagKey<Item> createTag(String name) {
             return TagKey.of(RegistryKeys.ITEM, new Identifier(OldLegends.MOD_ID, name));

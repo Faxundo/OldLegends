@@ -47,10 +47,12 @@
   "text.autoconfig.old_legends.option.swallowsStorm.swallowsStormAwakeExplosiveKnockback": "(Despierto) Knockback Fuerza de Empuje de Expulsión Explosiva",
   "text.autoconfig.old_legends.option.swallowsStorm.swallowsStormAwakeExplosiveCooldown": "(Despierto) Cooldown de Expulsión Explosiva",
 
+  "item.old_legends.book_of_the_legends": "Libro de Leyendas",
   "item.old_legends.pale_gem": "Gema Pálida",
   "item.old_legends.end_extract": "Extracto del End",
   "item.old_legends.awakening_upgrade": "Plantilla del Despertar",
   "item.old_legends.sky_rune": "Runa del Cielo",
+  "item.old_legends.death_rune": "Runa de la Muerte",
 
   "item.old_legends.emerald_mourning": "Luto Esmeralda",
   "item.old_legends.emerald_mourning_awake": "Luto Esmeralda Despierta",

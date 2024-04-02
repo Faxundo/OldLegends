@@ -24,6 +24,7 @@ public class OLItemGroup {
                 .icon(() -> new ItemStack(OLItem.ICON))
                 .displayName(Text.translatable("item.old_legends.icon"))
                 .entries((context, entries) -> {
+                    entries.add(OLItem.BOOK_OF_THE_LEGENDS);
                     entries.add(OLItem.PALE_GEM);
                     entries.add(OLItem.END_EXTRACT);
                     entries.add(OLItem.AWAKENING_UPGRADE);

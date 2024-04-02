@@ -1,6 +1,7 @@
 package com.github.faxundo.old_legends.util;
 
 import com.github.faxundo.old_legends.OldLegends;
+import com.github.faxundo.old_legends.item.OLGenericItem;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.player.PlayerEntity;
@@ -27,17 +28,19 @@ public class OLHelper {
     private static final Style ABILITY_AWAKE = getStyle("ability_awake");
     private static final Style SHIFT = getStyle("shift");
     private static final Style CHARGES = getStyle("charges");
+    private static final Style SPECIAL = getStyle("special");
 
     public static Style getStyle(String styleType) {
         int common = 0xFFFFFF;
-        int name = 0xFF00FF;
-        int name_awake = 0x8033B1;
+        int name = 0xE9581D;
+        int name_awake = 0x911AE7;
         int shift = 0xEDE65A;
         int ability_name = 0x2DFEF8;
         int ability_name_awake = 0xBA5BFF;
         int ability = 0xFECB2D;
         int ability_awake = 0xF2A125;
         int charges = 0xCDFF00;
+        int special = 0xE71AD7;
 
         Style COMMON = Style.EMPTY.withColor(TextColor.fromRgb(common));
         Style NAME = Style.EMPTY.withColor(TextColor.fromRgb(name));
@@ -48,6 +51,7 @@ public class OLHelper {
         Style ABILITY = Style.EMPTY.withColor(TextColor.fromRgb(ability));
         Style ABILITY_AWAKE = Style.EMPTY.withColor(TextColor.fromRgb(ability_awake));
         Style CHARGES = Style.EMPTY.withColor(TextColor.fromRgb(charges));
+        Style SPECIAL = Style.EMPTY.withColor(TextColor.fromRgb(special));
 
         return switch (styleType) {
             case "name" -> NAME;
@@ -58,19 +62,23 @@ public class OLHelper {
             case "ability" -> ABILITY;
             case "ability_awake" -> ABILITY_AWAKE;
             case "charges" -> CHARGES;
+            case "special" -> SPECIAL;
             default -> COMMON;
         };
     }
 
-    public static Text getNameHelper(ItemStack itemStack, boolean awake) {
-        if (awake) {
-            return Text.translatable(itemStack.getTranslationKey()).setStyle(NAME_AWAKE);
-        } else {
-            return Text.translatable(itemStack.getTranslationKey()).setStyle(NAME);
+    public static Text getNameHelper(ItemStack item, boolean awake) {
+        if (item.getItem() instanceof OLGenericItem) {
+            return Text.translatable(item.getTranslationKey()).setStyle(SPECIAL);
         }
+        if (awake) {
+            return Text.translatable(item.getTranslationKey()).setStyle(NAME_AWAKE);
+        }
+        return Text.translatable(item.getTranslationKey()).setStyle(NAME);
     }
 
-    public static void appendTooltipHelper(ItemStack stack, List<Text> tooltip, boolean awake, int amountPassives, String id, boolean useCharges, int maxCharges) {
+    public static void appendTooltipHelper(ItemStack item, List<Text> tooltip, boolean awake, int amountPassives, String id, boolean useCharges, int maxCharges) {
+
         if (Screen.hasShiftDown()) {
             tooltip.add(Text.literal(""));
             if (awake) {
@@ -96,10 +104,12 @@ public class OLHelper {
         }
         if (useCharges) {
             tooltip.add(Text.literal(""));
+            NbtCompound nbtData = item.getOrCreateNbt();
             Text textCharges = Text.translatable("tooltip.old_legends.swallows_storm_charges")
-                    .append(": " + stack.getNbt().getInt("old_legends") + "/" + maxCharges)
+                    .append(": " + nbtData.getInt("old_legends") + "/" + maxCharges)
                     .setStyle(CHARGES);
             tooltip.add(textCharges);
+
         }
     }
 

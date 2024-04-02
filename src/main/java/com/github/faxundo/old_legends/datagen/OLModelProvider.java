@@ -21,6 +21,7 @@ public class OLModelProvider extends FabricModelProvider {
     @Override
     public void generateItemModels(ItemModelGenerator itemModelGenerator) {
         itemModelGenerator.register(OLItem.ICON, Models.GENERATED);
+        itemModelGenerator.register(OLItem.BOOK_OF_THE_LEGENDS, Models.GENERATED);
         itemModelGenerator.register(OLItem.PALE_GEM, Models.GENERATED);
         itemModelGenerator.register(OLItem.END_EXTRACT, Models.GENERATED);
         itemModelGenerator.register(OLItem.AWAKENING_UPGRADE, Models.GENERATED);

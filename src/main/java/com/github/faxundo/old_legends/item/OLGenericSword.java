@@ -20,7 +20,8 @@ public class OLGenericSword extends SwordItem {
     private int maxCharges = 1;
 
     public OLGenericSword(ToolMaterial toolMaterial, int attackDamage, float attackSpeed, Settings settings) {
-        super(toolMaterial, attackDamage, attackSpeed, settings);
+        super(toolMaterial, attackDamage, attackSpeed, settings.fireproof());
+
     }
 
     public void setId(String id) {

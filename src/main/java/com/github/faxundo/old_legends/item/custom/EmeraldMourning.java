@@ -1,6 +1,7 @@
 package com.github.faxundo.old_legends.item.custom;
 
 import com.github.faxundo.old_legends.OldLegends;
+import com.github.faxundo.old_legends.item.OLGenericRune;
 import com.github.faxundo.old_legends.item.OLGenericSword;
 import com.github.faxundo.old_legends.util.OLHelper;
 import net.minecraft.entity.LivingEntity;
@@ -20,6 +21,11 @@ public class EmeraldMourning extends OLGenericSword {
         setId("emerald_mourning");
         setAwake(false);
         setAmountPassives(2);
+    }
+
+    @Override
+    public boolean canRepair(ItemStack stack, ItemStack ingredient) {
+        return ingredient.getItem() instanceof OLGenericRune && ingredient.getTranslationKey().contains("death_rune");
     }
 
     @Override

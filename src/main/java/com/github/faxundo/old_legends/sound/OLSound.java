@@ -14,6 +14,7 @@ public class OLSound {
     public static final SoundEvent MOURNING_MOB_DEATH = registerSoundEvent("mourning_mob_death");
     public static final SoundEvent SWALLOWS_STORM_HEAL = registerSoundEvent("swallows_storm_heal");
     public static final SoundEvent SWALLOWS_STORM_EXPLOSION = registerSoundEvent("swallows_storm_explosion");
+    public static final SoundEvent BOOK_OF_THE_LEGENDS_OPEN = registerSoundEvent("book_of_the_legends_open");
 
     private static SoundEvent registerSoundEvent (String name) {
         Identifier id = new Identifier(OldLegends.MOD_ID, name);

@@ -1,9 +1,10 @@
-// 1.20.4	2024-03-27T00:23:27.1622506	Old Legends/Model Definitions
+// 1.20.4	2024-04-01T18:59:53.8422035	Old Legends/Model Definitions
 8fa8451ef8af86a7f22944c9b31bf6fb09cd2c6b assets\old_legends\models\item\emerald_mourning.json
+70712a745789eb3e50633d7f19ffb6f8229785af assets\old_legends\models\item\death_rune.json
 90a5e2caf1eaf8327ec3d79ba0e384488c2d04d1 assets\old_legends\models\item\icon.json
 b787bfe86a08347a47d8ab04c1efbe2088e911fa assets\old_legends\models\item\emerald_mourning_awake.json
 d8b717116dd0976889e8912d3afe7876a619dae1 assets\old_legends\models\item\end_extract.json
 d472aec84ba63d81830fb4fddaed5c7e6468f5d4 assets\old_legends\models\item\awakening_upgrade.json
 fc732a9f30c343b6713d431c196bdd04cef9f3a3 assets\old_legends\models\item\sky_rune.json
-17cc4c78dca90360d5f38546010b619d74074cd0 assets\old_legends\models\item\swallows_storm.json
 be14a6be5a50dd9715cd910733cb8ccfce080d37 assets\old_legends\models\item\pale_gem.json
+65ef144f2b852dab49371828d27cc5a9663ac547 assets\old_legends\models\item\book_of_the_legends.json

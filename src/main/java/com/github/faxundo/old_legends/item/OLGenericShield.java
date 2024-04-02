@@ -21,7 +21,7 @@ public class OLGenericShield extends FabricShieldItem {
     private int maxCharges = 1;
 
     public OLGenericShield(Settings settings, int coolDownTicks, int enchantability, TagKey<Item> repairItemTag) {
-        super(settings, coolDownTicks, enchantability, repairItemTag);
+        super(settings.fireproof(), coolDownTicks, enchantability, repairItemTag);
     }
 
     public void setId(String id) {

@@ -24,7 +24,7 @@ public class ShieldBlockHandler implements ShieldBlockCallback {
             return ActionResult.PASS;
         }
 
-        NbtCompound nbtData = shield.getNbt();
+        NbtCompound nbtData = shield.getOrCreateNbt();
 
         if (!nbtData.contains(OldLegends.MOD_ID)) {
             return ActionResult.PASS;

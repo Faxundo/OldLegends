@@ -23,6 +23,7 @@ public class SwallowsStormAwakeItem extends SwallowsStormItem {
     private int explosionDamage;
     private int explosionRange;
     private int explosionKnockback;
+    private int maxCharges;
 
     public SwallowsStormAwakeItem(Settings settings, int coolDownTicks, int enchantability, TagKey<Item> repairItemTag) {
         super(settings, coolDownTicks, enchantability, repairItemTag);
@@ -38,7 +39,7 @@ public class SwallowsStormAwakeItem extends SwallowsStormItem {
         explosionDamage = CONFIG.swallowsStorm.swallowsStormAwakeExplosiveDamage;
         explosionRange = CONFIG.swallowsStorm.swallowsStormAwakeExplosiveRange;
         explosionKnockback = CONFIG.swallowsStorm.swallowsStormAwakeExplosiveKnockback;
-        setMaxCharges(CONFIG.swallowsStorm.swallowsStormAwakeMaxCharges);
+        maxCharges = CONFIG.swallowsStorm.swallowsStormAwakeMaxCharges;
 
         World world = player.getWorld();
         if (world.isClient) {
@@ -47,7 +48,7 @@ public class SwallowsStormAwakeItem extends SwallowsStormItem {
 
         ItemStack abilityStack = OLHelper.getAbilityItemStack(player, this.getDefaultStack());
 
-        if (OLHelper.getCharges(abilityStack) != getMaxCharges()) {
+        if (OLHelper.getCharges(abilityStack) != maxCharges) {
             return;
         }
         player.playSound(OLSound.SWALLOWS_STORM_EXPLOSION, SoundCategory.PLAYERS, 5.0f, 0f);

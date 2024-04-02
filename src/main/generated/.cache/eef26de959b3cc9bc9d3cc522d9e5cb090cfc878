@@ -1,7 +1,8 @@
-// 1.20.4	2024-03-27T00:23:27.1212472	Old Legends/Tags for minecraft:item
-70787bf4f20f02a3f3c549b742de8e9dcf413b2b data\minecraft\tags\items\trim_templates.json
-626b1004a814c6afc3d51c50ed53f579c559abfa data\minecraft\tags\items\trim_materials.json
+// 1.20.4	2024-04-01T18:59:53.8322051	Old Legends/Tags for minecraft:item
 61f7b7c8135f26bb3728d04fb8c18c904066a972 data\old_legends\tags\items\sky_repair.json
-a6d144974995cde02365fa016259cd4625f31ec5 data\old_legends\tags\items\shield.json
+626b1004a814c6afc3d51c50ed53f579c559abfa data\minecraft\tags\items\trim_materials.json
+70787bf4f20f02a3f3c549b742de8e9dcf413b2b data\minecraft\tags\items\trim_templates.json
+0e56f975b6f811b66cadf129ff4b742ce36248ac data\old_legends\tags\items\shield.json
+3b1e28f5975a1d2a61738dea914a632dab9b81bc data\old_legends\tags\items\rune.json
 93c5866eb169ae70b1d653665e4198ca3fee466f data\old_legends\tags\items\can_awake.json
 621eec9ac3e4656883324829fc1f7aa5554c621d data\minecraft\tags\items\swords.json

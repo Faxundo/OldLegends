@@ -24,6 +24,8 @@ public class SwallowsStormItem extends OLGenericShield {
     private int stormHeal;
     private int stormHealAwake;
     private int stormHealLost;
+    private int maxCharges;
+    private int maxChargesAwake;
 
     public SwallowsStormItem(Settings settings, int coolDownTicks, int enchantability, TagKey<Item> repairItemTag) {
         super(settings, coolDownTicks, enchantability, repairItemTag);
@@ -44,7 +46,13 @@ public class SwallowsStormItem extends OLGenericShield {
         this.stormHeal = CONFIG.swallowsStorm.swallowsStormHeal;
         this.stormHealAwake = CONFIG.swallowsStorm.swallowsStormAwakeHeal;
         this.stormHealLost = CONFIG.swallowsStorm.swallowsStormHealLost;
-        setMaxCharges(CONFIG.swallowsStorm.swallowsStormMaxCharges);
+        this.maxCharges = CONFIG.swallowsStorm.swallowsStormMaxCharges;
+        this.maxChargesAwake = CONFIG.swallowsStorm.swallowsStormAwakeMaxCharges;
+        if (isAwake()) {
+            setMaxCharges(maxChargesAwake);
+        } else {
+            setMaxCharges(maxCharges);
+        }
 
         ItemStack item = user.getStackInHand(hand);
 
@@ -52,40 +60,41 @@ public class SwallowsStormItem extends OLGenericShield {
             return TypedActionResult.success(item, false);
         }
 
-        if (item.hasNbt()) {
+        NbtCompound nbtData = item.getOrCreateNbt();
 
-            if (!item.getNbt().contains(OldLegends.MOD_ID)) {
-                item.getNbt().putInt(OldLegends.MOD_ID, 0);
-            }
+        if (!nbtData.contains(OldLegends.MOD_ID)) {
+            nbtData.putInt(OldLegends.MOD_ID, 0);
+        }
 
-            NbtCompound nbtData = item.getNbt();
-            int charges = nbtData.getInt(OldLegends.MOD_ID);
 
-            if (user.getHealth() <= stormHealLost) {
+        int charges = nbtData.getInt(OldLegends.MOD_ID);
 
-                user.playSound(OLSound.SWALLOWS_STORM_HEAL, SoundCategory.PLAYERS, 5.0f, 0f);
-                OLHelper.spawnParticle(user.getWorld(), ParticleTypes.ELECTRIC_SPARK, user.getX(), user.getY(), user.getZ(),
-                        0.5, 0, 0.5);
+        if (user.getHealth() <= stormHealLost) {
 
-                item.damage((item.getMaxDamage() * durabilityConsumed) / 100,
-                        user, (e) -> e.sendEquipmentBreakStatus(OLHelper.getItemSlot(user, item.getItem())));
-
-                if (isAwake()) {
-                    if (charges == this.getMaxCharges() / 2 || charges == this.getMaxCharges()) {
-                        user.heal(stormHealAwake);
-                        int updatedCharges = (charges == this.getMaxCharges() / 2) ? 0 : charges - (this.getMaxCharges() / 2);
-                        nbtData.putInt(OldLegends.MOD_ID, updatedCharges);
-                    }
-                } else if (charges == this.getMaxCharges()) {
-                    user.heal(stormHeal);
-                    nbtData.putInt(OldLegends.MOD_ID, 0);
+            if (isAwake()) {
+                if (charges == maxChargesAwake / 2 || charges == maxChargesAwake) {
+                    user.heal(stormHealAwake);
+                    int updatedCharges = (charges == getMaxCharges() / 2) ? 0 : charges - (getMaxCharges() / 2);
+                    nbtData.putInt(OldLegends.MOD_ID, updatedCharges);
+                    healEffects(user, item);
                 }
-
+            } else if (charges == maxCharges) {
+                user.heal(stormHeal);
+                nbtData.putInt(OldLegends.MOD_ID, 0);
+                healEffects(user, item);
             }
+
         }
         return super.use(world, user, hand);
     }
 
+    public void healEffects(PlayerEntity player, ItemStack item) {
+        player.playSound(OLSound.SWALLOWS_STORM_HEAL, SoundCategory.PLAYERS, 5.0f, 0f);
+        OLHelper.spawnParticle(player.getWorld(), ParticleTypes.ELECTRIC_SPARK, player.getX() + 0.5, player.getY() + 1, player.getZ() + 0.5,
+                0.5, 0, 0.5);
+        item.damage((item.getMaxDamage() * durabilityConsumed) / 100,
+                player, (e) -> e.sendEquipmentBreakStatus(OLHelper.getItemSlot(player, item.getItem())));
+    }
 
 }
 
