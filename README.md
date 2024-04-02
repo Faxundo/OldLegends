@@ -8,8 +8,8 @@ This is my first public mod. Any help or suggestions is well received.
 - Very customizable. 
 - Add 3 new items.
 - Add 2 new weapons:
-  - **Emerald Mourning**: A powerful sword imbued with the power of death. Have 2 passive abilities and 1 active ability.
-  - **Swallows Storm**: An electrifying shield that devours lightning like cookies. Have 3 passive abilities and 1 active ability.
+  - **Emerald Mourning**: A powerful sword imbued with the power of death and revenge. Has 2 passive abilities and 1 active ability.
+  - **Swallows Storm**: An electrifying shield that devours lightning like cookies. Has 3 passive abilities and 1 active ability.
 - Unique mechanic of old legends items: **Awake**. 
 
 ## Awake
@@ -26,6 +26,10 @@ Then put the Old Legend Item, Awakening Upgrade and End Extract in the Smithing 
 ![Awake Old Legend Item](src/main/resources/presentation/awake_smithing_table.png)
 
 Congratulations! You have revived an old legend
+
+## FAQ
+**¿How use the active abilities?**
+If item is in your Main Hand, press Z. If is in your Off Hand, press X. Of course, you can change this.
 
 # Languages:
 - English: en_us
