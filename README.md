@@ -34,7 +34,7 @@ Congratulations! You have revived an old legend
 # Future Plans
 - Add more singular items:
   - ~~Emerald Mourning~~
-  - Swallows Storm
+  - ~~Swallows Storm~~
   - Dual Swords
   - Boomerang Pickaxe
   - ...
@@ -46,12 +46,14 @@ Congratulations! You have revived an old legend
 
 # Changelogs
 ## 1.0.0
-  - First Release
+* First Release
 ## 2.0.0
-  - Added Swallows Storm 
-  - Added Book of the Legends (Still cannot be crafted and not have use)
-  - Old Legends weapons now are fireproof
-  - EmeraldMourning has +1 Damage
-  - Changes in how active ability works. Now uses Keybinding, per default is 'Z' for Main Hand and 'X' for Off Hand (Can be changed in the keybinding menu)
-  - Lifecycle changes
-  - Old Legends items only can be repaired with specific runes (Drops of runes still not available)
+* Added Swallows Storm
+* Added Book of the Legends (Still cannot be crafted and not have use)
+* Old Legends weapons now are fireproof
+* EmeraldMourning has +1 Damage
+* Changes in how active ability works. Now uses Keybinding, per default is 'Z' for Main Hand and 'X' for Off Hand (Can be changed in the keybinding menu)
+* Lifecycle changes
+* Old Legends items only can be repaired with specific runes (Drops of runes still not available)
+## 2.0.1
+* Fixed model of Swallows Storm in the off hand.
