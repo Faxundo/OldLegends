@@ -27,10 +27,10 @@ public class ServerTickHandler implements ServerTickCallback {
         World world = server.getOverworld();
         if (world.isThundering()) {
 
-            int stormChance = OldLegends.CONFIG.swallowsStorm.swallowsStormChance;
-            int maxCharges = OldLegends.CONFIG.swallowsStorm.swallowsStormMaxCharges;
-            int maxChargesAwake = OldLegends.CONFIG.swallowsStorm.swallowsStormAwakeMaxCharges;
-            int cooldownTicks = OldLegends.CONFIG.swallowsStorm.swallowsStormCooldown;
+            int stormChance = OldLegends.CONFIG.swallowsStorm.stormChance;
+            int maxCharges = OldLegends.CONFIG.swallowsStorm.maxCharges;
+            int maxChargesAwake = OldLegends.CONFIG.swallowsStorm.maxChargesAwake;
+            int cooldownTicks = OldLegends.CONFIG.swallowsStorm.stormCooldown;
 
 
             for (PlayerEntity player : world.getPlayers()) {

@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "old_legends:block/reliquary"
+    },
+    "facing=east": {
+      "model": "old_legends:block/reliquary",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "old_legends:block/reliquary",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "old_legends:block/reliquary",
+      "y": 270
+    }
+  }
+}

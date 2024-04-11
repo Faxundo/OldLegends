@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "old_legends:flutter_echo",
+    "old_legends:flutter_echo_awake"
+  ]
+}

@@ -1,5 +1,6 @@
 package com.github.faxundo.old_legends.datagen;
 
+import com.github.faxundo.old_legends.block.OLBlock;
 import com.github.faxundo.old_legends.item.OLItem;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
@@ -15,7 +16,8 @@ public class OLModelProvider extends FabricModelProvider {
 
     @Override
     public void generateBlockStateModels(BlockStateModelGenerator blockStateModelGenerator) {
-
+        blockStateModelGenerator.registerSimpleCubeAll(OLBlock.ECHO_ORE);
+        blockStateModelGenerator.registerSimpleCubeAll(OLBlock.ECHO_BLOCK);
     }
 
     @Override
@@ -25,9 +27,14 @@ public class OLModelProvider extends FabricModelProvider {
         itemModelGenerator.register(OLItem.PALE_GEM, Models.GENERATED);
         itemModelGenerator.register(OLItem.END_EXTRACT, Models.GENERATED);
         itemModelGenerator.register(OLItem.AWAKENING_UPGRADE, Models.GENERATED);
+        itemModelGenerator.register(OLItem.RELIQUARY_BLUEPRINT, Models.GENERATED);
         itemModelGenerator.register(OLItem.SKY_RUNE, Models.GENERATED);
         itemModelGenerator.register(OLItem.DEATH_RUNE, Models.GENERATED);
+        itemModelGenerator.register(OLItem.TIME_RUNE, Models.GENERATED);
         itemModelGenerator.register(OLItem.EMERALD_MOURNING, Models.HANDHELD);
         itemModelGenerator.register(OLItem.EMERALD_MOURNING_AWAKE, Models.HANDHELD);
+        itemModelGenerator.register(OLItem.FLUTTER_ECHO, Models.HANDHELD);
+        itemModelGenerator.register(OLItem.FLUTTER_ECHO_AWAKE, Models.HANDHELD);
     }
+
 }

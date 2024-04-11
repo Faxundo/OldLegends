@@ -5,6 +5,7 @@ import com.github.faxundo.old_legends.item.OLGenericShield;
 import com.github.faxundo.old_legends.item.OLItem;
 import com.github.faxundo.old_legends.sound.OLSound;
 import com.github.faxundo.old_legends.util.OLHelper;
+import com.github.faxundo.old_legends.util.OLHelperParticle;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -42,12 +43,12 @@ public class SwallowsStormItem extends OLGenericShield {
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
 
-        this.durabilityConsumed = CONFIG.swallowsStorm.swallowsStormPercentageConsumeDurability;
-        this.stormHeal = CONFIG.swallowsStorm.swallowsStormHeal;
-        this.stormHealAwake = CONFIG.swallowsStorm.swallowsStormAwakeHeal;
-        this.stormHealLost = CONFIG.swallowsStorm.swallowsStormHealLost;
-        this.maxCharges = CONFIG.swallowsStorm.swallowsStormMaxCharges;
-        this.maxChargesAwake = CONFIG.swallowsStorm.swallowsStormAwakeMaxCharges;
+        this.durabilityConsumed = CONFIG.swallowsStorm.consumeDurability;
+        this.stormHeal = CONFIG.swallowsStorm.stormHeal;
+        this.stormHealAwake = CONFIG.swallowsStorm.stormHealAwake;
+        this.stormHealLost = CONFIG.swallowsStorm.stormHealLost;
+        this.maxCharges = CONFIG.swallowsStorm.maxCharges;
+        this.maxChargesAwake = CONFIG.swallowsStorm.maxChargesAwake;
         if (isAwake()) {
             setMaxCharges(maxChargesAwake);
         } else {
@@ -90,7 +91,7 @@ public class SwallowsStormItem extends OLGenericShield {
 
     public void healEffects(PlayerEntity player, ItemStack item) {
         player.playSound(OLSound.SWALLOWS_STORM_HEAL, SoundCategory.PLAYERS, 5.0f, 0f);
-        OLHelper.spawnParticle(player.getWorld(), ParticleTypes.ELECTRIC_SPARK, player.getX() + 0.5, player.getY() + 1, player.getZ() + 0.5,
+        OLHelperParticle.spawnParticle(player.getWorld(), ParticleTypes.ELECTRIC_SPARK, player.getX() + 0.5, player.getY() + 1, player.getZ() + 0.5,
                 0.5, 0, 0.5);
         item.damage((item.getMaxDamage() * durabilityConsumed) / 100,
                 player, (e) -> e.sendEquipmentBreakStatus(OLHelper.getItemSlot(player, item.getItem())));

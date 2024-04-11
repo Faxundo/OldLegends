@@ -1,5 +1,6 @@
 package com.github.faxundo.old_legends.datagen;
 
+import com.github.faxundo.old_legends.block.OLBlock;
 import com.github.faxundo.old_legends.item.OLItem;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
@@ -28,6 +29,16 @@ public class OLRecipeProvider extends FabricRecipeProvider {
                 .criterion(hasItem(Items.NETHERITE_INGOT), conditionsFromItem(Items.NETHERITE_INGOT))
                 .criterion(hasItem(OLItem.PALE_GEM), conditionsFromItem(OLItem.PALE_GEM))
                 .offerTo(exporter, new Identifier(getRecipeName(OLItem.AWAKENING_UPGRADE)));
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, OLBlock.RELIQUARY_BLOCK, 1)
+                .pattern("LOL")
+                .pattern("ODO")
+                .pattern("LOL")
+                .input('O', Items.GOLD_INGOT)
+                .input('L', Items.IRON_INGOT)
+                .input('D', OLItem.RELIQUARY_BLUEPRINT)
+                .showNotification(true)
+                .criterion(hasItem(OLItem.RELIQUARY_BLUEPRINT), conditionsFromItem(OLItem.RELIQUARY_BLUEPRINT))
+                .offerTo(exporter, new Identifier(getRecipeName(OLBlock.RELIQUARY_BLOCK)));
 
     }
 }

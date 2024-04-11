@@ -1,3 +1,5 @@
-// 1.20.4	2024-04-01T18:59:53.8402046	Old Legends/Recipes
+// 1.20.4	2024-04-11T13:17:07.5276724	Old Legends/Recipes
 7a30fa05db66661ff26eccfb2930f1915e7dc93b data\old_legends\advancements\recipes\misc\awakening_upgrade.json
 1e58e20debd8f7db2001e5af9a9acd583cd7b575 data\old_legends\recipes\awakening_upgrade.json
+00ccff0cea99ef116596a41e0abab71e312d4260 data\old_legends\advancements\recipes\misc\reliquary.json
+7dda5374be2fba005d1ed4417b86fd7aecdb0700 data\old_legends\recipes\reliquary.json

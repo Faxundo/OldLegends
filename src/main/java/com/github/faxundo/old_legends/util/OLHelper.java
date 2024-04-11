@@ -2,20 +2,23 @@ package com.github.faxundo.old_legends.util;
 
 import com.github.faxundo.old_legends.OldLegends;
 import com.github.faxundo.old_legends.item.OLGenericItem;
+import net.minecraft.block.BlockState;
 import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.particle.ParticleEffect;
-import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import net.minecraft.text.TextColor;
 import net.minecraft.util.Hand;
-import net.minecraft.world.World;
+import net.minecraft.world.BlockView;
+import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class OLHelper {
@@ -113,7 +116,15 @@ public class OLHelper {
         }
     }
 
+    public static void appendTooltipBlockHelper(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options, String id) {
+        tooltip.add(Text.translatable(id).setStyle(SHIFT));
+    }
+
     public static double getRandomNumber(int min, int max) {
+        return Math.floor(Math.random() * (max - min + 1) + min);
+    }
+
+    public static double getRandomDoubleNumber(double min, double max) {
         return Math.floor(Math.random() * (max - min + 1) + min);
     }
 
@@ -187,39 +198,36 @@ public class OLHelper {
         return 0;
     }
 
-    public static void spawnParticle(World world, ParticleEffect particle, double xpos, double ypos, double zpos,
-                                     double xvelocity, double yvelocity, double zvelocity) {
-        if (world.isClient) {
-            world.addParticle(particle, xpos, ypos, zpos, xvelocity, yvelocity, zvelocity);
-        } else if (world instanceof ServerWorld serverWorld) {
-            serverWorld.spawnParticles(particle, xpos, ypos, zpos, 1, xvelocity, yvelocity, zvelocity, 0.1);
-        }
+
+    public static boolean isOreBlock(BlockState state) {
+        return state.isIn(OLTag.Blocks.ORES);
     }
 
-    public static void spawnCircularParticlesAroundPlayer(PlayerEntity player, World world, ParticleEffect particle, int numParticles, double radius) {
-        // Central Circle
-        spawnParticlesInCircle(player, world, particle, numParticles, radius);
-
-        // Generate particles in three smaller inner circles
-        double innerRadius = radius * 0.5; // Radius of smallest inner circle
-        double distanceBetweenCircles = radius * 0.25; // Distance between circles
-        spawnParticlesInCircle(player, world, particle, numParticles, innerRadius);
-        spawnParticlesInCircle(player, world, particle, numParticles, innerRadius - distanceBetweenCircles);
-        spawnParticlesInCircle(player, world, particle, numParticles, innerRadius - 2 * distanceBetweenCircles);
-    }
-
-    // Generates particles in a circular radius
-    private static void spawnParticlesInCircle(PlayerEntity player, World world, ParticleEffect particle, int numParticles, double radius) {
-        for (int i = 0; i < numParticles; i++) {
-            double angle = Math.random() * Math.PI * 2;
-            double xOffset = Math.cos(angle) * radius;
-            double zOffset = Math.sin(angle) * radius;
-
-            double posX = player.getX() + xOffset;
-            double posY = player.getY() + 1;
-            double posZ = player.getZ() + zOffset;
-
-            spawnParticle(world, particle, posX, posY, posZ, 1, 0, 0);
-        }
+    public static List<Item> reliquaryItems () {
+        List<Item> itemList = new ArrayList<>();
+        itemList.add(Items.EXPERIENCE_BOTTLE);
+        itemList.add(Items.EMERALD_BLOCK);
+        itemList.add(Items.GLISTERING_MELON_SLICE);
+        itemList.add(Items.EMERALD);
+        itemList.add(Items.GOLDEN_CARROT);
+        itemList.add(Items.DIAMOND);
+//        itemList.add(Items.DIAMOND_AXE);
+//        itemList.add(Items.DIAMOND_HOE);
+//        itemList.add(Items.DIAMOND_PICKAXE);
+//        itemList.add(Items.DIAMOND_SHOVEL);
+//        itemList.add(Items.DIAMOND_SWORD);
+        itemList.add(Items.GOLD_INGOT);
+//        itemList.add(Items.GOLDEN_AXE);
+//        itemList.add(Items.GOLDEN_HOE);
+//        itemList.add(Items.GOLDEN_PICKAXE);
+//        itemList.add(Items.GOLDEN_SHOVEL);
+//        itemList.add(Items.GOLDEN_SWORD);
+        itemList.add(Items.AMETHYST_SHARD);
+        itemList.add(Items.DIAMOND_BLOCK);
+        itemList.add(Items.GOLDEN_APPLE);
+        itemList.add(Items.GOLD_BLOCK);
+        itemList.add(Items.TOTEM_OF_UNDYING);
+        itemList.add(Items.ENCHANTED_GOLDEN_APPLE);
+        return itemList;
     }
 }

@@ -3,7 +3,7 @@ package com.github.faxundo.old_legends.event;
 import com.github.crimsondawn45.fabricshieldlib.lib.event.ShieldBlockCallback;
 import com.github.faxundo.old_legends.OldLegends;
 import com.github.faxundo.old_legends.item.custom.SwallowsStormItem;
-import com.github.faxundo.old_legends.util.OLHelper;
+import com.github.faxundo.old_legends.util.OLHelperParticle;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
@@ -30,11 +30,11 @@ public class ShieldBlockHandler implements ShieldBlockCallback {
             return ActionResult.PASS;
         }
 
-        int maxCharges = OldLegends.CONFIG.swallowsStorm.swallowsStormMaxCharges;
-        int maxChargesAwake = OldLegends.CONFIG.swallowsStorm.swallowsStormAwakeMaxCharges;
-        int electrifiedDamage = OldLegends.CONFIG.swallowsStorm.swallowsStormElectrifiedDamage;
-        double electrifiedStrength = OldLegends.CONFIG.swallowsStorm.swallowsStormElectrifiedStrength;
-        double electrifiedAwakeStrength = OldLegends.CONFIG.swallowsStorm.swallowsStormAwakeElectrifiedStrength;
+        int maxCharges = OldLegends.CONFIG.swallowsStorm.maxCharges;
+        int maxChargesAwake = OldLegends.CONFIG.swallowsStorm.maxChargesAwake;
+        int electrifiedDamage = OldLegends.CONFIG.swallowsStorm.electrifiedDamage;
+        double electrifiedStrength = OldLegends.CONFIG.swallowsStorm.electrifiedStrength;
+        double electrifiedAwakeStrength = OldLegends.CONFIG.swallowsStorm.electrifiedStrengthAwake;
 
         int charges = nbtData.getInt(OldLegends.MOD_ID);
 
@@ -42,7 +42,7 @@ public class ShieldBlockHandler implements ShieldBlockCallback {
 
             if (charges == maxCharges || charges == maxChargesAwake) {
                 DustParticleEffect dustParticle = new DustParticleEffect(new Vector3f(73.0f, 59.0f, 90.0f), 1.0f);
-                OLHelper.spawnParticle(defender.getWorld(), dustParticle, defender.getX() + 1, defender.getY(), defender.getZ() + 1,
+                OLHelperParticle.spawnParticle(defender.getWorld(), dustParticle, defender.getX() + 1, defender.getY(), defender.getZ() + 1,
                         0.5, 0, 0.5);
             }
 
@@ -58,14 +58,14 @@ public class ShieldBlockHandler implements ShieldBlockCallback {
             }
 
             if (source.getName().equals("lightningBolt")) {
-                OLHelper.spawnParticle(defender.getWorld(), ParticleTypes.ELECTRIC_SPARK, defender.getX(), defender.getY(), defender.getZ(),
+                OLHelperParticle.spawnParticle(defender.getWorld(), ParticleTypes.ELECTRIC_SPARK, defender.getX(), defender.getY(), defender.getZ(),
                         0.5, 0, 0.5);
                 nbtData.putInt(OldLegends.MOD_ID, swallowsStormItem.isAwake() ? maxChargesAwake : maxCharges);
 
             } else {
                 if (source.getAttacker() instanceof Entity) {
                     if (charges < maxChargesAwake && swallowsStormItem.isAwake()) {
-                        nbtData.putInt(OldLegends.MOD_ID, charges + 1);
+                        nbtData.putInt(OldLegends.MOD_ID, charges + 2);
                     } else if (charges < maxCharges) {
                         nbtData.putInt(OldLegends.MOD_ID, charges + 1);
 

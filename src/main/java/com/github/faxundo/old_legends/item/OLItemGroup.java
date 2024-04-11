@@ -1,6 +1,7 @@
 package com.github.faxundo.old_legends.item;
 
 import com.github.faxundo.old_legends.OldLegends;
+import com.github.faxundo.old_legends.block.OLBlock;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registries;
@@ -30,10 +31,16 @@ public class OLItemGroup {
                     entries.add(OLItem.AWAKENING_UPGRADE);
                     entries.add(OLItem.SKY_RUNE);
                     entries.add(OLItem.DEATH_RUNE);
+                    entries.add(OLItem.TIME_RUNE);
+                    entries.add(OLItem.RELIQUARY_BLUEPRINT);
+                    entries.add(OLBlock.RELIQUARY_BLOCK);
                     entries.add(OLItem.EMERALD_MOURNING);
                     entries.add(OLItem.EMERALD_MOURNING_AWAKE);
                     entries.add(OLItem.SWALLOWS_STORM);
                     entries.add(OLItem.SWALLOWS_STORM_AWAKE);
+                    entries.add(OLItem.FLUTTER_ECHO);
+                    entries.add(OLItem.FLUTTER_ECHO_AWAKE);
+                    entries.add(OLBlock.ECHO_ORE);
                 })
                 .build()
         );

@@ -1,4 +1,4 @@
-package com.github.faxundo.old_legends.entity;
+package com.github.faxundo.old_legends.entity.custom;
 
 import com.github.faxundo.old_legends.OldLegends;
 import com.github.faxundo.old_legends.sound.OLSound;
@@ -93,7 +93,7 @@ public class MourningMob extends ZombieVillagerEntity {
 
     @Override
     protected void mobTick() {
-        int life = OldLegends.CONFIG.emeraldMourning.emeraldMourningAwakeMobTime;
+        int life = OldLegends.CONFIG.emeraldMourning.mobTime;
         TIME_LIVED++;
         if (TIME_LIVED == life) {
             this.kill();

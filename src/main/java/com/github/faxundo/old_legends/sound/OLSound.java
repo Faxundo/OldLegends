@@ -15,6 +15,7 @@ public class OLSound {
     public static final SoundEvent SWALLOWS_STORM_HEAL = registerSoundEvent("swallows_storm_heal");
     public static final SoundEvent SWALLOWS_STORM_EXPLOSION = registerSoundEvent("swallows_storm_explosion");
     public static final SoundEvent BOOK_OF_THE_LEGENDS_OPEN = registerSoundEvent("book_of_the_legends_open");
+    public static final SoundEvent GRINNING_HOARDER_LAUGH = registerSoundEvent("grinning_hoarder_laugh");
 
     private static SoundEvent registerSoundEvent (String name) {
         Identifier id = new Identifier(OldLegends.MOD_ID, name);

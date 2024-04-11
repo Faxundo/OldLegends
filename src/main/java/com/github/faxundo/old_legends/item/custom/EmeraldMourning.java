@@ -4,6 +4,7 @@ import com.github.faxundo.old_legends.OldLegends;
 import com.github.faxundo.old_legends.item.OLGenericRune;
 import com.github.faxundo.old_legends.item.OLGenericSword;
 import com.github.faxundo.old_legends.util.OLHelper;
+import com.github.faxundo.old_legends.util.OLHelperParticle;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.mob.IllagerEntity;
 import net.minecraft.item.ItemStack;
@@ -31,8 +32,8 @@ public class EmeraldMourning extends OLGenericSword {
     @Override
     public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
 
-        damageIllager = OldLegends.CONFIG.emeraldMourning.emeraldMourningPercentageIllager;
-        damageIllagerAwake = OldLegends.CONFIG.emeraldMourning.emeraldMourningAwakePercentageIllager;
+        damageIllager = OldLegends.CONFIG.emeraldMourning.percentageIllager;
+        damageIllagerAwake = OldLegends.CONFIG.emeraldMourning.percentageIllagerAwake;
 
         if (!attacker.getWorld().isClient()) {
             if (target instanceof IllagerEntity) {
@@ -43,11 +44,11 @@ public class EmeraldMourning extends OLGenericSword {
                 }
                 if (attacker.isPlayer()) {
                     if (target.isDead()) {
-                        OLHelper.spawnParticle(target.getWorld(), ParticleTypes.ANGRY_VILLAGER, target.getX(), target.getY(), target.getZ(),
+                        OLHelperParticle.spawnParticle(target.getWorld(), ParticleTypes.ANGRY_VILLAGER, target.getX(), target.getY(), target.getZ(),
                                 0.5, 0, 0.5);
                         if (isAwake()) {
                             for (int i = 1; i <= OLHelper.getRandomNumber(1, 3); i++) {
-                                OLHelper.spawnParticle(target.getWorld(), ParticleTypes.ANGRY_VILLAGER, target.getX(), target.getY(), target.getZ(),
+                                OLHelperParticle.spawnParticle(target.getWorld(), ParticleTypes.ANGRY_VILLAGER, target.getX(), target.getY(), target.getZ(),
                                         0.5, 0, 0.5);
                                 target.dropStack(new ItemStack(Items.EMERALD));
                             }

@@ -3,8 +3,10 @@ package com.github.faxundo.old_legends.item;
 import com.github.faxundo.old_legends.OldLegends;
 import com.github.faxundo.old_legends.item.custom.BookOfTheLegends;
 import com.github.faxundo.old_legends.item.custom.EmeraldMourning;
+import com.github.faxundo.old_legends.item.custom.FlutterEcho;
 import com.github.faxundo.old_legends.item.custom.SwallowsStormItem;
 import com.github.faxundo.old_legends.item.custom.awake.EmeraldMourningAwake;
+import com.github.faxundo.old_legends.item.custom.awake.FlutterEchoAwake;
 import com.github.faxundo.old_legends.item.custom.awake.SwallowsStormAwakeItem;
 import com.github.faxundo.old_legends.util.OLTag;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
@@ -12,6 +14,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ToolMaterials;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.util.Identifier;
 
 import static com.github.faxundo.old_legends.OldLegends.LOGGER;
@@ -36,9 +39,19 @@ public class OLItem {
     public static final Item SWALLOWS_STORM_AWAKE = registerItem("swallows_storm_awake",
             new SwallowsStormAwakeItem(new FabricItemSettings().maxDamage(672+256), 80, 17, OLTag.Items.SKY_REPAIR));
 
+    public static final Item FLUTTER_ECHO = registerItem("flutter_echo",
+            new FlutterEcho(1.0F, -2.7F, ToolMaterials.DIAMOND, BlockTags.PICKAXE_MINEABLE, new FabricItemSettings()));
+    public static final Item FLUTTER_ECHO_AWAKE = registerItem("flutter_echo_awake",
+            new FlutterEchoAwake(2.0F, -2.7F, ToolMaterials.NETHERITE, BlockTags.PICKAXE_MINEABLE, new FabricItemSettings()));
+
+
+    public static final Item RELIQUARY_BLUEPRINT = registerItem("reliquary_blueprint",
+            new OLGenericItem(new FabricItemSettings().maxCount(16)));
     public static final Item DEATH_RUNE = registerItem("death_rune",
             new OLGenericRune(new FabricItemSettings()));
     public static final Item SKY_RUNE = registerItem("sky_rune",
+            new OLGenericRune(new FabricItemSettings()));
+    public static final Item TIME_RUNE = registerItem("time_rune",
             new OLGenericRune(new FabricItemSettings()));
 
     public static final Item PALE_GEM = registerItem("pale_gem",
@@ -52,7 +65,7 @@ public class OLItem {
         return Registry.register(Registries.ITEM, new Identifier(OldLegends.MOD_ID, name), item);
     }
 
-    public static void registerOldLegendsItems() {
+    public static void registerOLItems() {
         LOGGER.info(">>> Registering " + MOD_NAME + " items.");
     }
 }

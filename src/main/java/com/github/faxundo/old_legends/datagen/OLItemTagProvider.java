@@ -20,7 +20,8 @@ public class OLItemTagProvider extends FabricTagProvider.ItemTagProvider {
     protected void configure(RegistryWrapper.WrapperLookup arg) {
         getOrCreateTagBuilder(OLTag.Items.RUNE)
                 .add(OLItem.SKY_RUNE)
-                .add(OLItem.DEATH_RUNE);
+                .add(OLItem.DEATH_RUNE)
+                .add(OLItem.TIME_RUNE);
         getOrCreateTagBuilder(OLTag.Items.SKY_REPAIR)
                 .add(OLItem.SKY_RUNE);
         getOrCreateTagBuilder(ItemTags.TRIM_TEMPLATES)
@@ -29,12 +30,16 @@ public class OLItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(OLItem.END_EXTRACT);
         getOrCreateTagBuilder(OLTag.Items.CAN_AWAKE)
                 .add(OLItem.EMERALD_MOURNING)
-                .add(OLItem.SWALLOWS_STORM);
+                .add(OLItem.SWALLOWS_STORM)
+                .add(OLItem.FLUTTER_ECHO);
         getOrCreateTagBuilder(ItemTags.SWORDS)
                 .add(OLItem.EMERALD_MOURNING)
                 .add(OLItem.EMERALD_MOURNING_AWAKE);
         getOrCreateTagBuilder(OLTag.Items.SHIELD)
                 .add(OLItem.SWALLOWS_STORM)
                 .add(OLItem.SWALLOWS_STORM_AWAKE);
+        getOrCreateTagBuilder(ItemTags.PICKAXES)
+                .add(OLItem.FLUTTER_ECHO)
+                .add(OLItem.FLUTTER_ECHO_AWAKE);
     }
 }

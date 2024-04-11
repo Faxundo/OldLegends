@@ -12,52 +12,85 @@ public class OLConfig implements ConfigData {
     @ConfigEntry.Gui.Tooltip
     public boolean enableAwakening = true;
     public int paleGemDesertWellWeight = 1;
-    public int paleGemDesertPyramidWeight = 3;
-    public int paleGemOceanRuinColdWeight = 5;
-    public int paleGemOceanRuinWarmWeight = 5;
-    public int paleGemTrailsRuinsCommonWeight = 7;
-    public int paleGemTrailsRuinsRareWeight = 9;
+    public int paleGemDesertPyramidWeight = 2;
+    public int paleGemOceanRuinColdWeight = 3;
+    public int paleGemOceanRuinWarmWeight = 3;
+    public int paleGemTrailsRuinsCommonWeight = 4;
+    public int paleGemTrailsRuinsRareWeight = 5;
+    public int deathRuneSnifferDigging = 1;
+    public int skyRuneSnifferDigging = 1;
+
+    @ConfigEntry.Gui.CollapsibleObject
+    public final Reliquary reliquary = new Reliquary();
+
+    public static class Reliquary {
+        @ConfigEntry.Gui.Tooltip
+        public int grinningHoarderTime = 18000;
+        public float ancientCityWeight = 0.5f;
+        public float strongholdWeight = 0.5f;
+        public int desertPyramidWeight = 2;
+        public int ruinsCommonWeight = 3;
+        public int ruinsRareWeight = 4;
+    }
 
     @ConfigEntry.Gui.CollapsibleObject
     public final EmeraldMourning emeraldMourning = new EmeraldMourning();
 
     public static class EmeraldMourning {
-        public boolean enableEmeraldMourning = true;
-        public float emeraldMourningWeight = 0.6f;
-        public int emeraldMourningPercentageIllager = 30;
+        public boolean enable = true;
+        public float weight = 0.6f;
+        public int percentageIllager = 30;
 
-        public int emeraldMourningAwakePercentageIllager = 60;
+        public int percentageIllagerAwake = 60;
         @ConfigEntry.Gui.Tooltip
-        public int emeraldMourningAwakeCooldown = 140;
-        public int emeraldMourningAwakePercentageConsumeDurability = 5;
+        public int cooldown = 140;
+        public int consumeDurability = 5;
         @ConfigEntry.Gui.Tooltip
-        public int emeraldMourningAwakeMobTime = 600;
+        public int mobTime = 600;
     }
 
     @ConfigEntry.Gui.CollapsibleObject
     public final SwallowsStorm swallowsStorm = new SwallowsStorm();
 
     public static class SwallowsStorm {
-        public boolean enableSwallowsStorm = true;
-        public float swallowsStormWeight = 0.5f;
-        public int swallowsStormMaxCharges = 30;
-        public int swallowsStormHeal = 6;
+        public boolean enable = true;
+        public float weight = 0.5f;
+        public int maxCharges = 30;
+        public int stormHeal = 6;
         @ConfigEntry.Gui.Tooltip
-        public int swallowsStormHealLost = 10;
-        public int swallowsStormChance = 5;
-        public int swallowsStormCooldown = 200;
+        public int stormHealLost = 10;
+        public int stormChance = 5;
         @ConfigEntry.Gui.Tooltip
-        public int swallowsStormPercentageConsumeDurability = 1;
+        public int stormCooldown = 200;
         @ConfigEntry.Gui.Tooltip
-        public int swallowsStormElectrifiedDamage = 10;
-        public double swallowsStormElectrifiedStrength = 0.5d;
-        public int swallowsStormAwakeHeal = 10;
-        public int swallowsStormAwakeMaxCharges = 60;
-        public double swallowsStormAwakeElectrifiedStrength = 1d;
-        public int swallowsStormAwakeExplosiveCooldown = 100;
-        public int swallowsStormAwakeExplosiveDamage = 15;
-        public int swallowsStormAwakeExplosiveRange = 10;
-        public int swallowsStormAwakeExplosiveKnockback = 2;
+        public int consumeDurability = 1;
+        @ConfigEntry.Gui.Tooltip
+        public int maxChargesAwake = 60;
+        public int electrifiedDamage = 10;
+        public double electrifiedStrength = 0.5d;
+        public int stormHealAwake = 10;
+        public double electrifiedStrengthAwake = 1d;
+        public int explosiveCooldown = 100;
+        public int explosiveDamage = 15;
+        public int explosiveRange = 10;
+        public int explosiveKnockback = 2;
+    }
 
+    @ConfigEntry.Gui.CollapsibleObject
+    public final FlutterEcho flutterEcho = new FlutterEcho();
+
+    public static class FlutterEcho {
+        public boolean enable = true;
+        public float weight = 0.3f;
+        public int mineChance = 30;
+        public int attackChance = 30;
+        public int mineChanceAwake = 50;
+        public int attackChanceAwake = 50;
+        @ConfigEntry.Gui.Tooltip
+        public int cooldown = 200;
+        @ConfigEntry.Gui.Tooltip
+        public int consumeDurability = 4;
+        @ConfigEntry.Gui.Tooltip
+        public int countLimit = 3;
     }
 }

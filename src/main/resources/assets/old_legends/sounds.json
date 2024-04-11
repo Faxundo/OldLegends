@@ -18,5 +18,10 @@
     "sounds": [
       "old_legends:book_of_the_legends_open"
     ]
+  },
+  "grinning_hoarder_laugh": {
+    "sounds": [
+      "old_legends:grinning_hoarder_laugh"
+    ]
   }
 }

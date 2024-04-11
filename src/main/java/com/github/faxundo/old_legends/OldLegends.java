@@ -1,19 +1,28 @@
 package com.github.faxundo.old_legends;
 
 import com.github.crimsondawn45.fabricshieldlib.lib.event.ShieldBlockCallback;
-import com.github.faxundo.old_legends.entity.MourningMob;
+import com.github.faxundo.old_legends.block.OLBlock;
+import com.github.faxundo.old_legends.block.OLBlockEntity;
+import com.github.faxundo.old_legends.effect.OLEffect;
+import com.github.faxundo.old_legends.enchantment.OLEnchantment;
+import com.github.faxundo.old_legends.entity.custom.MourningMob;
+import com.github.faxundo.old_legends.event.PlayerBlockBreakAfterHandler;
 import com.github.faxundo.old_legends.event.ServerTickHandler;
 import com.github.faxundo.old_legends.event.ShieldBlockHandler;
 import com.github.faxundo.old_legends.item.OLItem;
 import com.github.faxundo.old_legends.item.OLItemGroup;
-import com.github.faxundo.old_legends.util.OLPredicateProvider;
 import com.github.faxundo.old_legends.networking.OLPacket;
+import com.github.faxundo.old_legends.particle.OLParticle;
+import com.github.faxundo.old_legends.screen.OLScreenHandler;
 import com.github.faxundo.old_legends.sound.OLSound;
 import com.github.faxundo.old_legends.util.LootTableModifier;
+import com.github.faxundo.old_legends.util.OLPredicateProvider;
 import com.github.faxundo.old_legends.util.config.OLConfig;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
+import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -30,9 +39,17 @@ public class OldLegends implements ModInitializer {
         LOGGER.info(MOD_NAME + "is here");
 
         OLPredicateProvider.registerPredicateProvider();
-        OLItem.registerOldLegendsItems();
+        OLItem.registerOLItems();
         OLItemGroup.registerItemGroup();
         OLPacket.registerC2SPackets();
+
+        OLBlock.registerOLBlocks();
+        OLScreenHandler.registerScreenHandler();
+        OLBlockEntity.registerOLBlockEntities();
+
+        OLEnchantment.registerModEnchantments();
+        OLParticle.registerParticles();
+        OLEffect.registerEffects();
 
         LootTableModifier.modifyLootTables();
 
@@ -41,8 +58,14 @@ public class OldLegends implements ModInitializer {
 
         ShieldBlockCallback.EVENT.register(new ShieldBlockHandler());
         ServerTickHandler.EVENT.register(new ServerTickHandler());
+        PlayerBlockBreakEvents.AFTER.register(new PlayerBlockBreakAfterHandler());
 
         AutoConfig.register(OLConfig.class, JanksonConfigSerializer::new);
         CONFIG = AutoConfig.getConfigHolder(OLConfig.class).getConfig();
     }
+
+    public static Identifier identifier(String path) {
+        return new Identifier(OldLegends.MOD_ID, path);
+    }
+
 }

@@ -1,9 +1,10 @@
 package com.github.faxundo.old_legends.item.custom.awake;
 
 import com.github.faxundo.old_legends.OldLegends;
-import com.github.faxundo.old_legends.entity.MourningMob;
+import com.github.faxundo.old_legends.entity.custom.MourningMob;
 import com.github.faxundo.old_legends.item.custom.EmeraldMourning;
 import com.github.faxundo.old_legends.util.OLHelper;
+import com.github.faxundo.old_legends.util.OLHelperParticle;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.player.PlayerEntity;
@@ -14,7 +15,7 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.world.World;
 
-public class EmeraldMourningAwake extends EmeraldMourning {
+public class EmeraldMourningAwake extends EmeraldMourning implements Ability{
 
     private int cooldown;
     private int durabilityConsumed;
@@ -34,8 +35,8 @@ public class EmeraldMourningAwake extends EmeraldMourning {
             }
 
             ItemStack abilityStack = OLHelper.getAbilityItemStack(player, this.getDefaultStack());
-            cooldown = OldLegends.CONFIG.emeraldMourning.emeraldMourningAwakeCooldown;
-            durabilityConsumed = OldLegends.CONFIG.emeraldMourning.emeraldMourningAwakePercentageConsumeDurability;
+            cooldown = OldLegends.CONFIG.emeraldMourning.cooldown;
+            durabilityConsumed = OldLegends.CONFIG.emeraldMourning.consumeDurability;
 
 
             abilityStack.damage((this.getMaxDamage() * durabilityConsumed) / 100,
@@ -56,9 +57,9 @@ public class EmeraldMourningAwake extends EmeraldMourning {
                     mourningMob.setOwner(player);
                 }
                 for (int j = 1; j < 4; j++) {
-                    OLHelper.spawnParticle(mourningMob.getWorld(), ParticleTypes.LARGE_SMOKE, mourningMob.getBlockX(), mourningMob.getBlockY() - 0.2, mourningMob.getBlockZ(),
+                    OLHelperParticle.spawnParticle(mourningMob.getWorld(), ParticleTypes.LARGE_SMOKE, mourningMob.getBlockX(), mourningMob.getBlockY() - 0.2, mourningMob.getBlockZ(),
                             0, 0.1, 0);
-                    OLHelper.spawnParticle(mourningMob.getWorld(), ParticleTypes.SOUL, mourningMob.getBlockX(), mourningMob.getBlockY() - 0.3, mourningMob.getBlockZ(),
+                    OLHelperParticle.spawnParticle(mourningMob.getWorld(), ParticleTypes.SOUL, mourningMob.getBlockX(), mourningMob.getBlockY() - 0.3, mourningMob.getBlockZ(),
                             0.1, 0.1, 0.1);
                 }
                 world.spawnEntity(mourningMob);

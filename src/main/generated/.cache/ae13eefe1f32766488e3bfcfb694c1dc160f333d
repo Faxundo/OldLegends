@@ -1,10 +1,20 @@
-// 1.20.4	2024-04-01T18:59:53.8422035	Old Legends/Model Definitions
-8fa8451ef8af86a7f22944c9b31bf6fb09cd2c6b assets\old_legends\models\item\emerald_mourning.json
+// 1.20.4	2024-04-11T13:17:07.5326725	Old Legends/Model Definitions
+c1f9b21bf1430797b945338e1091a12b32951d4b assets\old_legends\models\block\echo_ore.json
+c767d244e0151754c6d7f22f65cecf6399901bfb assets\old_legends\models\item\flutter_echo_awake.json
 70712a745789eb3e50633d7f19ffb6f8229785af assets\old_legends\models\item\death_rune.json
+1869546e526855d773596cdc4dd2aafd69548aa3 assets\old_legends\models\block\echo_block.json
+d8b717116dd0976889e8912d3afe7876a619dae1 assets\old_legends\models\item\end_extract.json
+fc732a9f30c343b6713d431c196bdd04cef9f3a3 assets\old_legends\models\item\sky_rune.json
+65ef144f2b852dab49371828d27cc5a9663ac547 assets\old_legends\models\item\book_of_the_legends.json
+07c1eb264601d8581ae6a25589a9855fd56b26e0 assets\old_legends\models\item\echo_ore.json
+8fa8451ef8af86a7f22944c9b31bf6fb09cd2c6b assets\old_legends\models\item\emerald_mourning.json
+57929f278aab8c5b1ad31e50fbedcff4f5b3798e assets\old_legends\models\item\time_rune.json
 90a5e2caf1eaf8327ec3d79ba0e384488c2d04d1 assets\old_legends\models\item\icon.json
 b787bfe86a08347a47d8ab04c1efbe2088e911fa assets\old_legends\models\item\emerald_mourning_awake.json
-d8b717116dd0976889e8912d3afe7876a619dae1 assets\old_legends\models\item\end_extract.json
+34a30e7a3ea784284ac0f3447b689e4480bedd97 assets\old_legends\models\item\reliquary_blueprint.json
+7e84f073fa9cc631472bfbe10754c0b325e5c79a assets\old_legends\models\item\flutter_echo.json
 d472aec84ba63d81830fb4fddaed5c7e6468f5d4 assets\old_legends\models\item\awakening_upgrade.json
-fc732a9f30c343b6713d431c196bdd04cef9f3a3 assets\old_legends\models\item\sky_rune.json
+75866bd5eee62234010bba0fe3038762190826ae assets\old_legends\models\item\echo_block.json
 be14a6be5a50dd9715cd910733cb8ccfce080d37 assets\old_legends\models\item\pale_gem.json
-65ef144f2b852dab49371828d27cc5a9663ac547 assets\old_legends\models\item\book_of_the_legends.json
+c6490f9ef2f6e563ba42dd467a5f4db2c596156a assets\old_legends\blockstates\echo_block.json
+cd7d619a36d7985c23a44ae149b15a33c46be8ca assets\old_legends\blockstates\echo_ore.json
