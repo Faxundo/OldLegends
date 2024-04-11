@@ -36,6 +36,8 @@ Congratulations! You have revived an old legend
 
 ## Reliquary
 
+![Reliquary](src/main/resources/presentation/reliquary_1.png)
+
 The reliquary is a container block like a chest but only has 3 slot.
 
 You only can put sparkly items inside this. When the night comes and you lock the reliquary (00:00) the Grinning
@@ -44,7 +46,11 @@ Hoarders take them and recompense you for these treasures.
 Each sparkly item has a different value, and you can see that in the wiki o you can discover your self. To each slot
 exits a multiplier what applied to the item.
 
+![Reliquary GUI](src/main/resources/presentation/reliquary_2.png)
+
 And remember once upon lock the reliquary not can be opened again.
+
+![Reliquary Locked](src/main/resources/presentation/reliquary_3.png)
 
 For craft the reliquary you need the Reliquary Blueprint what you can obtain with vanilla archeology or find in Ancients
 City or Strongholds.
