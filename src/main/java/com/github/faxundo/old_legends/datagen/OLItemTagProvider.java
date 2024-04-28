@@ -22,6 +22,16 @@ public class OLItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(OLItem.SKY_RUNE)
                 .add(OLItem.DEATH_RUNE)
                 .add(OLItem.TIME_RUNE);
+        getOrCreateTagBuilder(OLTag.Items.BLUEPRINT)
+                .add(OLItem.RELIQUARY_BLUEPRINT);
+        getOrCreateTagBuilder(OLTag.Items.PAGE)
+                .add(OLItem.DEATH_RUNE_PAGE)
+                .add(OLItem.SKY_RUNE_PAGE)
+                .add(OLItem.TIME_RUNE_PAGE)
+                .add(OLItem.RELIQUARY_PAGE)
+                .add(OLItem.EMERALD_MOURNING_PAGE)
+                .add(OLItem.SWALLOWS_STORM_PAGE)
+                .add(OLItem.FLUTTER_ECHO_PAGE);
         getOrCreateTagBuilder(OLTag.Items.SKY_REPAIR)
                 .add(OLItem.SKY_RUNE);
         getOrCreateTagBuilder(ItemTags.TRIM_TEMPLATES)

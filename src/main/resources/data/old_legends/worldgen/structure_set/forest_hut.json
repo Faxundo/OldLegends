@@ -1,0 +1,18 @@
+{
+  "structures": [
+    {
+      "structure": "old_legends:oak_forest_hut",
+      "weight": 1
+    },
+    {
+      "structure": "old_legends:spruce_forest_hut",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "salt": 775392435,
+    "spacing": 42,
+    "separation": 24
+  }
+}

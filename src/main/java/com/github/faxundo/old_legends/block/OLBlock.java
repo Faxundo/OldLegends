@@ -4,6 +4,7 @@ import com.github.faxundo.old_legends.OldLegends;
 import com.github.faxundo.old_legends.block.custom.EchoBlock;
 import com.github.faxundo.old_legends.block.custom.EchoOreBlock;
 import com.github.faxundo.old_legends.block.custom.ReliquaryBlock;
+import com.github.faxundo.old_legends.block.custom.RuneTableBlock;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
@@ -24,6 +25,8 @@ public class OLBlock {
             new EchoOreBlock(FabricBlockSettings.copyOf(Blocks.DIAMOND_ORE).luminance(5)));
     public static final Block ECHO_BLOCK = registerBlock("echo_block",
             new EchoBlock(FabricBlockSettings.copyOf(Blocks.STONE).luminance(3)));
+    public static final Block RUNE_TABLE = registerBlock("rune_table",
+            new RuneTableBlock(FabricBlockSettings.copyOf(Blocks.CRAFTING_TABLE)));
 
     private static Block registerBlock(String name, Block block) {
         registerBlockItem(name, block);

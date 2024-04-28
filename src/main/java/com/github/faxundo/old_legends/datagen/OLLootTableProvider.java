@@ -13,5 +13,6 @@ public class OLLootTableProvider extends FabricBlockLootTableProvider {
     @Override
     public void generate() {
         addDrop(OLBlock.RELIQUARY_BLOCK);
+        addDrop(OLBlock.RUNE_TABLE);
     }
 }

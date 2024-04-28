@@ -1,6 +1,9 @@
 package com.github.faxundo.old_legends.screen;
 
 import com.github.faxundo.old_legends.OldLegends;
+import com.github.faxundo.old_legends.screen.custom.BookOfTheLegendsScreenHandler;
+import com.github.faxundo.old_legends.screen.custom.ReliquaryScreenHandler;
+import com.github.faxundo.old_legends.screen.custom.RuneTableScreenHandler;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
@@ -11,6 +14,7 @@ public final class OLScreenHandler {
 
     public static ScreenHandlerType<BookOfTheLegendsScreenHandler> BOOK_OF_THE_LEGENDS_SCREEN_HANDLER;
     public static ScreenHandlerType<ReliquaryScreenHandler> RELIQUARY_SCREEN_HANDLER;
+    public static ScreenHandlerType<RuneTableScreenHandler> RUNE_TABLE_SCREEN_HANDLER;
 
     public static void registerScreenHandler() {
         BOOK_OF_THE_LEGENDS_SCREEN_HANDLER = Registry.register(Registries.SCREEN_HANDLER,
@@ -19,5 +23,8 @@ public final class OLScreenHandler {
         RELIQUARY_SCREEN_HANDLER = Registry.register(Registries.SCREEN_HANDLER,
                 OldLegends.identifier("reliquary"),
                 new ExtendedScreenHandlerType<>(ReliquaryScreenHandler::new));
+        RUNE_TABLE_SCREEN_HANDLER = Registry.register(Registries.SCREEN_HANDLER,
+                OldLegends.identifier("rune_table"),
+                new ExtendedScreenHandlerType<>(RuneTableScreenHandler::new));
     }
 }

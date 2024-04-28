@@ -1,7 +1,9 @@
 package com.github.faxundo.old_legends.util;
 
 import com.github.faxundo.old_legends.OldLegends;
-import com.github.faxundo.old_legends.item.OLGenericItem;
+import com.github.faxundo.old_legends.item.generic.OLGenericItem;
+import com.github.faxundo.old_legends.item.generic.OLGenericPage;
+import com.github.faxundo.old_legends.item.generic.OLGenericRune;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.item.TooltipContext;
@@ -23,6 +25,8 @@ import java.util.List;
 
 public class OLHelper {
 
+    private static final Style UNCOMMON = getStyle("uncommon");
+    private static final Style RARE = getStyle("rare");
     private static final Style NAME = getStyle("name");
     private static final Style NAME_AWAKE = getStyle("name_awake");
     private static final Style ABILITY_NAME = getStyle("ability_name");
@@ -32,9 +36,12 @@ public class OLHelper {
     private static final Style SHIFT = getStyle("shift");
     private static final Style CHARGES = getStyle("charges");
     private static final Style SPECIAL = getStyle("special");
+    private static final Style ERROR = getStyle("error");
 
     public static Style getStyle(String styleType) {
         int common = 0xFFFFFF;
+        int uncommon = 0xE2DF1D;
+        int rare = 0x1DE2C4;
         int name = 0xE9581D;
         int name_awake = 0x911AE7;
         int shift = 0xEDE65A;
@@ -44,8 +51,12 @@ public class OLHelper {
         int ability_awake = 0xF2A125;
         int charges = 0xCDFF00;
         int special = 0xE71AD7;
+        int error = 0xDA2424;
+        int message = 0x3ADA24;
 
         Style COMMON = Style.EMPTY.withColor(TextColor.fromRgb(common));
+        Style UNCOMMON = Style.EMPTY.withColor(TextColor.fromRgb(uncommon));
+        Style RARE = Style.EMPTY.withColor(TextColor.fromRgb(rare));
         Style NAME = Style.EMPTY.withColor(TextColor.fromRgb(name));
         Style NAME_AWAKE = Style.EMPTY.withColor(TextColor.fromRgb(name_awake));
         Style SHIFT = Style.EMPTY.withColor(TextColor.fromRgb(shift)).withBold(true);
@@ -55,8 +66,12 @@ public class OLHelper {
         Style ABILITY_AWAKE = Style.EMPTY.withColor(TextColor.fromRgb(ability_awake));
         Style CHARGES = Style.EMPTY.withColor(TextColor.fromRgb(charges));
         Style SPECIAL = Style.EMPTY.withColor(TextColor.fromRgb(special));
+        Style ERROR = Style.EMPTY.withColor(TextColor.fromRgb(error));
+        Style MESSAGE = Style.EMPTY.withColor(TextColor.fromRgb(message));
 
         return switch (styleType) {
+            case "uncommon" -> UNCOMMON;
+            case "rare" -> RARE;
             case "name" -> NAME;
             case "name_awake" -> NAME_AWAKE;
             case "shift" -> SHIFT;
@@ -66,11 +81,19 @@ public class OLHelper {
             case "ability_awake" -> ABILITY_AWAKE;
             case "charges" -> CHARGES;
             case "special" -> SPECIAL;
+            case "error" -> ERROR;
+            case "message" -> MESSAGE;
             default -> COMMON;
         };
     }
 
     public static Text getNameHelper(ItemStack item, boolean awake) {
+        if (item.getItem() instanceof OLGenericPage) {
+            return Text.translatable(item.getTranslationKey()).setStyle(UNCOMMON);
+        }
+        if (item.getItem() instanceof OLGenericRune) {
+            return Text.translatable(item.getTranslationKey()).setStyle(RARE);
+        }
         if (item.getItem() instanceof OLGenericItem) {
             return Text.translatable(item.getTranslationKey()).setStyle(SPECIAL);
         }
@@ -211,17 +234,25 @@ public class OLHelper {
         itemList.add(Items.EMERALD);
         itemList.add(Items.GOLDEN_CARROT);
         itemList.add(Items.DIAMOND);
-//        itemList.add(Items.DIAMOND_AXE);
-//        itemList.add(Items.DIAMOND_HOE);
-//        itemList.add(Items.DIAMOND_PICKAXE);
-//        itemList.add(Items.DIAMOND_SHOVEL);
-//        itemList.add(Items.DIAMOND_SWORD);
+        itemList.add(Items.DIAMOND_AXE);
+        itemList.add(Items.DIAMOND_HOE);
+        itemList.add(Items.DIAMOND_PICKAXE);
+        itemList.add(Items.DIAMOND_SHOVEL);
+        itemList.add(Items.DIAMOND_SWORD);
+        itemList.add(Items.DIAMOND_HELMET);
+        itemList.add(Items.DIAMOND_CHESTPLATE);
+        itemList.add(Items.DIAMOND_LEGGINGS);
+        itemList.add(Items.DIAMOND_BOOTS);
         itemList.add(Items.GOLD_INGOT);
-//        itemList.add(Items.GOLDEN_AXE);
-//        itemList.add(Items.GOLDEN_HOE);
-//        itemList.add(Items.GOLDEN_PICKAXE);
-//        itemList.add(Items.GOLDEN_SHOVEL);
-//        itemList.add(Items.GOLDEN_SWORD);
+        itemList.add(Items.GOLDEN_AXE);
+        itemList.add(Items.GOLDEN_HOE);
+        itemList.add(Items.GOLDEN_PICKAXE);
+        itemList.add(Items.GOLDEN_SHOVEL);
+        itemList.add(Items.GOLDEN_SWORD);
+        itemList.add(Items.GOLDEN_HELMET);
+        itemList.add(Items.GOLDEN_CHESTPLATE);
+        itemList.add(Items.GOLDEN_LEGGINGS);
+        itemList.add(Items.GOLDEN_BOOTS);
         itemList.add(Items.AMETHYST_SHARD);
         itemList.add(Items.DIAMOND_BLOCK);
         itemList.add(Items.GOLDEN_APPLE);

@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "old_legends:reliquary"
+    "old_legends:reliquary",
+    "old_legends:rune_table"
   ]
 }

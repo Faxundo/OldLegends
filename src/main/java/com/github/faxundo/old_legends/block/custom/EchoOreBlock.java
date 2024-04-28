@@ -1,7 +1,7 @@
 package com.github.faxundo.old_legends.block.custom;
 
 import com.github.faxundo.old_legends.block.OLBlockEntity;
-import com.github.faxundo.old_legends.block.entity.EchoOreEntity;
+import com.github.faxundo.old_legends.block.entity.EchoOreBlockEntity;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
@@ -30,7 +30,7 @@ public class EchoOreBlock extends BlockWithEntity implements BlockEntityProvider
     @Nullable
     @Override
     public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
-        return new EchoOreEntity(pos, state);
+        return new EchoOreBlockEntity(pos, state);
     }
 
     @Override

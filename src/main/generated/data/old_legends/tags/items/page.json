@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "old_legends:death_rune_page",
+    "old_legends:sky_rune_page",
+    "old_legends:time_rune_page",
+    "old_legends:reliquary_page",
+    "old_legends:emerald_mourning_page",
+    "old_legends:swallows_storm_page",
+    "old_legends:flutter_echo_page"
+  ]
+}

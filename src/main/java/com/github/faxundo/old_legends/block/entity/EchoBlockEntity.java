@@ -67,8 +67,10 @@ public class EchoBlockEntity extends BlockEntity {
         if (count >= 45) {
             world.playSound(null, pos, SoundEvents.BLOCK_SCULK_VEIN_BREAK, SoundCategory.BLOCKS, 0.5f, -0.1f);
             world.removeBlock(pos, false);
-            LootContextParameterSet.Builder builder = new LootContextParameterSet.Builder((ServerWorld) world);
-            ItemScatterer.spawn(this.getWorld(), pos, dropToInventory(getDroppedStacks(blockState, pos, player, stack, builder)));
+            if (blockState != null) {
+                LootContextParameterSet.Builder builder = new LootContextParameterSet.Builder((ServerWorld) world);
+                ItemScatterer.spawn(this.getWorld(), pos, dropToInventory(getDroppedStacks(blockState, pos, player, stack, builder)));
+            }
         }
     }
 

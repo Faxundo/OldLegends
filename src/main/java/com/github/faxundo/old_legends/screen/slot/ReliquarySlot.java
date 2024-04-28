@@ -9,6 +9,7 @@ import net.minecraft.screen.slot.Slot;
 import java.util.List;
 
 public class ReliquarySlot extends Slot {
+
     public ReliquarySlot(Inventory inventory, int index, int x, int y) {
         super(inventory, index, x, y);
     }

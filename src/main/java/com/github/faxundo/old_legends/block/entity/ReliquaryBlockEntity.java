@@ -4,8 +4,9 @@ import com.github.faxundo.old_legends.OldLegends;
 import com.github.faxundo.old_legends.block.ImplementedInventory;
 import com.github.faxundo.old_legends.block.OLBlockEntity;
 import com.github.faxundo.old_legends.item.OLItem;
+import com.github.faxundo.old_legends.item.generic.OLGenericRune;
 import com.github.faxundo.old_legends.particle.OLParticle;
-import com.github.faxundo.old_legends.screen.ReliquaryScreenHandler;
+import com.github.faxundo.old_legends.screen.custom.ReliquaryScreenHandler;
 import com.github.faxundo.old_legends.sound.OLSound;
 import com.github.faxundo.old_legends.util.OLHelper;
 import com.github.faxundo.old_legends.util.OLHelperParticle;
@@ -17,10 +18,12 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventories;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
+import net.minecraft.registry.Registries;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerContext;
@@ -141,7 +144,7 @@ public class ReliquaryBlockEntity extends BlockEntity implements ExtendedScreenH
         }
 
         if (world.getTimeOfDay() >= OldLegends.CONFIG.reliquary.grinningHoarderTime - 3600 && !bl) {
-            OLHelperParticle.spawnParticle(world, OLParticle.LOCK, pos.getX() + 0.5, pos.getY() + 0.8, pos.getZ() + 0.5, 0 , 0, 0);
+            OLHelperParticle.spawnParticle(world, OLParticle.LOCK, pos.getX() + 0.5, pos.getY() + 0.8, pos.getZ() + 0.5, 0, 0, 0);
             bl = true;
         }
 
@@ -158,19 +161,24 @@ public class ReliquaryBlockEntity extends BlockEntity implements ExtendedScreenH
     public Inventory dropReliquary(int value) {
 
         List<ItemStack> list = new ArrayList<>();
+
         while (value > 0) {
-            double randomNumber = OLHelper.getRandomNumber(1, 3);
+
             if (value >= 20) {
                 list.add(new ItemStack(OLItem.PALE_GEM));
                 value -= 20;
             } else if (value >= 10) {
-                if (randomNumber == 1) {
-                    list.add(new ItemStack(OLItem.DEATH_RUNE));
-                } else if (randomNumber == 2) {
-                    list.add(new ItemStack(OLItem.SKY_RUNE));
-                } else {
-                    list.add(new ItemStack(OLItem.TIME_RUNE));
+
+                List<Item> runes = new ArrayList<>();
+                List<Item> items = Registries.ITEM.stream().filter(item -> item.getTranslationKey().contains("rune")).toList();
+                for (Item rune : items) {
+                    if (rune instanceof OLGenericRune && !rune.getTranslationKey().contains("blank")) {
+                        runes.add(rune);
+                    }
                 }
+                double randomNumber = OLHelper.getRandomNumber(0, runes.size()-1);
+                list.add(runes.get((int) randomNumber).getDefaultStack());
+
                 value -= 10;
             } else if (value >= 7) {
                 list.add(new ItemStack(Items.LAPIS_LAZULI));

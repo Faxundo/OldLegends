@@ -23,6 +23,10 @@ public class OLTag {
                 createTag("can_awake");
         public static final TagKey<Item> RUNE =
                 createTag("rune");
+        public static final TagKey<Item> PAGE =
+                createTag("page");
+        public static final TagKey<Item> BLUEPRINT =
+                createTag("blueprint");
         public static final TagKey<Item> SKY_REPAIR =
                 createTag("sky_repair");
         public static final TagKey<Item> SHIELD =

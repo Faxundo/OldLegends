@@ -37,7 +37,7 @@ public class ReliquaryBlock extends BlockWithEntity implements BlockEntityProvid
             Block.createCuboidShape(7, 3, 1, 9, 6, 2));
 
     public ReliquaryBlock(Settings settings) {
-        super(settings.nonOpaque().strength(20f));
+        super(settings.nonOpaque().strength(20f).requiresTool().resistance(1200F));
         setDefaultState(getDefaultState().with(Properties.HORIZONTAL_FACING, Direction.NORTH));
     }
 

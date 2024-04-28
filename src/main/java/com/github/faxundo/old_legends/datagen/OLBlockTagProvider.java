@@ -28,8 +28,10 @@ public class OLBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .forceAddTag(BlockTags.COPPER_ORES)
                 .forceAddTag(BlockTags.COAL_ORES);
         getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE)
-                .add(OLBlock.RELIQUARY_BLOCK);
+                .add(OLBlock.RELIQUARY_BLOCK)
+                .add(OLBlock.RUNE_TABLE);
         getOrCreateTagBuilder(BlockTags.NEEDS_DIAMOND_TOOL)
-                .add(OLBlock.RELIQUARY_BLOCK);
+                .add(OLBlock.RELIQUARY_BLOCK)
+                .add(OLBlock.RUNE_TABLE);
     }
 }

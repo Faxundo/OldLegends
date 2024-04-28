@@ -39,7 +39,6 @@ public abstract class ItemRendererMixin {
         if (stack.isOf(Item.fromBlock(OLBlock.RELIQUARY_BLOCK))) {
             return getTexture("reliquary_item");
         }
-
         return value;
     }
 }

@@ -1,7 +1,7 @@
 package com.github.faxundo.old_legends.item.custom;
 
 import com.github.faxundo.old_legends.OldLegends;
-import com.github.faxundo.old_legends.item.OLGenericShield;
+import com.github.faxundo.old_legends.item.generic.OLGenericShield;
 import com.github.faxundo.old_legends.item.OLItem;
 import com.github.faxundo.old_legends.sound.OLSound;
 import com.github.faxundo.old_legends.util.OLHelper;

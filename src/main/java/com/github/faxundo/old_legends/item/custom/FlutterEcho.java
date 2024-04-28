@@ -2,9 +2,9 @@ package com.github.faxundo.old_legends.item.custom;
 
 import com.github.faxundo.old_legends.OldLegends;
 import com.github.faxundo.old_legends.block.OLBlock;
-import com.github.faxundo.old_legends.block.entity.EchoOreEntity;
-import com.github.faxundo.old_legends.item.OLGenericMiningTool;
-import com.github.faxundo.old_legends.item.OLGenericRune;
+import com.github.faxundo.old_legends.block.entity.EchoOreBlockEntity;
+import com.github.faxundo.old_legends.item.generic.OLGenericMiningTool;
+import com.github.faxundo.old_legends.item.generic.OLGenericRune;
 import com.github.faxundo.old_legends.item.OLItem;
 import com.github.faxundo.old_legends.particle.OLParticle;
 import com.github.faxundo.old_legends.util.OLHelper;
@@ -88,21 +88,21 @@ public class FlutterEcho extends OLGenericMiningTool {
         BlockState echoOre = OLBlock.ECHO_ORE.getDefaultState();
         world.setBlockState(getBlockMinedPos(), echoOre);
         BlockEntity blockEntity = world.getBlockEntity(getBlockMinedPos());
-        if (blockEntity instanceof EchoOreEntity echoOreEntity) {
+        if (blockEntity instanceof EchoOreBlockEntity echoOreBlockEntity) {
             if (stack.hasEnchantments()) {
                 NbtList listEnchantments = stack.getEnchantments();
                 for (int i = 0; i < listEnchantments.size(); i++) {
                     String enchantment = listEnchantments.getCompound(i).getString("id");
                     short level = listEnchantments.getCompound(i).getShort("lvl");
                     if (enchantment.contains("fortune")) {
-                        echoOreEntity.setHasFortune(true);
-                        echoOreEntity.setFortuneLevel(level);
+                        echoOreBlockEntity.setHasFortune(true);
+                        echoOreBlockEntity.setFortuneLevel(level);
                         break;
                     }
                 }
             }
             world.playSound(null, pos, SoundEvents.BLOCK_END_PORTAL_FRAME_FILL, SoundCategory.BLOCKS, 0.4f, -0.1f);
-            echoOreEntity.setOre(getBlockMinedState());
+            echoOreBlockEntity.setOre(getBlockMinedState());
         }
     }
 

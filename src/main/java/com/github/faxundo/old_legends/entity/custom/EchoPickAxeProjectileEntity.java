@@ -24,7 +24,6 @@ import net.minecraft.world.World;
 public class EchoPickAxeProjectileEntity extends ThrownItemEntity {
 
     private int count = 0;
-    private int countLimit = 0;
     private int timeLived = 0;
     private ItemStack stack;
 
@@ -51,7 +50,7 @@ public class EchoPickAxeProjectileEntity extends ThrownItemEntity {
     public void tick() {
         super.tick();
         timeLived++;
-        if (timeLived >= 200) {
+        if (timeLived >= (70 * OldLegends.CONFIG.flutterEcho.countLimit)) {
             this.discard();
         }
     }
@@ -78,7 +77,7 @@ public class EchoPickAxeProjectileEntity extends ThrownItemEntity {
                 if (this.getOwner() instanceof PlayerEntity player) {
 
                     world.breakBlock(pos, false);
-                    world.setBlockState(pos,OLBlock.ECHO_BLOCK.getDefaultState());
+                    world.setBlockState(pos, OLBlock.ECHO_BLOCK.getDefaultState());
 
                     if (world.getBlockEntity(pos) instanceof EchoBlockEntity echoBlockEntity) {
                         echoBlockEntity.setBlockState(state);
@@ -93,9 +92,8 @@ public class EchoPickAxeProjectileEntity extends ThrownItemEntity {
 
 
     public void countController() {
-        countLimit = OldLegends.CONFIG.flutterEcho.countLimit;
         count++;
-        if (count >= countLimit) {
+        if (count >= OldLegends.CONFIG.flutterEcho.countLimit) {
             this.discard();
         }
     }

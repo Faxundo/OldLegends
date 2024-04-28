@@ -1,8 +1,8 @@
 package com.github.faxundo.old_legends.item.custom;
 
 import com.github.faxundo.old_legends.OldLegends;
-import com.github.faxundo.old_legends.item.OLGenericRune;
-import com.github.faxundo.old_legends.item.OLGenericSword;
+import com.github.faxundo.old_legends.item.generic.OLGenericRune;
+import com.github.faxundo.old_legends.item.generic.OLGenericSword;
 import com.github.faxundo.old_legends.util.OLHelper;
 import com.github.faxundo.old_legends.util.OLHelperParticle;
 import net.minecraft.entity.LivingEntity;

@@ -28,6 +28,7 @@ public class OldLegendsClient implements ClientModInitializer {
         ParticleFactoryRegistry.getInstance().register(OLParticle.ECHO_PICKAXE, EchoPickAxeParticle.Factory::new);
         BlockRenderLayerMap.INSTANCE.putBlock(OLBlock.ECHO_ORE, RenderLayer.getTranslucent());
         BlockRenderLayerMap.INSTANCE.putBlock(OLBlock.ECHO_BLOCK, RenderLayer.getTranslucent());
+        BlockRenderLayerMap.INSTANCE.putBlock(OLBlock.RUNE_TABLE, RenderLayer.getCutoutMipped());
 
         EntityRendererRegistry.register(OLEntities.ECHO_PICKAXE_PROJECTILE, FlyingItemEntityRenderer::new);
     }

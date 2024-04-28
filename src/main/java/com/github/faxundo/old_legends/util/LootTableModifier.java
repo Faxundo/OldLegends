@@ -29,6 +29,8 @@ public class LootTableModifier {
             new Identifier("minecraft", "chests/stronghold_library");
     private static final Identifier ABANDONED_MINESHAFT =
             new Identifier("minecraft", "chests/abandoned_mineshaft");
+    private static final Identifier VILLAGE_CARTOGRAPHER =
+            new Identifier("minecraft", "chests/village/village_cartographer");
     private static final Identifier END_DRAGON =
             new Identifier("minecraft", "entities/ender_dragon");
 
@@ -67,16 +69,27 @@ public class LootTableModifier {
                     addItemSnifferDig(tableBuilder, OLItem.SKY_RUNE, OldLegends.CONFIG.skyRuneSnifferDigging);
                 }
             }
-            if (OldLegends.CONFIG.emeraldMourning.enable && PILLAGER_OUTPOST.equals(id)) {
-                LootPool.Builder poolBuilder = LootPool.builder()
-                        .rolls(ConstantLootNumberProvider.create(1))
-                        .conditionally(RandomChanceLootCondition.builder(OldLegends.CONFIG.emeraldMourning.weight))
-                        .with(ItemEntry.builder(OLItem.EMERALD_MOURNING))
-                        .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 1.0f)).build());
-                tableBuilder.pool(poolBuilder.build());
+            if (OldLegends.CONFIG.emeraldMourning.enable) {
+                if (PILLAGER_OUTPOST.equals(id)) {
+                    LootPool.Builder poolBuilder = LootPool.builder()
+                            .rolls(ConstantLootNumberProvider.create(1))
+                            .conditionally(RandomChanceLootCondition.builder(OldLegends.CONFIG.emeraldMourning.weight))
+                            .with(ItemEntry.builder(OLItem.EMERALD_MOURNING))
+                            .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 1.0f)).build());
+                    tableBuilder.pool(poolBuilder.build());
+                }
+                if (VILLAGE_CARTOGRAPHER.equals(id)) {
+                    LootPool.Builder poolBuilder = LootPool.builder()
+                            .rolls(ConstantLootNumberProvider.create(1))
+                            .conditionally(RandomChanceLootCondition.builder(OldLegends.CONFIG.emeraldMourning.weightPage))
+                            .with(ItemEntry.builder(OLItem.EMERALD_MOURNING_PAGE))
+                            .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 1.0f)).build());
+                    tableBuilder.pool(poolBuilder.build());
+                }
             }
-            if (ANCIENT_CITY.equals(id)) {
-                if (OldLegends.CONFIG.swallowsStorm.enable) {
+
+            if (OldLegends.CONFIG.swallowsStorm.enable) {
+                if (ANCIENT_CITY.equals(id)) {
                     LootPool.Builder poolBuilder = LootPool.builder()
                             .rolls(ConstantLootNumberProvider.create(1))
                             .conditionally(RandomChanceLootCondition.builder(OldLegends.CONFIG.swallowsStorm.weight))
@@ -84,6 +97,16 @@ public class LootTableModifier {
                             .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 1.0f)).build());
                     tableBuilder.pool(poolBuilder.build());
                 }
+                if (VILLAGE_CARTOGRAPHER.equals(id)) {
+                    LootPool.Builder poolBuilder = LootPool.builder()
+                            .rolls(ConstantLootNumberProvider.create(1))
+                            .conditionally(RandomChanceLootCondition.builder(OldLegends.CONFIG.swallowsStorm.weightPage))
+                            .with(ItemEntry.builder(OLItem.SWALLOWS_STORM_PAGE))
+                            .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 1.0f)).build());
+                    tableBuilder.pool(poolBuilder.build());
+                }
+            }
+            if (ANCIENT_CITY.equals(id)) {
                 LootPool.Builder poolBuilder = LootPool.builder()
                         .rolls(ConstantLootNumberProvider.create(1))
                         .conditionally(RandomChanceLootCondition.builder(OldLegends.CONFIG.reliquary.ancientCityWeight))
@@ -105,6 +128,14 @@ public class LootTableModifier {
                             .rolls(ConstantLootNumberProvider.create(1))
                             .conditionally(RandomChanceLootCondition.builder(OldLegends.CONFIG.flutterEcho.weight))
                             .with(ItemEntry.builder(OLItem.FLUTTER_ECHO))
+                            .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 1.0f)).build());
+                    tableBuilder.pool(poolBuilder.build());
+                }
+                if (VILLAGE_CARTOGRAPHER.equals(id)) {
+                    LootPool.Builder poolBuilder = LootPool.builder()
+                            .rolls(ConstantLootNumberProvider.create(1))
+                            .conditionally(RandomChanceLootCondition.builder(OldLegends.CONFIG.flutterEcho.weightPage))
+                            .with(ItemEntry.builder(OLItem.FLUTTER_ECHO_PAGE))
                             .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 1.0f)).build());
                     tableBuilder.pool(poolBuilder.build());
                 }

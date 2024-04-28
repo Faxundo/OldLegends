@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "old_legends:end_extract"
+  },
+  "base": {
+    "item": "old_legends:swallows_storm"
+  },
+  "result": {
+    "item": "old_legends:swallows_storm_awake"
+  },
+  "template": {
+    "item": "old_legends:awakening_upgrade"
+  }
+}

@@ -47,6 +47,7 @@ public class OLConfig implements ConfigData {
         public int consumeDurability = 5;
         @ConfigEntry.Gui.Tooltip
         public int mobTime = 600;
+        public float weightPage = 0.6f;
     }
 
     @ConfigEntry.Gui.CollapsibleObject
@@ -74,6 +75,7 @@ public class OLConfig implements ConfigData {
         public int explosiveDamage = 15;
         public int explosiveRange = 10;
         public int explosiveKnockback = 2;
+        public float weightPage = 0.6f;
     }
 
     @ConfigEntry.Gui.CollapsibleObject
@@ -92,5 +94,6 @@ public class OLConfig implements ConfigData {
         public int consumeDurability = 4;
         @ConfigEntry.Gui.Tooltip
         public int countLimit = 3;
+        public float weightPage = 0.6f;
     }
 }
