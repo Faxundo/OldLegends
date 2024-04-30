@@ -6,6 +6,7 @@ import com.github.faxundo.old_legends.screen.widget.OLItemWidget;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
+import net.minecraft.client.gui.tooltip.Tooltip;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
@@ -30,7 +31,6 @@ public class BookOfTheLegendsScreen extends HandledScreen<BookOfTheLegendsScreen
     protected void init() {
         super.init();
         addBookSlots();
-        addItems();
     }
 
     @Override
@@ -55,85 +55,102 @@ public class BookOfTheLegendsScreen extends HandledScreen<BookOfTheLegendsScreen
         int cols = 3;
         int xSpacing = 33 + 2;
         int ySpacing = 33 + 2;
-
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < cols; j++) {
-                int x = ((width - this.backgroundWidth) / 2) + 36 + (j * xSpacing);
-                int y = ((height - this.backgroundHeight) / 2) + 25 + (i * ySpacing);
-                OLBookWidget OLBookWidget = new OLBookWidget(x, y, this);
-                addDrawableChild(OLBookWidget);
-            }
-        }
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < cols; j++) {
-                int x = ((width - this.backgroundWidth) / 2) + 36 + (j * xSpacing);
-                int y = ((height - this.backgroundHeight) / 2) + 100 + (i * ySpacing);
-                OLBookWidget OLBookWidget = new OLBookWidget(x, y, this);
-                addDrawableChild(OLBookWidget);
-            }
-        }
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < cols; j++) {
-                int x = ((width - this.backgroundWidth) / 2) + 181 + (j * xSpacing);
-                int y = ((height - this.backgroundHeight) / 2) + 25 + (i * ySpacing);
-                OLBookWidget OLBookWidget = new OLBookWidget(x, y, this);
-                addDrawableChild(OLBookWidget);
-            }
-        }
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < cols; j++) {
-                int x = ((width - this.backgroundWidth) / 2) + 181 + (j * xSpacing);
-                int y = ((height - this.backgroundHeight) / 2) + 100 + (i * ySpacing);
-                OLBookWidget olbookwidget = new OLBookWidget(x, y, this);
-                addDrawableChild(olbookwidget);
-            }
-        }
-    }
-
-    public void addItems() {
+        int q, r, x, y;
         ItemStack stack = this.handler.getPlayer().getMainHandStack();
         NbtCompound nbt = stack.getOrCreateNbt();
 
-        //Work in process
-//        for (int i = 0; i <= nbt.getSize(); i++) {
-//            String[] list = stack.getTranslationKey().split("\\.");
-//            String nameItem = list[2];
-//            System.out.println(list);
-//            if (nbt.contains(OldLegends.MOD_ID + "." + nameItem)) {
-//                System.out.println(nameItem);
-//                int x = ((width - this.backgroundWidth) / 2) + 40;
-//                int y = ((height - this.backgroundHeight) / 2) + 29;
-//                OLItemWidget olItemWidget = new OLItemWidget(x, y, OldLegends.identifier("textures/gui/icon/" + nameItem + "_icon.png"));
-//                addDrawableChild(olItemWidget);
-//            }
-//        }
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                x = ((width - this.backgroundWidth) / 2) + 36 + (j * xSpacing);
+                y = ((height - this.backgroundHeight) / 2) + 25 + (i * ySpacing);
+                OLBookWidget olBookWidget = new OLBookWidget(x, y, this, false);
 
-        if (nbt.contains(OldLegends.MOD_ID + "." + "item.old_legends.emerald_mourning_page")) {
-            int x = ((width - this.backgroundWidth) / 2) + 40;
-            int y = ((height - this.backgroundHeight) / 2) + 29;
-            OLItemWidget olItemWidget = new OLItemWidget(x, y, OldLegends.identifier("textures/gui/icon/emerald_sword_icon.png"));
-            addDrawableChild(olItemWidget);
-        }
-        if (nbt.contains(OldLegends.MOD_ID + "." + "item.old_legends.swallows_storm_page")) {
-            int x = ((width - this.backgroundWidth) / 2) + 75;
-            int y = ((height - this.backgroundHeight) / 2) + 29;
-            OLItemWidget olItemWidget = new OLItemWidget(x, y, OldLegends.identifier("textures/gui/icon/swallows_storm_icon.png"));
-            addDrawableChild(olItemWidget);
-        }
-        if (nbt.contains(OldLegends.MOD_ID + "." + "item.old_legends.flutter_echo_page")) {
-            int x = ((width - this.backgroundWidth) / 2) + 110;
-            int y = ((height - this.backgroundHeight) / 2) + 29;
-            OLItemWidget olItemWidget = new OLItemWidget(x, y, OldLegends.identifier("textures/gui/icon/flutter_echo_icon.png"));
-            addDrawableChild(olItemWidget);
-        }
-        if (nbt.contains(OldLegends.MOD_ID + "." + "item.old_legends.reliquary_page")) {
-            int x = ((width - this.backgroundWidth) / 2) + 40;
-            int y = ((height - this.backgroundHeight) / 2) + 65;
-            OLItemWidget olItemWidget = new OLItemWidget(x, y, OldLegends.identifier("textures/gui/icon/reliquary_icon.png"));
-            addDrawableChild(olItemWidget);
-        }
 
+                q = ((width - this.backgroundWidth) / 2) + 40 + (j * xSpacing);
+                r = ((height - this.backgroundHeight) / 2) + 29 + (i * ySpacing);
+
+                Identifier texture = OldLegends.identifier("textures/gui/icon/unknown.png");
+                String nbtItem = "";
+
+                switch (i * cols + j) {
+                    case 0:
+                        nbtItem = "item.old_legends.emerald_mourning_page";
+                        if (nbt.contains(OldLegends.MOD_ID + "." + nbtItem)) {
+                            texture = OldLegends.identifier("textures/gui/icon/emerald_sword.png");
+                        }
+                        break;
+                    case 1:
+                        nbtItem = "item.old_legends.swallows_storm_page";
+                        if (nbt.contains(OldLegends.MOD_ID + "." + nbtItem)) {
+                            texture = OldLegends.identifier("textures/gui/icon/swallows_storm.png");
+                        }
+                        break;
+                    case 2:
+                        nbtItem = "item.old_legends.flutter_echo_page";
+                        if (nbt.contains(OldLegends.MOD_ID + "." + nbtItem)) {
+                            texture = OldLegends.identifier("textures/gui/icon/flutter_echo.png");
+                        }
+                        break;
+                    case 3:
+                        nbtItem = "item.old_legends.reliquary_page";
+                        if (nbt.contains(OldLegends.MOD_ID + "." + nbtItem)) {
+                            texture = OldLegends.identifier("textures/gui/icon/reliquary.png");
+                        }
+                        break;
+                    case 4, 5:
+                        texture = OldLegends.identifier("textures/gui/icon/none.png");
+                        olBookWidget.setDisabled(true);
+                        break;
+                }
+                if (!texture.equals(OldLegends.identifier("textures/gui/icon/unknown.png"))) {
+                    olBookWidget.setTooltip(Tooltip.of(itemName(nbtItem)));
+
+                } else {
+                    olBookWidget.setTooltip(Tooltip.of(Text.of("???")));
+                }
+                addDrawableChild(olBookWidget);
+
+                OLItemWidget olItemWidget = new OLItemWidget(q, r, texture);
+                addDrawableChild(olItemWidget);
+            }
+        }
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                x = ((width - this.backgroundWidth) / 2) + 36 + (j * xSpacing);
+                y = ((height - this.backgroundHeight) / 2) + 100 + (i * ySpacing);
+                OLBookWidget olBookWidget = new OLBookWidget(x, y, this, true);
+                addDrawableChild(olBookWidget);
+            }
+        }
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                x = ((width - this.backgroundWidth) / 2) + 181 + (j * xSpacing);
+                y = ((height - this.backgroundHeight) / 2) + 25 + (i * ySpacing);
+                OLBookWidget olBookWidget = new OLBookWidget(x, y, this, true);
+                addDrawableChild(olBookWidget);
+            }
+        }
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                x = ((width - this.backgroundWidth) / 2) + 181 + (j * xSpacing);
+                y = ((height - this.backgroundHeight) / 2) + 100 + (i * ySpacing);
+                OLBookWidget olBookWidget = new OLBookWidget(x, y, this, true);
+                addDrawableChild(olBookWidget);
+            }
+        }
     }
 
-
+    public Text itemName(String name) {
+        String finalText = "";
+        String[] itemNamePage = name.split("\\.");
+        String[] itemName = itemNamePage[itemNamePage.length - 1].split("_");
+        for (String word : itemName) {
+            if (!word.equals("page") && !word.isEmpty()) {
+                String word2 = word.substring(0, 1).toUpperCase() + word.substring(1);
+                finalText = finalText + " " + word2;
+            }
+        }
+        finalText = finalText.replaceFirst("\\s", "");
+        return Text.literal(finalText);
+    }
 }

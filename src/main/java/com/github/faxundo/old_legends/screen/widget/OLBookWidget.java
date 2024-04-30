@@ -17,22 +17,30 @@ public class OLBookWidget extends PressableWidget {
 
     private final BookOfTheLegendsScreen screen;
     public static final Identifier NORMAL_BUTTON = OldLegends.identifier("textures/gui/widget/book_button.png");
-    public static final Identifier DISABLED_BUTTON =  OldLegends.identifier("textures/gui/widget/book_button_disabled.png");
-    public static final Identifier HIGHLIGHTED_BUTTON =  OldLegends.identifier("textures/gui/widget/book_button_highlighted.png");
+    public static final Identifier DISABLED_BUTTON = OldLegends.identifier("textures/gui/widget/book_button_disabled.png");
+    public static final Identifier HIGHLIGHTED_BUTTON = OldLegends.identifier("textures/gui/widget/book_button_highlighted.png");
+    public boolean disabled;
 
-    public OLBookWidget(int i, int j, BookOfTheLegendsScreen screen) {
+    public OLBookWidget(int i, int j, BookOfTheLegendsScreen screen, boolean disabled) {
         super(i, j, 33, 33, Text.literal(""));
         this.screen = screen;
+        this.disabled = disabled;
     }
 
     @Override
     public void onPress() {
+        if (disabled) {
+            return;
+        }
         screen.close();
     }
 
     @Override
     protected void appendClickableNarrations(NarrationMessageBuilder builder) {
+    }
 
+    public void setDisabled(boolean disabled) {
+        this.disabled = disabled;
     }
 
     @Override
@@ -41,14 +49,18 @@ public class OLBookWidget extends PressableWidget {
         RenderSystem.setShaderColor(1f, 1f, 1f, 1f);
         Identifier TEXTURE;
 
-        if (this.isHovered()) {
-            TEXTURE = HIGHLIGHTED_BUTTON;
+        if (disabled) {
+            TEXTURE = DISABLED_BUTTON;
         } else {
-            TEXTURE = NORMAL_BUTTON;
+            if (this.isHovered()) {
+                TEXTURE = HIGHLIGHTED_BUTTON;
+            } else {
+                TEXTURE = NORMAL_BUTTON;
+            }
         }
+
 
         RenderSystem.setShaderTexture(0, TEXTURE);
         context.drawTexture(TEXTURE, this.getX(), this.getY(), 0, 0, this.getWidth(), this.getHeight(), this.getWidth(), this.getHeight());
-
     }
 }

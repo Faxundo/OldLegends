@@ -30,7 +30,7 @@ public class BookOfTheLegends extends OLGenericItem {
         if (!world.isClient) {
             ItemStack stack = user.getMainHandStack();
             NbtCompound nbtData = stack.getOrCreateNbt();
-            if (!nbtData.contains(OldLegends.MOD_ID + ".owner") & user.isSneaky() && !user.isCreative()) {
+            if (!nbtData.contains(OldLegends.MOD_ID + ".owner") && user.isSneaky() && !user.isCreative()) {
                 nbtData.putUuid(OldLegends.MOD_ID + ".owner", user.getUuid());
                 Text text = Text.translatable("item.old_legends.book_of_the_legends")
                         .append(" ")
@@ -60,7 +60,7 @@ public class BookOfTheLegends extends OLGenericItem {
                 if (itemStack.getItem() instanceof OLGenericPage) {
                     if (!hasPage(stack, itemStack)) {
                         addPage(stack, itemStack);
-                        player.sendMessage(itemName(itemStack));
+                        player.sendMessage(itemName(itemStack), false);
                         itemStack.decrement(1);
                     } else {
                         player.sendMessage(Text.translatable("tooltip.old_legends.book_of_the_legends.has_page").setStyle(OLHelper.getStyle("error")));
