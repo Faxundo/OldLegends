@@ -17,6 +17,11 @@
   "text.autoconfig.old_legends.option.deathRuneSnifferDigging": "Probabilidad de Runa de la Muerte cuando el Sniffer excava",
   "text.autoconfig.old_legends.option.skyRuneSnifferDigging": "Probabilidad de Runa del Cielo cuando el Sniffer excava",
 
+  "text.autoconfig.old_legends.option.enchantment": "Encantamientos",
+  "text.autoconfig.old_legends.option.enchantment.vengeanceCooldown": "Cooldown de Venganza",
+  "text.autoconfig.old_legends.option.enchantment.vengeanceCooldown.@Tooltip": "El tiempo está en Ticks. 20 Ticks = 1 segundo.",
+  "text.autoconfig.old_legends.option.enchantment.vengeanceDurability": "% de Durabilidad consumida por Venganza",
+
   "text.autoconfig.old_legends.option.emeraldMourning": "Luto Esmeralda",
   "text.autoconfig.old_legends.option.emeraldMourning.enable": "Habilitar Luto Esmeralda",
   "text.autoconfig.old_legends.option.emeraldMourning.weight": "Peso en la LootTable",
@@ -110,6 +115,8 @@
   "block.old_legends.rune_table": "Mesa de Runas",
 
   "effect.old_legends.ancient_knowledge": "Conocimiento Antiguo",
+
+  "enchantment.old_legends.vengeance": "Venganza",
 
   "tooltip.old_legends.shift": "▶ Shift",
   "tooltip.old_legends.book_of_the_legends.of": "de",

@@ -5,7 +5,7 @@ import com.github.faxundo.old_legends.block.OLBlock;
 import com.github.faxundo.old_legends.block.OLBlockEntity;
 import com.github.faxundo.old_legends.effect.OLEffect;
 import com.github.faxundo.old_legends.enchantment.OLEnchantment;
-import com.github.faxundo.old_legends.entity.custom.MourningMob;
+import com.github.faxundo.old_legends.entity.custom.Vengeful;
 import com.github.faxundo.old_legends.event.PlayerBlockBreakAfterHandler;
 import com.github.faxundo.old_legends.event.ServerTickHandler;
 import com.github.faxundo.old_legends.event.ShieldBlockHandler;
@@ -55,7 +55,7 @@ public class OldLegends implements ModInitializer {
         LootTableModifier.modifyLootTables();
 
         OLSound.registerSounds();
-        MourningMob.createMourningMobAttributes();
+        Vengeful.createMourningMobAttributes();
 
         ShieldBlockCallback.EVENT.register(new ShieldBlockHandler());
         ServerTickHandler.EVENT.register(new ServerTickHandler());

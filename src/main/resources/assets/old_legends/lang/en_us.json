@@ -14,6 +14,12 @@
   "text.autoconfig.old_legends.option.paleGemTrailsRuinsRareWeight": "Pale Gem Trails Ruins Rare Weight",
   "text.autoconfig.old_legends.option.deathRuneSnifferDigging": "Death Rune Weight when Sniffer Digging",
   "text.autoconfig.old_legends.option.skyRuneSnifferDigging": "Sky Rune Weight when Sniffer Digging",
+
+  "text.autoconfig.old_legends.option.enchantment": "Enchantments",
+  "text.autoconfig.old_legends.option.enchantment.vengeanceCooldown": "Vengeance Cooldown",
+  "text.autoconfig.old_legends.option.enchantment.vengeanceCooldown.@Tooltip": "Time in Ticks. 20 Ticks = 1 second.",
+  "text.autoconfig.old_legends.option.enchantment.vengeanceDurability": "% Durability consumed for Vengeance",
+
   "text.autoconfig.old_legends.option.emeraldMourning": "Emerald Mourning Sword",
   "text.autoconfig.old_legends.option.emeraldMourning.enable": "Enable Emerald Mourning Sword",
   "text.autoconfig.old_legends.option.emeraldMourning.weight": "Loot Weight",
@@ -106,6 +112,8 @@
   "block.old_legends.rune_table": "Rune Table",
 
   "effect.old_legends.ancient_knowledge": "Ancient Knowledge",
+
+  "enchantment.old_legends.vengeance": "Vengeance",
 
   "tooltip.old_legends.shift": "▶ Shift",
   "tooltip.old_legends.book_of_the_legends.of": "of",

@@ -21,6 +21,15 @@ public class OLConfig implements ConfigData {
     public int skyRuneSnifferDigging = 1;
 
     @ConfigEntry.Gui.CollapsibleObject
+    public final Enchantment enchantment = new Enchantment();
+
+    public static class Enchantment {
+        @ConfigEntry.Gui.Tooltip
+        public int vengeanceCooldown = 140;
+        public int vengeanceDurability = 3;
+    }
+
+    @ConfigEntry.Gui.CollapsibleObject
     public final Reliquary reliquary = new Reliquary();
 
     public static class Reliquary {

@@ -141,16 +141,16 @@ public class BookOfTheLegendsScreen extends HandledScreen<BookOfTheLegendsScreen
     }
 
     public Text itemName(String name) {
-        String finalText = "";
+        StringBuilder finalText = new StringBuilder();
         String[] itemNamePage = name.split("\\.");
         String[] itemName = itemNamePage[itemNamePage.length - 1].split("_");
         for (String word : itemName) {
             if (!word.equals("page") && !word.isEmpty()) {
                 String word2 = word.substring(0, 1).toUpperCase() + word.substring(1);
-                finalText = finalText + " " + word2;
+                finalText.append(" ").append(word2);
             }
         }
-        finalText = finalText.replaceFirst("\\s", "");
-        return Text.literal(finalText);
+        finalText = new StringBuilder(finalText.toString().replaceFirst("\\s", ""));
+        return Text.literal(finalText.toString());
     }
 }
