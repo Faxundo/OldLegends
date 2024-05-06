@@ -75,7 +75,6 @@ public class RuneTableBlock extends BlockWithEntity implements BlockEntityProvid
 
             if (screenHandlerFactory != null) {
                 player.openHandledScreen(screenHandlerFactory);
-
             }
         }
         return ActionResult.SUCCESS;

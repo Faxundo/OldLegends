@@ -37,7 +37,7 @@ public class OldLegends implements ModInitializer {
 
     @Override
     public void onInitialize() {
-        LOGGER.info(MOD_NAME + "is here");
+        LOGGER.info(MOD_NAME + " is here!");
 
         OLPredicateProvider.registerPredicateProvider();
         OLItem.registerOLItems();

@@ -58,7 +58,7 @@ public class BookOfTheLegends extends OLGenericItem {
             if (nbtData.contains(OldLegends.MOD_ID + ".owner")) {
                 ItemStack itemStack = slot.getStack();
                 if (itemStack.getItem() instanceof OLGenericPage) {
-                    if (!hasPage(stack, itemStack)) {
+                    if (!hasPage(stack, itemStack.getTranslationKey())) {
                         addPage(stack, itemStack);
                         player.sendMessage(itemName(itemStack), false);
                         itemStack.decrement(1);
@@ -93,11 +93,11 @@ public class BookOfTheLegends extends OLGenericItem {
 
     public void addPage(ItemStack book, ItemStack page) {
         NbtCompound nbtData = book.getOrCreateNbt();
-        nbtData.putBoolean(OldLegends.MOD_ID + "." + page.getTranslationKey(), true);
+        nbtData.putBoolean(page.getTranslationKey(), true);
     }
 
-    public boolean hasPage(ItemStack book, ItemStack page) {
+    public boolean hasPage(ItemStack book, String page) {
         NbtCompound nbtData = book.getOrCreateNbt();
-        return nbtData.contains(OldLegends.MOD_ID + "." + page.getTranslationKey());
+        return nbtData.contains(page);
     }
 }

@@ -8,7 +8,7 @@ import net.minecraft.item.ItemStack;
 
 public abstract class OLGenericEnchantment extends Enchantment implements AbilityEnchantment {
 
-    protected OLGenericEnchantment(Rarity rarity, EnchantmentTarget target, EquipmentSlot[] slotTypes) {
+    public OLGenericEnchantment(Rarity rarity, EnchantmentTarget target, EquipmentSlot[] slotTypes) {
         super(rarity, target, slotTypes);
     }
 
@@ -43,6 +43,5 @@ public abstract class OLGenericEnchantment extends Enchantment implements Abilit
     }
 
     @Override
-    public void useAbility(PlayerEntity player, ItemStack stack) {
-    }
+    public void useAbility(PlayerEntity player, ItemStack stack) {}
 }

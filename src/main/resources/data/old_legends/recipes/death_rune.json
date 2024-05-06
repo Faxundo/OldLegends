@@ -1,0 +1,37 @@
+{
+  "type": "old_legends:rune_table",
+  "key": "item.old_legends.death_rune_page",
+  "experience": 15,
+  "ingredients": [
+    {
+      "item": "old_legends:blank_rune"
+    },
+    {
+      "item": "minecraft:lapis_lazuli"
+    },
+    {
+      "item": "minecraft:diamond"
+    },
+    {
+      "item": "minecraft:lapis_lazuli"
+    },
+    {
+      "item": "minecraft:diamond"
+    },
+    {
+      "item": "minecraft:lapis_lazuli"
+    },
+    {
+      "item": "minecraft:diamond"
+    },
+    {
+      "item": "minecraft:lapis_lazuli"
+    },
+    {
+      "item": "minecraft:diamond"
+    }
+  ],
+  "output": {
+    "item": "old_legends:death_rune"
+  }
+}

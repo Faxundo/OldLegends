@@ -2,6 +2,9 @@ package com.github.faxundo.old_legends.block.entity;
 
 import com.github.faxundo.old_legends.block.ImplementedInventory;
 import com.github.faxundo.old_legends.block.OLBlockEntity;
+import com.github.faxundo.old_legends.item.custom.BookOfTheLegends;
+import com.github.faxundo.old_legends.recipe.OLRecipe;
+import com.github.faxundo.old_legends.recipe.custom.RuneTableRecipe;
 import com.github.faxundo.old_legends.screen.custom.RuneTableScreenHandler;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.BlockState;
@@ -10,9 +13,11 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventories;
+import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
+import net.minecraft.recipe.RecipeEntry;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
@@ -21,6 +26,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Optional;
+
 public class RuneTableBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory, ImplementedInventory {
 
     private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(11, ItemStack.EMPTY);
@@ -28,6 +35,8 @@ public class RuneTableBlockEntity extends BlockEntity implements ExtendedScreenH
     private boolean southPillar;
     private boolean eastPillar;
     private boolean westPillar;
+    private int BOOK_SLOT = 0;
+    private int OUTPUT_SLOT = 10;
 
     public RuneTableBlockEntity(BlockPos pos, BlockState state) {
         super(OLBlockEntity.RUNE_TABLE_BLOCK_ENTITY, pos, state);
@@ -80,6 +89,23 @@ public class RuneTableBlockEntity extends BlockEntity implements ExtendedScreenH
         this.southPillar = hasAndSpawnPillar(world, pos, 0, 0, 3);
         this.eastPillar = hasAndSpawnPillar(world, pos, 3, 0, 0);
         this.westPillar = hasAndSpawnPillar(world, pos, -3, 0, 0);
+
+        SimpleInventory simpleInventory = new SimpleInventory(inventory.size());
+
+        Optional<RuneTableRecipe> match = world.getRecipeManager().getFirstMatch(OLRecipe.RUNE_TABLE_TYPE, simpleInventory, world).map(RecipeEntry::value);
+
+        if (match.isEmpty()) return;
+
+        if (inventory.get(BOOK_SLOT).getItem() instanceof BookOfTheLegends bookOfTheLegends) {
+            if (!(bookOfTheLegends.hasPage(inventory.get(BOOK_SLOT), match.get().getKey()))) return;
+
+            RuneTableRecipe recipe = match.get();
+            ItemStack output = recipe.getResult(null).copy();
+
+            if (inventory.get(OUTPUT_SLOT).isEmpty()) {
+                this.setStack(OUTPUT_SLOT, output);
+            }
+        }
     }
 
     public boolean hasAndSpawnPillar(World world, BlockPos pos, int offsetX, int offsetY, int offsetZ) {

@@ -1,12 +1,13 @@
 ![Crafting of Awakening Upgrade](src/main/resources/presentation/old_legends_title.png)
 
 The old legends echo again in the world. It's time to remember the greatest in history.
-This is my first public mod. Any help or suggestions is well received.
+Explore the stories that time has forgotten, discover secrets that have been buried and face new (or old?) challenges.
 
 # Freatures:
 
 - Very customizable.
 - Add 7 new items.
+- Add 1 new Structure for explore and loot.
 - Add 3 new unique items:
     - **Emerald Mourning**: A powerful sword imbued with the power of death and revenge. Has 2 passive abilities and 1
       active ability.
@@ -57,8 +58,11 @@ City or Strongholds.
 
 ## FAQ
 
-**¿How use the active abilities?**
+**How use the active abilities?**
 If item is in your Main Hand, press Z. If is in your Off Hand, press X. Of course, you can change this.
+
+**I can use this mod in my modpack?**
+Yes, of course.
 
 # Languages:
 
