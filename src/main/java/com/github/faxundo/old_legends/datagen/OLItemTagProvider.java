@@ -31,7 +31,8 @@ public class OLItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(OLItem.RELIQUARY_PAGE)
                 .add(OLItem.EMERALD_MOURNING_PAGE)
                 .add(OLItem.SWALLOWS_STORM_PAGE)
-                .add(OLItem.FLUTTER_ECHO_PAGE);
+                .add(OLItem.FLUTTER_ECHO_PAGE)
+                .add(OLItem.VENGEANCE_PAGE);
         getOrCreateTagBuilder(OLTag.Items.SKY_REPAIR)
                 .add(OLItem.SKY_RUNE);
         getOrCreateTagBuilder(ItemTags.TRIM_TEMPLATES)

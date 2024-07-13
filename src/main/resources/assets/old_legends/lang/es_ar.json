@@ -106,10 +106,13 @@
   "item.old_legends.flutter_echo_awake": "Eco de Aleteo Despierta",
   "item.old_legends.flutter_echo_page": "Página de Eco de Aleteo",
 
+  "item.old_legends.vengeance_page": "Página de Encantamiento de Venganza ",
+
   "block.old_legends.reliquary": "Relicario",
   "block.old_legends.button_name": "Cerrado",
   "tooltip.old_legends.button": "Cierra el Relicario",
   "block.old_legends.reliquary.description": "Solo se pueden colocar objetos brillantes en el interior",
+  "block.old_legends.reliquary.alert": "¡Este relicario ya está cerrado!",
   "block.old_legends.echo_ore": "Eco de Mineral",
   "block.old_legends.echo_block": "Eco de Bloque",
   "block.old_legends.rune_table": "Mesa de Runas",

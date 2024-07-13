@@ -1,7 +1,11 @@
 package com.github.faxundo.old_legends.item;
 
 import com.github.faxundo.old_legends.OldLegends;
-import com.github.faxundo.old_legends.item.custom.*;
+import com.github.faxundo.old_legends.enchantment.OLEnchantment;
+import com.github.faxundo.old_legends.item.custom.BookOfTheLegends;
+import com.github.faxundo.old_legends.item.custom.EmeraldMourning;
+import com.github.faxundo.old_legends.item.custom.FlutterEcho;
+import com.github.faxundo.old_legends.item.custom.SwallowsStormItem;
 import com.github.faxundo.old_legends.item.custom.awake.EmeraldMourningAwake;
 import com.github.faxundo.old_legends.item.custom.awake.FlutterEchoAwake;
 import com.github.faxundo.old_legends.item.custom.awake.SwallowsStormAwakeItem;
@@ -11,7 +15,10 @@ import com.github.faxundo.old_legends.item.generic.OLGenericPage;
 import com.github.faxundo.old_legends.item.generic.OLGenericRune;
 import com.github.faxundo.old_legends.util.OLTag;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
+import net.minecraft.enchantment.EnchantmentLevelEntry;
+import net.minecraft.item.EnchantedBookItem;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.ToolMaterials;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
@@ -27,6 +34,13 @@ public class OLItem {
             new Item(new FabricItemSettings()));
     public static final Item BOOK_OF_THE_LEGENDS = registerItem("book_of_the_legends",
             new BookOfTheLegends(new FabricItemSettings()));
+
+    public static final Item PALE_GEM = registerItem("pale_gem",
+            new OLGenericItem(new FabricItemSettings().maxCount(8)));
+    public static final Item END_EXTRACT = registerItem("end_extract",
+            new OLGenericItem(new FabricItemSettings().maxCount(4)));
+    public static final Item AWAKENING_UPGRADE = registerItem("awakening_upgrade",
+            new OLGenericItem(new FabricItemSettings().maxCount(1)));
 
     public static final Item EMERALD_MOURNING = registerItem("emerald_mourning",
             new EmeraldMourning(ToolMaterials.DIAMOND, 3, -2.4f,
@@ -72,13 +86,15 @@ public class OLItem {
     public static final Item TIME_RUNE_PAGE = registerItem("time_rune_page",
             new OLGenericPage(new FabricItemSettings()));
 
+    public static final Item VENGEANCE_PAGE = registerItem("vengeance_page",
+            new OLGenericPage(new FabricItemSettings()));
+    public static final ItemStack VENGEANCE_ENCHANTMENT_1 = EnchantedBookItem.forEnchantment(
+            new EnchantmentLevelEntry(OLEnchantment.VENGEANCE, 1));
+    public static final ItemStack VENGEANCE_ENCHANTMENT_2 = EnchantedBookItem.forEnchantment(
+            new EnchantmentLevelEntry(OLEnchantment.VENGEANCE, 2));
+    public static final ItemStack VENGEANCE_ENCHANTMENT_3 = EnchantedBookItem.forEnchantment(
+            new EnchantmentLevelEntry(OLEnchantment.VENGEANCE, 3));
 
-    public static final Item PALE_GEM = registerItem("pale_gem",
-            new OLGenericItem(new FabricItemSettings().maxCount(8)));
-    public static final Item END_EXTRACT = registerItem("end_extract",
-            new OLGenericItem(new FabricItemSettings().maxCount(4)));
-    public static final Item AWAKENING_UPGRADE = registerItem("awakening_upgrade",
-            new OLGenericItem(new FabricItemSettings().maxCount(1)));
 
     private static Item registerItem(String name, Item item) {
         return Registry.register(Registries.ITEM, new Identifier(OldLegends.MOD_ID, name), item);

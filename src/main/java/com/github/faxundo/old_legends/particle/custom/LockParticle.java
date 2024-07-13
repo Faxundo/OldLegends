@@ -1,5 +1,6 @@
 package com.github.faxundo.old_legends.particle.custom;
 
+import com.github.faxundo.old_legends.OldLegends;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.particle.*;
@@ -35,6 +36,7 @@ public class LockParticle extends SpriteBillboardParticle {
     @Override
     public void tick() {
         super.tick();
+        if (world.getTimeOfDay() == OldLegends.CONFIG.reliquary.grinningHoarderTime) this.markDead();
         if (rest != 10) {
             rest++;
             if (moveUp <= 0 && moveDown != 0) {

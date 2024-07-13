@@ -28,9 +28,11 @@ public class OLModelProvider extends FabricModelProvider {
         itemModelGenerator.register(OLItem.PALE_GEM, Models.GENERATED);
         itemModelGenerator.register(OLItem.END_EXTRACT, Models.GENERATED);
         itemModelGenerator.register(OLItem.AWAKENING_UPGRADE, Models.GENERATED);
+
         itemModelGenerator.register(OLItem.BLANK_BLUEPRINT, Models.GENERATED);
         itemModelGenerator.register(OLItem.RELIQUARY_BLUEPRINT, Models.GENERATED);
         itemModelGenerator.register(OLItem.RELIQUARY_PAGE, Models.GENERATED);
+
         itemModelGenerator.register(OLItem.BLANK_RUNE, Models.GENERATED);
         itemModelGenerator.register(OLItem.SKY_RUNE, Models.GENERATED);
         itemModelGenerator.register(OLItem.DEATH_RUNE, Models.GENERATED);
@@ -38,6 +40,7 @@ public class OLModelProvider extends FabricModelProvider {
         itemModelGenerator.register(OLItem.DEATH_RUNE_PAGE, Models.GENERATED);
         itemModelGenerator.register(OLItem.SKY_RUNE_PAGE, Models.GENERATED);
         itemModelGenerator.register(OLItem.TIME_RUNE_PAGE, Models.GENERATED);
+
         itemModelGenerator.register(OLItem.EMERALD_MOURNING, Models.HANDHELD);
         itemModelGenerator.register(OLItem.EMERALD_MOURNING_AWAKE, Models.HANDHELD);
         itemModelGenerator.register(OLItem.EMERALD_MOURNING_PAGE, Models.GENERATED);
@@ -45,6 +48,8 @@ public class OLModelProvider extends FabricModelProvider {
         itemModelGenerator.register(OLItem.FLUTTER_ECHO, Models.HANDHELD);
         itemModelGenerator.register(OLItem.FLUTTER_ECHO_AWAKE, Models.HANDHELD);
         itemModelGenerator.register(OLItem.FLUTTER_ECHO_PAGE, Models.GENERATED);
+
+        itemModelGenerator.register(OLItem.VENGEANCE_PAGE, Models.GENERATED);
     }
 
 }

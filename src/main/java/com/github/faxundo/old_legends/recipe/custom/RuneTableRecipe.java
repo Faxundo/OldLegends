@@ -8,11 +8,13 @@ import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.registry.DynamicRegistryManager;
+import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
+
+// Doesn't works
 
 public class RuneTableRecipe implements Recipe<SimpleInventory> {
     public static final int INPUT_SLOTS = 10;
@@ -32,6 +34,13 @@ public class RuneTableRecipe implements Recipe<SimpleInventory> {
         return ingredientList;
     }
 
+    @Override
+    public DefaultedList<Ingredient> getIngredients() {
+        DefaultedList<Ingredient> list = DefaultedList.ofSize(this.ingredientList.size());
+        list.addAll(ingredientList);
+        return list;
+    }
+
     public String getKey() {
         return key;
     }
@@ -47,25 +56,20 @@ public class RuneTableRecipe implements Recipe<SimpleInventory> {
     @Override
     public boolean matches(SimpleInventory inventory, World world) {
         if (inventory.size() != INPUT_SLOTS + 1) return false;
+        if (world.isClient) return false;
 
-        Map<Integer, Boolean> ingredientsFine = new HashMap<>();
+        List<Boolean> ingredientsFine = new ArrayList<>();
 
-        for (Ingredient ingredient : ingredientList) {
-            for (int slot = 1; slot < INPUT_SLOTS; slot++) {
-                ItemStack stackInSlot = inventory.getStack(slot);
+        for (int slot = 1; slot < INPUT_SLOTS; slot++) {
+            ItemStack stackInSlot = inventory.getStack(slot);
 
-                boolean ingredientMatched = false;
-
-                if (ingredient.test(stackInSlot)) {
-                    ingredientMatched = true;
-                    break;
-                }
-
-                ingredientsFine.put(slot, ingredientMatched);
+            for (Ingredient ingredient : ingredientList) {
+                ingredientsFine.add(ingredient.test(stackInSlot));
+                break;
             }
         }
 
-        for (Boolean value : ingredientsFine.values()) {
+        for (Boolean value : ingredientsFine) {
             if (!value) {
                 return false;
             }
@@ -75,7 +79,7 @@ public class RuneTableRecipe implements Recipe<SimpleInventory> {
 
     @Override
     public ItemStack craft(SimpleInventory inventory, DynamicRegistryManager registryManager) {
-        return output.copy();
+        return this.output.copy();
     }
 
     @Override

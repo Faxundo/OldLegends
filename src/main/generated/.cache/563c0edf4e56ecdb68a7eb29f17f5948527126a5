@@ -1,9 +1,11 @@
-// 1.20.4	2024-04-27T14:09:28.3201972	Old Legends/Recipes
+// 1.20.4	2024-07-10T00:22:32.9144403	Old Legends/Recipes
 2a639b5336e9cf329c4323d58911c021689e7d49 data\old_legends\recipes\swallows_storm_awake.json
 210ee20caa14789323e6bc103fce80b553f250d2 data\old_legends\advancements\recipes\misc\rune_table.json
 22776707a73102f8ef2f4b57a1325f179d8670c9 data\old_legends\recipes\rune_table.json
+90b716e3d4e3c9ad75c1d8d5d6d85ce9261f0144 data\old_legends\recipes\vengeance_page.json
 d3dd681c27833b31a159d45ebda4a94189b2cdd9 data\old_legends\advancements\recipes\combat\flutter_echo_awake.json
 b60f119ea3dfc99bd90d70136a28ff7e4d81ea42 data\old_legends\advancements\recipes\combat\emerald_mourning_awake.json
+23f5742d0f38454f85c691425c9ec095cc1a9500 data\old_legends\advancements\recipes\misc\vengeance_page.json
 00ccff0cea99ef116596a41e0abab71e312d4260 data\old_legends\advancements\recipes\misc\reliquary.json
 cc7875254ab839a4aa942ab6937c8e915b2db7d1 data\old_legends\recipes\flutter_echo_awake.json
 7a30fa05db66661ff26eccfb2930f1915e7dc93b data\old_legends\advancements\recipes\misc\awakening_upgrade.json

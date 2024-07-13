@@ -90,6 +90,7 @@
   "item.old_legends.death_rune_page": "Death Rune Page",
   "item.old_legends.sky_rune_page": "Sky Rune Page",
   "item.old_legends.time_rune_page": "Time Rune Page",
+
   "item.old_legends.blank_blueprint": "Blank Blueprint",
   "item.old_legends.reliquary_blueprint": "Reliquary Blueprint",
   "item.old_legends.reliquary_page": "Reliquary Page",
@@ -103,10 +104,13 @@
   "item.old_legends.flutter_echo_awake": "Flutter Echo Awake",
   "item.old_legends.flutter_echo_page": "Flutter Echo Page",
 
+  "item.old_legends.vengeance_page": "Vengeance Enchantment Page",
+
   "block.old_legends.reliquary": "Reliquary",
   "block.old_legends.button_name": "Lock",
   "tooltip.old_legends.button": "Lock the Reliquary",
   "block.old_legends.reliquary.description": "Only sparkle items can be put inside",
+  "block.old_legends.reliquary.alert": "This reliquary is locked!",
   "block.old_legends.echo_ore": "Echo Ore",
   "block.old_legends.echo_block": "Echo Block",
   "block.old_legends.rune_table": "Rune Table",

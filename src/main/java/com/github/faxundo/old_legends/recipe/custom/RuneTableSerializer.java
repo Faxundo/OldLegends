@@ -12,6 +12,8 @@ import net.minecraft.util.dynamic.Codecs;
 
 import java.util.List;
 
+
+// Doesn't works
 public class RuneTableSerializer implements RecipeSerializer<RuneTableRecipe> {
 
     public static final Codec<RuneTableRecipe> CODEC = RecordCodecBuilder.create(instance -> instance.group(
@@ -36,9 +38,12 @@ public class RuneTableSerializer implements RecipeSerializer<RuneTableRecipe> {
     public RuneTableRecipe read(PacketByteBuf buf) {
         String key = buf.readString();
         int experience = buf.readInt();
-        int ingredientSize = buf.readVarInt();
-        DefaultedList<Ingredient> inputs = DefaultedList.ofSize(ingredientSize, Ingredient.EMPTY);
-        inputs.replaceAll(ignored -> Ingredient.fromPacket(buf));
+
+        List<Ingredient> inputs = DefaultedList.ofSize(buf.readInt(), Ingredient.EMPTY);
+        for(int i = 0; i < inputs.size(); i++) {
+            inputs.set(i, Ingredient.fromPacket(buf));
+        }
+
         ItemStack output = buf.readItemStack();
 
         return new RuneTableRecipe(key, inputs, experience, output);
@@ -48,10 +53,12 @@ public class RuneTableSerializer implements RecipeSerializer<RuneTableRecipe> {
     public void write(PacketByteBuf buf, RuneTableRecipe recipe) {
         buf.writeString(recipe.getKey());
         buf.writeInt(recipe.getExperience());
-        buf.writeVarInt(recipe.getIngredients().size());
+
+        buf.writeInt(recipe.getIngredients().size());
         for (Ingredient ingredient : recipe.getIngredients()) {
             ingredient.write(buf);
         }
+
         buf.writeItemStack(recipe.getResult(null));
     }
 }

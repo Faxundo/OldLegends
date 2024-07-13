@@ -80,6 +80,8 @@ public class ReliquaryBlockEntity extends BlockEntity implements ExtendedScreenH
     public void onOpen(PlayerEntity player) {
         player.playSound(SoundEvents.BLOCK_CHEST_OPEN, 0.6f, 0.0f);
         player.playSound(SoundEvents.BLOCK_AMETHYST_BLOCK_RESONATE, 1.4f, 0.0f);
+        if (lock == 1)
+            player.sendMessage(Text.translatable("block.old_legends.reliquary.alert").setStyle(OLHelper.getStyle("error")));
     }
 
     @Override
@@ -119,13 +121,13 @@ public class ReliquaryBlockEntity extends BlockEntity implements ExtendedScreenH
         lock = nbt.getInt("reliquary.lock");
     }
 
+
     @Nullable
     @Override
     public ScreenHandler createMenu(int syncId, PlayerInventory playerInventory, PlayerEntity player) {
         return new ReliquaryScreenHandler(syncId, playerInventory, this, this.propertyDelegate,
                 ScreenHandlerContext.create(this.getWorld(), this.getPos()), lock);
     }
-
 
     public void tick(World world, BlockPos pos, BlockState state) {
 
@@ -135,16 +137,13 @@ public class ReliquaryBlockEntity extends BlockEntity implements ExtendedScreenH
         if (!world.getDimensionKey().getValue().toShortTranslationKey().equals("overworld")) {
             return;
         }
-//        BlockPos downPos = pos.down();
-//        Block blockDown = world.getBlockState(downPos).getBlock();
-//        if (blockDown.equals(Blocks.GOLD_BLOCK)) {
-//        }
+
         if (lock == 0) {
             return;
         }
 
-        if (world.getTimeOfDay() >= OldLegends.CONFIG.reliquary.grinningHoarderTime - 3600 && !bl) {
-            OLHelperParticle.spawnParticle(world, OLParticle.LOCK, pos.getX() + 0.5, pos.getY() + 0.8, pos.getZ() + 0.5, 0, 0, 0);
+        if (!bl) {
+            spawnLockParticle();
             bl = true;
         }
 
@@ -176,7 +175,7 @@ public class ReliquaryBlockEntity extends BlockEntity implements ExtendedScreenH
                         runes.add(rune);
                     }
                 }
-                double randomNumber = OLHelper.getRandomNumber(0, runes.size()-1);
+                double randomNumber = OLHelper.getRandomNumber(0, runes.size() - 1);
                 list.add(runes.get((int) randomNumber).getDefaultStack());
 
                 value -= 10;
@@ -192,5 +191,12 @@ public class ReliquaryBlockEntity extends BlockEntity implements ExtendedScreenH
             }
         }
         return new SimpleInventory(list.toArray(new ItemStack[0]));
+    }
+
+
+    private void spawnLockParticle() {
+        if (this.world != null) {
+            OLHelperParticle.spawnParticle(this.world, OLParticle.LOCK, this.pos.getX() + 0.5, this.pos.getY() + 0.8, this.pos.getZ() + 0.5, 0, 0, 0);
+        }
     }
 }

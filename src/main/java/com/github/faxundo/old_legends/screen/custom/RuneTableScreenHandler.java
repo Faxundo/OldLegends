@@ -34,7 +34,7 @@ public class RuneTableScreenHandler extends ScreenHandler {
         this.addSlot(new BookOfTheLegendsSlot(inventory, 0, 13, 16));
         this.addSlot(new Slot(inventory, 1, 80, 54));
         this.addSlot(new PillarSlot(inventory, 2, 80, 17, this, "north"));
-        this.addSlot(new Slot(inventory, 3, 108, 28));
+        this.addSlot(new Slot(inventory, 3, 108, 26));
         this.addSlot(new PillarSlot(inventory, 4, 117, 54, this, "east"));
         this.addSlot(new Slot(inventory, 5, 108, 82));
         this.addSlot(new PillarSlot(inventory, 6, 80, 91, this, "south"));

@@ -13,7 +13,6 @@ import com.github.faxundo.old_legends.item.OLItem;
 import com.github.faxundo.old_legends.item.OLItemGroup;
 import com.github.faxundo.old_legends.networking.OLPacket;
 import com.github.faxundo.old_legends.particle.OLParticle;
-import com.github.faxundo.old_legends.recipe.OLRecipe;
 import com.github.faxundo.old_legends.screen.OLScreenHandler;
 import com.github.faxundo.old_legends.sound.OLSound;
 import com.github.faxundo.old_legends.util.LootTableModifier;
@@ -59,9 +58,10 @@ public class OldLegends implements ModInitializer {
 
         ShieldBlockCallback.EVENT.register(new ShieldBlockHandler());
         ServerTickHandler.EVENT.register(new ServerTickHandler());
+
         PlayerBlockBreakEvents.AFTER.register(new PlayerBlockBreakAfterHandler());
 
-        OLRecipe.registerRecipes();
+//        OLRecipe.registerRecipes();
 
         AutoConfig.register(OLConfig.class, JanksonConfigSerializer::new);
         CONFIG = AutoConfig.getConfigHolder(OLConfig.class).getConfig();
