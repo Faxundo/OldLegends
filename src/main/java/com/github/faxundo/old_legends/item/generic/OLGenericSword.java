@@ -1,13 +1,12 @@
 package com.github.faxundo.old_legends.item.generic;
 
 import com.github.faxundo.old_legends.util.OLHelper;
-import net.minecraft.client.item.TooltipContext;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
 import net.minecraft.item.ToolMaterial;
+import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.text.Text;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
@@ -19,9 +18,8 @@ public class OLGenericSword extends SwordItem {
     private boolean useCharges = false;
     private int maxCharges = 1;
 
-    public OLGenericSword(ToolMaterial toolMaterial, int attackDamage, float attackSpeed, Settings settings) {
-        super(toolMaterial, attackDamage, attackSpeed, settings.fireproof());
-
+    public OLGenericSword(ToolMaterial toolMaterial, Item.Settings settings) {
+        super(toolMaterial, settings.fireproof());
     }
 
     public void setId(String id) {
@@ -66,8 +64,8 @@ public class OLGenericSword extends SwordItem {
     }
 
     @Override
-    public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+    public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
         OLHelper.appendTooltipHelper(stack, tooltip, isAwake(), getAmountPassives(), getId(), isUseCharges(), getMaxCharges());
-        super.appendTooltip(stack, world, tooltip, context);
+        super.appendTooltip(stack, context, tooltip, type);
     }
 }

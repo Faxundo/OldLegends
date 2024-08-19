@@ -3,20 +3,20 @@ package com.github.faxundo.old_legends.screen.custom;
 import com.github.faxundo.old_legends.block.entity.ReliquaryBlockEntity;
 import com.github.faxundo.old_legends.screen.OLScreenHandler;
 import com.github.faxundo.old_legends.screen.slot.ReliquarySlot;
+import com.github.faxundo.old_legends.screen.data.ReliquaryData;
 import com.github.faxundo.old_legends.util.OLHelper;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.component.DataComponentTypes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.PacketByteBuf;
 import net.minecraft.screen.ArrayPropertyDelegate;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerContext;
 import net.minecraft.screen.slot.Slot;
-import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 
 public class ReliquaryScreenHandler extends ScreenHandler {
@@ -27,8 +27,8 @@ public class ReliquaryScreenHandler extends ScreenHandler {
 
     private final ScreenHandlerContext context;
 
-    public ReliquaryScreenHandler(int syncId, PlayerInventory inventory, PacketByteBuf buf) {
-        this(syncId, inventory, inventory.player.getWorld().getBlockEntity(buf.readBlockPos()),
+    public ReliquaryScreenHandler(int syncId, PlayerInventory inventory, ReliquaryData data) {
+        this(syncId, inventory, inventory.player.getWorld().getBlockEntity(data.pos()),
                 new ArrayPropertyDelegate(2), ScreenHandlerContext.EMPTY, 0);
     }
 
@@ -56,7 +56,7 @@ public class ReliquaryScreenHandler extends ScreenHandler {
     public boolean onButtonClick(PlayerEntity player, int id) {
         if (id == 0) {
             if (!inventory.isEmpty()) {
-                player.playSound(SoundEvents.BLOCK_CHEST_LOCKED, SoundCategory.PLAYERS, 5.0f, 0f);
+                player.playSound(SoundEvents.BLOCK_CHEST_LOCKED, 5.0f, 0f);
                 this.propertyDelegate.set(1, 1);
                 this.propertyDelegate.set(0, scoreSystem(inventory));
                 return true;
@@ -84,7 +84,8 @@ public class ReliquaryScreenHandler extends ScreenHandler {
         if (!OLHelper.reliquaryItems().contains(item)) {
             return 0;
         }
-        if (transK.contains("golden") && !item.isFood()) {
+        ItemStack itemStack = new ItemStack(item);
+        if (transK.contains("golden") && !itemStack.contains(DataComponentTypes.FOOD)) {
             return 3;
         } else if (transK.contains("diamond_") && !transK.contains("block")) {
             return 2;

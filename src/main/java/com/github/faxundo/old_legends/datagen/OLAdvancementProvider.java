@@ -9,19 +9,21 @@ import net.minecraft.advancement.AdvancementEntry;
 import net.minecraft.advancement.AdvancementFrame;
 import net.minecraft.advancement.criterion.InventoryChangedCriterion;
 import net.minecraft.item.Items;
+import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.text.Text;
 
+import java.util.concurrent.CompletableFuture;
 import java.util.function.Consumer;
 
 public class OLAdvancementProvider extends FabricAdvancementProvider {
 
 
-    public OLAdvancementProvider(FabricDataOutput output) {
-        super(output);
+    public OLAdvancementProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {
+        super(output, registryLookup);
     }
 
     @Override
-    public void generateAdvancement(Consumer<AdvancementEntry> consumer) {
+    public void generateAdvancement(RegistryWrapper.WrapperLookup registryLookup, Consumer<AdvancementEntry> consumer) {
         AdvancementEntry oldLegends = Advancement.Builder.create()
                 .display(
                         OLItem.ICON,
@@ -95,4 +97,5 @@ public class OLAdvancementProvider extends FabricAdvancementProvider {
 
 
     }
+
 }

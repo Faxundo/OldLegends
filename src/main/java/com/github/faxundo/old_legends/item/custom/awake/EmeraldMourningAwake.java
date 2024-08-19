@@ -1,11 +1,12 @@
 package com.github.faxundo.old_legends.item.custom.awake;
 
 import com.github.faxundo.old_legends.OldLegends;
-import com.github.faxundo.old_legends.enchantment.custom.VengeanceEnchantment;
+import com.github.faxundo.old_legends.enchantment.EnchantmentInit;
 import com.github.faxundo.old_legends.entity.custom.Vengeful;
 import com.github.faxundo.old_legends.item.custom.EmeraldMourning;
 import com.github.faxundo.old_legends.util.OLHelper;
 import com.github.faxundo.old_legends.util.OLHelperParticle;
+import net.minecraft.component.type.ItemEnchantmentsComponent;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityType;
@@ -14,22 +15,24 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.ToolMaterial;
+import net.minecraft.item.ToolMaterials;
 import net.minecraft.particle.ParticleTypes;
-import net.minecraft.sound.SoundCategory;
+import net.minecraft.registry.DynamicRegistryManager;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 
-import java.util.Map;
-
-public class EmeraldMourningAwake extends EmeraldMourning implements Ability{
+public class EmeraldMourningAwake extends EmeraldMourning implements Ability {
 
     private int cooldown;
     private int durabilityConsumed;
 
 
-    public EmeraldMourningAwake(ToolMaterial toolMaterial, int attackDamage, float attackSpeed, Settings settings) {
-        super(toolMaterial, attackDamage, attackSpeed, settings);
+    public EmeraldMourningAwake(ToolMaterial toolMaterial, Settings settings) {
+        super(toolMaterial, settings.attributeModifiers(EmeraldMourning.createAttributeModifiers(ToolMaterials.NETHERITE, 4, -2.4f)));
         setAwake(true);
     }
 
@@ -42,17 +45,14 @@ public class EmeraldMourningAwake extends EmeraldMourning implements Ability{
             }
 
             ItemStack abilityStack = OLHelper.getAbilityItemStack(player, this.getDefaultStack());
-            cooldown = OldLegends.CONFIG.emeraldMourning.cooldown;
-            durabilityConsumed = OldLegends.CONFIG.emeraldMourning.consumeDurability;
+            this.cooldown = OldLegends.CONFIG.emeraldMourning.cooldown;
+            this.durabilityConsumed = OldLegends.CONFIG.emeraldMourning.consumeDurability;
 
-            abilityStack.damage((this.getMaxDamage() * durabilityConsumed) / 100,
-                    player, (e) -> {
-                        e.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND);
-                    });
+            abilityStack.damage((this.getDefaultStack().getMaxDamage() * durabilityConsumed) / 100, player, EquipmentSlot.MAINHAND);
 
             player.getItemCooldownManager().set(this, cooldown);
 
-            player.playSound(SoundEvents.ENTITY_WITHER_SKELETON_STEP, SoundCategory.PLAYERS, 5.0f, 0f);
+            player.playSound(SoundEvents.ENTITY_WITHER_SKELETON_STEP, 5.0f, 0f);
 
             for (int i = 1; i <= 4; i++) {
                 Vengeful vengeful = new Vengeful(EntityType.ZOMBIE_VILLAGER, world);
@@ -64,7 +64,7 @@ public class EmeraldMourningAwake extends EmeraldMourning implements Ability{
                     vengeful.setOwner(player);
                 }
 
-                vengeanceEnchantment(abilityStack, vengeful);
+                vengeanceEnchantment(player, abilityStack, vengeful);
 
                 for (int j = 1; j < 4; j++) {
                     OLHelperParticle.spawnParticle(vengeful.getWorld(), ParticleTypes.LARGE_SMOKE, vengeful.getBlockX(), vengeful.getBlockY() - 0.2, vengeful.getBlockZ(),
@@ -78,11 +78,18 @@ public class EmeraldMourningAwake extends EmeraldMourning implements Ability{
         }
     }
 
-    public void vengeanceEnchantment (ItemStack stack, Vengeful vengeful) {
-        Map<Enchantment, Integer> listEnchantments = EnchantmentHelper.get(stack);
-        for (Enchantment enchantment : listEnchantments.keySet()) {
-            if (enchantment instanceof VengeanceEnchantment vengeanceEnchantment) {
-                int level = EnchantmentHelper.getLevel(vengeanceEnchantment,stack);
+    public void vengeanceEnchantment(PlayerEntity player, ItemStack stack, Vengeful vengeful) {
+        ItemEnchantmentsComponent listEnchantments = EnchantmentHelper.getEnchantments(stack);
+        for (RegistryEntry<Enchantment> enchantment : listEnchantments.getEnchantments()) {
+            if (enchantment.equals(EnchantmentInit.VENGEANCE_KEY)) {
+
+                DynamicRegistryManager registryManager = player.getWorld().getRegistryManager();
+
+                RegistryKey<Enchantment> vengeanceKey = RegistryKey.of(RegistryKeys.ENCHANTMENT, OldLegends.identifier("Vengeance"));
+
+                RegistryEntry.Reference<Enchantment> vengeanceReference = registryManager.get(RegistryKeys.ENCHANTMENT).entryOf(vengeanceKey);
+
+                int level = EnchantmentHelper.getLevel(vengeanceReference, stack);
                 switch (level) {
                     case 1:
                         vengeful.setStackInHand(Hand.MAIN_HAND, new ItemStack(Items.STONE_SWORD));

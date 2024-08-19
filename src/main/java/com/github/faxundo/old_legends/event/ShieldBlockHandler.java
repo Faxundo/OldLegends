@@ -3,12 +3,12 @@ package com.github.faxundo.old_legends.event;
 import com.github.crimsondawn45.fabricshieldlib.lib.event.ShieldBlockCallback;
 import com.github.faxundo.old_legends.OldLegends;
 import com.github.faxundo.old_legends.item.custom.SwallowsStormItem;
+import com.github.faxundo.old_legends.util.OLDataComponent;
 import com.github.faxundo.old_legends.util.OLHelperParticle;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.DustParticleEffect;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.util.ActionResult;
@@ -20,15 +20,7 @@ public class ShieldBlockHandler implements ShieldBlockCallback {
     @Override
     public ActionResult block(LivingEntity defender, DamageSource source, float amount, Hand hand, ItemStack shield) {
 
-        if (!shield.hasNbt()) {
-            return ActionResult.PASS;
-        }
-
-        NbtCompound nbtData = shield.getOrCreateNbt();
-
-        if (!nbtData.contains(OldLegends.MOD_ID)) {
-            return ActionResult.PASS;
-        }
+        if (!shield.contains(OLDataComponent.CHARGES)) return ActionResult.PASS;
 
         int maxCharges = OldLegends.CONFIG.swallowsStorm.maxCharges;
         int maxChargesAwake = OldLegends.CONFIG.swallowsStorm.maxChargesAwake;
@@ -36,7 +28,7 @@ public class ShieldBlockHandler implements ShieldBlockCallback {
         double electrifiedStrength = OldLegends.CONFIG.swallowsStorm.electrifiedStrength;
         double electrifiedAwakeStrength = OldLegends.CONFIG.swallowsStorm.electrifiedStrengthAwake;
 
-        int charges = nbtData.getInt(OldLegends.MOD_ID);
+        int charges = shield.get(OLDataComponent.CHARGES);
 
         if (shield.getItem() instanceof SwallowsStormItem swallowsStormItem) {
 
@@ -60,14 +52,14 @@ public class ShieldBlockHandler implements ShieldBlockCallback {
             if (source.getName().equals("lightningBolt")) {
                 OLHelperParticle.spawnParticle(defender.getWorld(), ParticleTypes.ELECTRIC_SPARK, defender.getX(), defender.getY(), defender.getZ(),
                         0.5, 0, 0.5);
-                nbtData.putInt(OldLegends.MOD_ID, swallowsStormItem.isAwake() ? maxChargesAwake : maxCharges);
+                shield.set(OLDataComponent.CHARGES, swallowsStormItem.isAwake() ? maxChargesAwake : maxCharges);
 
             } else {
                 if (source.getAttacker() instanceof Entity) {
                     if (charges < maxChargesAwake && swallowsStormItem.isAwake()) {
-                        nbtData.putInt(OldLegends.MOD_ID, charges + 2);
+                        shield.set(OLDataComponent.CHARGES, charges + 2);
                     } else if (charges < maxCharges) {
-                        nbtData.putInt(OldLegends.MOD_ID, charges + 1);
+                        shield.set(OLDataComponent.CHARGES, charges + 1);
 
                     }
                 }

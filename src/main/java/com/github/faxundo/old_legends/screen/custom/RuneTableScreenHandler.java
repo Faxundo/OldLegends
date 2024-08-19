@@ -2,6 +2,7 @@ package com.github.faxundo.old_legends.screen.custom;
 
 import com.github.faxundo.old_legends.block.entity.RuneTableBlockEntity;
 import com.github.faxundo.old_legends.screen.OLScreenHandler;
+import com.github.faxundo.old_legends.screen.data.RuneTableData;
 import com.github.faxundo.old_legends.screen.slot.BookOfTheLegendsSlot;
 import com.github.faxundo.old_legends.screen.slot.PillarSlot;
 import com.github.faxundo.old_legends.screen.slot.RuneTableOutputSlot;
@@ -10,7 +11,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.PacketByteBuf;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.Slot;
 
@@ -19,8 +19,8 @@ public class RuneTableScreenHandler extends ScreenHandler {
     private final Inventory inventory;
     public final RuneTableBlockEntity blockEntity;
 
-    public RuneTableScreenHandler(int syncId, PlayerInventory inventory, PacketByteBuf buf) {
-        this(syncId, inventory, inventory.player.getWorld().getBlockEntity(buf.readBlockPos()));
+    public RuneTableScreenHandler(int syncId, PlayerInventory inventory, RuneTableData data) {
+        this(syncId, inventory, inventory.player.getWorld().getBlockEntity(data.pos()));
     }
 
     public RuneTableScreenHandler(int syncId, PlayerInventory playerInventory, BlockEntity blockEntity) {

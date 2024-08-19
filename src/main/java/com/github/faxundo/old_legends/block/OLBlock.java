@@ -5,8 +5,7 @@ import com.github.faxundo.old_legends.block.custom.EchoBlock;
 import com.github.faxundo.old_legends.block.custom.EchoOreBlock;
 import com.github.faxundo.old_legends.block.custom.ReliquaryBlock;
 import com.github.faxundo.old_legends.block.custom.RuneTableBlock;
-import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
+import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.BlockItem;
@@ -20,13 +19,13 @@ import static com.github.faxundo.old_legends.OldLegends.MOD_NAME;
 public class OLBlock {
 
     public static final Block RELIQUARY_BLOCK = registerBlock("reliquary",
-            new ReliquaryBlock(FabricBlockSettings.copyOf(Blocks.GOLD_BLOCK)));
+            new ReliquaryBlock(AbstractBlock.Settings.copy(Blocks.GOLD_BLOCK)));
     public static final Block ECHO_ORE = registerBlock("echo_ore",
-            new EchoOreBlock(FabricBlockSettings.copyOf(Blocks.DIAMOND_ORE).luminance(5)));
+            new EchoOreBlock(AbstractBlock.Settings.copy(Blocks.DIAMOND_ORE).luminance((state) -> 5)));
     public static final Block ECHO_BLOCK = registerBlock("echo_block",
-            new EchoBlock(FabricBlockSettings.copyOf(Blocks.STONE).luminance(3)));
+            new EchoBlock(AbstractBlock.Settings.copy(Blocks.STONE).luminance((state) -> 3)));
     public static final Block RUNE_TABLE = registerBlock("rune_table",
-            new RuneTableBlock(FabricBlockSettings.copyOf(Blocks.CRAFTING_TABLE)));
+            new RuneTableBlock(AbstractBlock.Settings.copy(Blocks.CRAFTING_TABLE)));
 
     private static Block registerBlock(String name, Block block) {
         registerBlockItem(name, block);
@@ -35,7 +34,7 @@ public class OLBlock {
 
     private static Item registerBlockItem(String name, Block block) {
         return Registry.register(Registries.ITEM, OldLegends.identifier(name),
-                new BlockItem(block, new FabricItemSettings()));
+                new BlockItem(block, new Item.Settings()));
     }
 
     public static void registerOLBlocks() {

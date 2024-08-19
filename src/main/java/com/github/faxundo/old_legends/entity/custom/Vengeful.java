@@ -79,9 +79,9 @@ public class Vengeful extends ZombieVillagerEntity implements RangedAttackMob {
         }));
     }
 
-    protected void initDataTracker() {
-        super.initDataTracker();
-        this.dataTracker.startTracking(OWNER_UUID, "");
+    protected void initDataTracker(DataTracker.Builder builder) {
+        super.initDataTracker(builder);
+        builder.add(OWNER_UUID, "");
     }
 
     public void writeCustomDataToNbt(NbtCompound nbt) {
@@ -123,7 +123,7 @@ public class Vengeful extends ZombieVillagerEntity implements RangedAttackMob {
     }
 
     protected PersistentProjectileEntity createArrowProjectile(ItemStack arrow, float damageModifier) {
-        return ProjectileUtil.createArrowProjectile(this, arrow, damageModifier);
+        return ProjectileUtil.createArrowProjectile(this, arrow, damageModifier, this.getMainHandStack());
     }
 
     public void updateAttackType() {
@@ -146,10 +146,10 @@ public class Vengeful extends ZombieVillagerEntity implements RangedAttackMob {
         }
     }
 
-    @Nullable
+    @org.jetbrains.annotations.Nullable
     @Override
-    public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @org.jetbrains.annotations.Nullable EntityData entityData, @org.jetbrains.annotations.Nullable NbtCompound entityNbt) {
-        entityData = super.initialize(world, difficulty, spawnReason, entityData, entityNbt);
+    public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @org.jetbrains.annotations.Nullable EntityData entityData) {
+        entityData = super.initialize(world, difficulty, spawnReason, entityData);
         this.updateAttackType();
         return entityData;
     }
@@ -172,10 +172,10 @@ public class Vengeful extends ZombieVillagerEntity implements RangedAttackMob {
         super.mobTick();
     }
 
-    @Override
-    public EntityGroup getGroup() {
-        return EntityGroup.UNDEAD;
-    }
+//    @Override
+//    public EntityGroup getGroup() {
+//        return EntityGroup.UNDEAD;
+//    }
 
     @Override
     protected boolean shouldDropLoot() {

@@ -2,16 +2,14 @@ package com.github.faxundo.old_legends.block.entity;
 
 import com.github.faxundo.old_legends.block.ImplementedInventory;
 import com.github.faxundo.old_legends.block.OLBlockEntity;
-import com.github.faxundo.old_legends.enchantment.OLEnchantment;
 import com.github.faxundo.old_legends.item.OLItem;
 import com.github.faxundo.old_legends.item.custom.BookOfTheLegends;
 import com.github.faxundo.old_legends.screen.custom.RuneTableScreenHandler;
+import com.github.faxundo.old_legends.screen.data.RuneTableData;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventories;
@@ -19,7 +17,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.network.PacketByteBuf;
+import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
@@ -28,7 +26,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class RuneTableBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory, ImplementedInventory {
 
@@ -50,11 +50,6 @@ public class RuneTableBlockEntity extends BlockEntity implements ExtendedScreenH
     }
 
     @Override
-    public void writeScreenOpeningData(ServerPlayerEntity player, PacketByteBuf buf) {
-        buf.writeBlockPos(this.pos);
-    }
-
-    @Override
     public Text getDisplayName() {
         return Text.translatable("block.old_legends.rune_table");
     }
@@ -66,24 +61,23 @@ public class RuneTableBlockEntity extends BlockEntity implements ExtendedScreenH
     }
 
     @Override
-    public void readNbt(NbtCompound nbt) {
-        super.readNbt(nbt);
-        Inventories.readNbt(nbt, inventory);
-        northPillar = nbt.getBoolean("northPillar");
-        southPillar = nbt.getBoolean("southPillar");
-        eastPillar = nbt.getBoolean("eastPillar");
-        westPillar = nbt.getBoolean("westPillar");
-    }
-
-
-    @Override
-    protected void writeNbt(NbtCompound nbt) {
-        super.writeNbt(nbt);
-        Inventories.writeNbt(nbt, inventory);
+    protected void writeNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
+        super.writeNbt(nbt, registryLookup);
+        Inventories.writeNbt(nbt, inventory, registryLookup);
         nbt.putBoolean("northPillar", northPillar);
         nbt.putBoolean("southPillar", southPillar);
         nbt.putBoolean("eastPillar", eastPillar);
         nbt.putBoolean("westPillar", westPillar);
+    }
+
+    @Override
+    protected void readNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
+        super.readNbt(nbt, registryLookup);
+        Inventories.readNbt(nbt, inventory, registryLookup);
+        northPillar = nbt.getBoolean("northPillar");
+        southPillar = nbt.getBoolean("southPillar");
+        eastPillar = nbt.getBoolean("eastPillar");
+        westPillar = nbt.getBoolean("westPillar");
     }
 
     public void tick(World world, BlockPos pos, BlockState state) {
@@ -194,24 +188,29 @@ public class RuneTableBlockEntity extends BlockEntity implements ExtendedScreenH
 
                 if (!(level >= 1)) return;
                 ItemStack outputSlotStack = inventory.get(OUTPUT_SLOT);
-                if (isOutputSlotEmptyOrReceivable(outputSlotStack)) {
-
-                    Enchantment enchantment = OLEnchantment.VENGEANCE;
-                    Map<Enchantment, Integer> enchantments = new HashMap<>();
-                    enchantments.put(enchantment, level);
-
-                    EnchantmentHelper.set(enchantments, output);
-
-
-                    for (Integer index : deleteList) {
-                        setStack(index, ItemStack.EMPTY);
-                    }
-
-
-                    this.setStack(OUTPUT_SLOT, output);
-
-                }
+//                if (isOutputSlotEmptyOrReceivable(outputSlotStack)) {
+//
+//                    Enchantment enchantment = OLEnchantment.VENGEANCE;
+//                    Map<Enchantment, Integer> enchantments = new HashMap<>();
+//                    enchantments.put(enchantment, level);
+//
+//                    EnchantmentHelper.set(enchantments, output);
+//
+//
+//                    for (Integer index : deleteList) {
+//                        setStack(index, ItemStack.EMPTY);
+//                    }
+//
+//
+//                    this.setStack(OUTPUT_SLOT, output);
+//
+//                }
             }
         }
+    }
+
+    @Override
+    public Object getScreenOpeningData(ServerPlayerEntity player) {
+        return new RuneTableData(this.pos);
     }
 }

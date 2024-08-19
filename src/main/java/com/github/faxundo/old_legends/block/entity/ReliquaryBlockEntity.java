@@ -6,6 +6,7 @@ import com.github.faxundo.old_legends.block.OLBlockEntity;
 import com.github.faxundo.old_legends.item.OLItem;
 import com.github.faxundo.old_legends.item.generic.OLGenericRune;
 import com.github.faxundo.old_legends.particle.OLParticle;
+import com.github.faxundo.old_legends.screen.data.ReliquaryData;
 import com.github.faxundo.old_legends.screen.custom.ReliquaryScreenHandler;
 import com.github.faxundo.old_legends.sound.OLSound;
 import com.github.faxundo.old_legends.util.OLHelper;
@@ -22,8 +23,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.network.PacketByteBuf;
 import net.minecraft.registry.Registries;
+import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerContext;
@@ -101,26 +102,20 @@ public class ReliquaryBlockEntity extends BlockEntity implements ExtendedScreenH
     }
 
     @Override
-    public void writeScreenOpeningData(ServerPlayerEntity player, PacketByteBuf buf) {
-        buf.writeBlockPos(this.pos);
-    }
-
-    @Override
-    protected void writeNbt(NbtCompound nbt) {
-        super.writeNbt(nbt);
-        Inventories.writeNbt(nbt, inventory);
+    protected void writeNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
+        super.writeNbt(nbt, registryLookup);
+        Inventories.writeNbt(nbt,inventory,registryLookup);
         nbt.putInt("reliquary.points", points);
         nbt.putInt("reliquary.lock", lock);
     }
 
     @Override
-    public void readNbt(NbtCompound nbt) {
-        super.readNbt(nbt);
-        Inventories.readNbt(nbt, inventory);
+    protected void readNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
+        super.readNbt(nbt, registryLookup);
+        Inventories.readNbt(nbt, inventory, registryLookup);
         points = nbt.getInt("reliquary.points");
         lock = nbt.getInt("reliquary.lock");
     }
-
 
     @Nullable
     @Override
@@ -134,7 +129,7 @@ public class ReliquaryBlockEntity extends BlockEntity implements ExtendedScreenH
         if (world.isClient) {
             return;
         }
-        if (!world.getDimensionKey().getValue().toShortTranslationKey().equals("overworld")) {
+        if (!world.getRegistryKey().getValue().toShortTranslationKey().equals("overworld")) {
             return;
         }
 
@@ -198,5 +193,10 @@ public class ReliquaryBlockEntity extends BlockEntity implements ExtendedScreenH
         if (this.world != null) {
             OLHelperParticle.spawnParticle(this.world, OLParticle.LOCK, this.pos.getX() + 0.5, this.pos.getY() + 0.8, this.pos.getZ() + 0.5, 0, 0, 0);
         }
+    }
+
+    @Override
+    public Object getScreenOpeningData(ServerPlayerEntity player) {
+        return new ReliquaryData(this.getPos());
     }
 }

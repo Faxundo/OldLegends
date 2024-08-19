@@ -1,18 +1,16 @@
 package com.github.faxundo.old_legends.item.custom;
 
-import com.github.faxundo.old_legends.OldLegends;
-import com.github.faxundo.old_legends.item.generic.OLGenericShield;
 import com.github.faxundo.old_legends.item.OLItem;
+import com.github.faxundo.old_legends.item.generic.OLGenericShield;
 import com.github.faxundo.old_legends.sound.OLSound;
+import com.github.faxundo.old_legends.util.OLDataComponent;
 import com.github.faxundo.old_legends.util.OLHelper;
 import com.github.faxundo.old_legends.util.OLHelperParticle;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.registry.tag.TagKey;
-import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
@@ -29,7 +27,7 @@ public class SwallowsStormItem extends OLGenericShield {
     private int maxChargesAwake;
 
     public SwallowsStormItem(Settings settings, int coolDownTicks, int enchantability, TagKey<Item> repairItemTag) {
-        super(settings, coolDownTicks, enchantability, repairItemTag);
+        super(settings.component(OLDataComponent.CHARGES, 0), coolDownTicks, enchantability, repairItemTag);
         setId("swallows_storm");
         setAwake(false);
         setUseCharges(true);
@@ -55,20 +53,13 @@ public class SwallowsStormItem extends OLGenericShield {
             setMaxCharges(maxCharges);
         }
 
-        ItemStack item = user.getStackInHand(hand);
+        ItemStack itemStack = user.getStackInHand(hand);
 
-        if (user.isUsingItem() && item.isOf(OLItem.SWALLOWS_STORM)) {
-            return TypedActionResult.success(item, false);
+        if (user.isUsingItem() && itemStack.isOf(OLItem.SWALLOWS_STORM)) {
+            return TypedActionResult.success(itemStack, false);
         }
 
-        NbtCompound nbtData = item.getOrCreateNbt();
-
-        if (!nbtData.contains(OldLegends.MOD_ID)) {
-            nbtData.putInt(OldLegends.MOD_ID, 0);
-        }
-
-
-        int charges = nbtData.getInt(OldLegends.MOD_ID);
+        int charges = itemStack.get(OLDataComponent.CHARGES);
 
         if (user.getHealth() <= stormHealLost) {
 
@@ -76,13 +67,13 @@ public class SwallowsStormItem extends OLGenericShield {
                 if (charges == maxChargesAwake / 2 || charges == maxChargesAwake) {
                     user.heal(stormHealAwake);
                     int updatedCharges = (charges == getMaxCharges() / 2) ? 0 : charges - (getMaxCharges() / 2);
-                    nbtData.putInt(OldLegends.MOD_ID, updatedCharges);
-                    healEffects(user, item);
+                    itemStack.set(OLDataComponent.CHARGES, updatedCharges);
+                    healEffects(user, itemStack);
                 }
             } else if (charges == maxCharges) {
                 user.heal(stormHeal);
-                nbtData.putInt(OldLegends.MOD_ID, 0);
-                healEffects(user, item);
+                itemStack.set(OLDataComponent.CHARGES, 0);
+                healEffects(user, itemStack);
             }
 
         }
@@ -90,11 +81,10 @@ public class SwallowsStormItem extends OLGenericShield {
     }
 
     public void healEffects(PlayerEntity player, ItemStack item) {
-        player.playSound(OLSound.SWALLOWS_STORM_HEAL, SoundCategory.PLAYERS, 5.0f, 0f);
+        player.playSound(OLSound.SWALLOWS_STORM_HEAL, 5.0f, 0f);
         OLHelperParticle.spawnParticle(player.getWorld(), ParticleTypes.ELECTRIC_SPARK, player.getX() + 0.5, player.getY() + 1, player.getZ() + 0.5,
                 0.5, 0, 0.5);
-        item.damage((item.getMaxDamage() * durabilityConsumed) / 100,
-                player, (e) -> e.sendEquipmentBreakStatus(OLHelper.getItemSlot(player, item.getItem())));
+        item.damage((item.getMaxDamage() * durabilityConsumed) / 100, player, OLHelper.getItemSlot(player, item.getItem()));
     }
 
 }

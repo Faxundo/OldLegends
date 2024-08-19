@@ -18,7 +18,7 @@ public class OLSound {
     public static final SoundEvent GRINNING_HOARDER_LAUGH = registerSoundEvent("grinning_hoarder_laugh");
 
     private static SoundEvent registerSoundEvent (String name) {
-        Identifier id = new Identifier(OldLegends.MOD_ID, name);
+        Identifier id = Identifier.of(OldLegends.MOD_ID, name);
         return Registry.register(Registries.SOUND_EVENT, id, SoundEvent.of(id));
     }
 

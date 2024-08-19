@@ -3,6 +3,7 @@ package com.github.faxundo.old_legends.screen.custom;
 import com.github.faxundo.old_legends.OldLegends;
 import com.github.faxundo.old_legends.screen.widget.OLBookWidget;
 import com.github.faxundo.old_legends.screen.widget.OLItemWidget;
+import com.github.faxundo.old_legends.util.OLDataComponent;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
@@ -10,7 +11,6 @@ import net.minecraft.client.gui.tooltip.Tooltip;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
@@ -56,8 +56,10 @@ public class BookOfTheLegendsScreen extends HandledScreen<BookOfTheLegendsScreen
         int xSpacing = 33 + 2;
         int ySpacing = 33 + 2;
         int q, r, x, y;
-        ItemStack stack = this.handler.getPlayer().getMainHandStack();
-        NbtCompound nbt = stack.getOrCreateNbt();
+        ItemStack itemStack = this.handler.getPlayer().getMainHandStack();
+
+
+        boolean emeraldMourning = itemStack.contains(OLDataComponent.EMERALD_MOURNING_PAGE);
 
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
@@ -72,36 +74,40 @@ public class BookOfTheLegendsScreen extends HandledScreen<BookOfTheLegendsScreen
                 Identifier texture = OldLegends.identifier("textures/gui/icon/unknown.png");
                 String nbtItem = "";
 
-                switch (i * cols + j) {
-                    case 0:
-                        nbtItem = "item.old_legends.emerald_mourning_page";
-                        if (nbt.contains(OldLegends.MOD_ID + "." + nbtItem)) {
-                            texture = OldLegends.identifier("textures/gui/icon/emerald_sword.png");
-                        }
-                        break;
-                    case 1:
-                        nbtItem = "item.old_legends.swallows_storm_page";
-                        if (nbt.contains(OldLegends.MOD_ID + "." + nbtItem)) {
-                            texture = OldLegends.identifier("textures/gui/icon/swallows_storm.png");
-                        }
-                        break;
-                    case 2:
-                        nbtItem = "item.old_legends.flutter_echo_page";
-                        if (nbt.contains(OldLegends.MOD_ID + "." + nbtItem)) {
-                            texture = OldLegends.identifier("textures/gui/icon/flutter_echo.png");
-                        }
-                        break;
-                    case 3:
-                        nbtItem = "item.old_legends.reliquary_page";
-                        if (nbt.contains(OldLegends.MOD_ID + "." + nbtItem)) {
-                            texture = OldLegends.identifier("textures/gui/icon/reliquary.png");
-                        }
-                        break;
-                    case 4, 5:
-                        texture = OldLegends.identifier("textures/gui/icon/none.png");
-                        olBookWidget.setDisabled(true);
-                        break;
+                if (emeraldMourning) {
+                    texture = OldLegends.identifier("textures/gui/icon/emerald_sword.png");
                 }
+
+//                switch (i * cols + j) {
+//                    case 0:
+//                        nbtItem = "item.old_legends.emerald_mourning_page";
+//                        if (nbt.contains(OldLegends.MOD_ID + "." + nbtItem)) {
+//                            texture = OldLegends.identifier("textures/gui/icon/emerald_sword.png");
+//                        }
+//                        break;
+//                    case 1:
+//                        nbtItem = "item.old_legends.swallows_storm_page";
+//                        if (nbt.contains(OldLegends.MOD_ID + "." + nbtItem)) {
+//                            texture = OldLegends.identifier("textures/gui/icon/swallows_storm.png");
+//                        }
+//                        break;
+//                    case 2:
+//                        nbtItem = "item.old_legends.flutter_echo_page";
+//                        if (nbt.contains(OldLegends.MOD_ID + "." + nbtItem)) {
+//                            texture = OldLegends.identifier("textures/gui/icon/flutter_echo.png");
+//                        }
+//                        break;
+//                    case 3:
+//                        nbtItem = "item.old_legends.reliquary_page";
+//                        if (nbt.contains(OldLegends.MOD_ID + "." + nbtItem)) {
+//                            texture = OldLegends.identifier("textures/gui/icon/reliquary.png");
+//                        }
+//                        break;
+//                    case 4, 5:
+//                        texture = OldLegends.identifier("textures/gui/icon/none.png");
+//                        olBookWidget.setDisabled(true);
+//                        break;
+//                }
                 if (!texture.equals(OldLegends.identifier("textures/gui/icon/unknown.png"))) {
                     olBookWidget.setTooltip(Tooltip.of(itemName(nbtItem)));
 

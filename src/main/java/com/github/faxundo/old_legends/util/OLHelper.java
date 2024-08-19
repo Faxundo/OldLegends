@@ -1,24 +1,20 @@
 package com.github.faxundo.old_legends.util;
 
-import com.github.faxundo.old_legends.OldLegends;
 import com.github.faxundo.old_legends.item.generic.OLGenericItem;
 import com.github.faxundo.old_legends.item.generic.OLGenericPage;
 import com.github.faxundo.old_legends.item.generic.OLGenericRune;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.nbt.NbtCompound;
+import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import net.minecraft.text.TextColor;
 import net.minecraft.util.Hand;
-import net.minecraft.world.BlockView;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -103,7 +99,7 @@ public class OLHelper {
         return Text.translatable(item.getTranslationKey()).setStyle(NAME);
     }
 
-    public static void appendTooltipHelper(ItemStack item, List<Text> tooltip, boolean awake, int amountPassives, String id, boolean useCharges, int maxCharges) {
+    public static void appendTooltipHelper(ItemStack itemStack, List<Text> tooltip, boolean awake, int amountPassives, String id, boolean useCharges, int maxCharges) {
 
         if (Screen.hasShiftDown()) {
             tooltip.add(Text.literal(""));
@@ -130,16 +126,19 @@ public class OLHelper {
         }
         if (useCharges) {
             tooltip.add(Text.literal(""));
-            NbtCompound nbtData = item.getOrCreateNbt();
-            Text textCharges = Text.translatable("tooltip.old_legends.swallows_storm_charges")
-                    .append(": " + nbtData.getInt("old_legends") + "/" + maxCharges)
-                    .setStyle(CHARGES);
-            tooltip.add(textCharges);
 
+            if (itemStack.contains(OLDataComponent.CHARGES)) {
+                int charges = itemStack.get(OLDataComponent.CHARGES);
+
+                Text textCharges = Text.translatable("tooltip.old_legends.swallows_storm_charges")
+                        .append(": " + charges + "/" + maxCharges)
+                        .setStyle(CHARGES);
+                tooltip.add(textCharges);
+            }
         }
     }
 
-    public static void appendTooltipBlockHelper(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options, String id) {
+    public static void appendTooltipBlockHelper(ItemStack stack, Item.TooltipContext context, List<Text> tooltip, TooltipType options, String id) {
         tooltip.add(Text.translatable(id).setStyle(SHIFT));
     }
 
@@ -149,11 +148,6 @@ public class OLHelper {
 
     public static double getRandomDoubleNumber(double min, double max) {
         return Math.floor(Math.random() * (max - min + 1) + min);
-    }
-
-    public static void clearCharges(ItemStack abilityStack) {
-        NbtCompound nbtData = abilityStack.getOrCreateNbt();
-        nbtData.putInt(OldLegends.MOD_ID, 0);
     }
 
     public static ItemStack getAbilityItemStack(PlayerEntity player, ItemStack item) {
@@ -212,21 +206,11 @@ public class OLHelper {
         return null;
     }
 
-    public static int getCharges(ItemStack itemStack) {
-        if (itemStack.hasNbt()) {
-            if (itemStack.getNbt().contains(OldLegends.MOD_ID)) {
-                return itemStack.getNbt().getInt(OldLegends.MOD_ID);
-            }
-        }
-        return 0;
-    }
-
-
     public static boolean isOreBlock(BlockState state) {
         return state.isIn(OLTag.Blocks.ORES);
     }
 
-    public static List<Item> reliquaryItems () {
+    public static List<Item> reliquaryItems() {
         List<Item> itemList = new ArrayList<>();
         itemList.add(Items.EXPERIENCE_BOTTLE);
         itemList.add(Items.EMERALD_BLOCK);

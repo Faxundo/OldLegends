@@ -5,7 +5,6 @@ import com.github.faxundo.old_legends.block.entity.EchoBlockEntity;
 import com.github.faxundo.old_legends.block.entity.EchoOreBlockEntity;
 import com.github.faxundo.old_legends.block.entity.ReliquaryBlockEntity;
 import com.github.faxundo.old_legends.block.entity.RuneTableBlockEntity;
-import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
@@ -17,19 +16,19 @@ public class OLBlockEntity {
 
     public static final BlockEntityType<ReliquaryBlockEntity> RELIQUARY_BLOCK_ENTITY =
             Registry.register(Registries.BLOCK_ENTITY_TYPE, OldLegends.identifier("reliquary"),
-                    FabricBlockEntityTypeBuilder.create(ReliquaryBlockEntity::new,
+                    BlockEntityType.Builder.create(ReliquaryBlockEntity::new,
                             OLBlock.RELIQUARY_BLOCK).build());
     public static final BlockEntityType<EchoOreBlockEntity> ECHO_ORE_ENTITY =
             Registry.register(Registries.BLOCK_ENTITY_TYPE, OldLegends.identifier("echo_ore"),
-                    FabricBlockEntityTypeBuilder.create(EchoOreBlockEntity::new,
+                    BlockEntityType.Builder.create(EchoOreBlockEntity::new,
                             OLBlock.ECHO_ORE).build());
     public static final BlockEntityType<EchoBlockEntity> ECHO_BLOCK_ENTITY =
             Registry.register(Registries.BLOCK_ENTITY_TYPE, OldLegends.identifier("echo_block"),
-                    FabricBlockEntityTypeBuilder.create(EchoBlockEntity::new,
+                    BlockEntityType.Builder.create(EchoBlockEntity::new,
                             OLBlock.ECHO_BLOCK).build());
     public static final BlockEntityType<RuneTableBlockEntity> RUNE_TABLE_BLOCK_ENTITY =
             Registry.register(Registries.BLOCK_ENTITY_TYPE, OldLegends.identifier("rune_table"),
-                    FabricBlockEntityTypeBuilder.create(RuneTableBlockEntity::new,
+                    BlockEntityType.Builder.create(RuneTableBlockEntity::new,
                             OLBlock.RUNE_TABLE).build());
 
     public static void registerOLBlockEntities() {

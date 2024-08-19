@@ -2,14 +2,13 @@ package com.github.faxundo.old_legends.item.generic;
 
 import com.github.faxundo.old_legends.util.OLHelper;
 import net.minecraft.block.Block;
-import net.minecraft.client.item.TooltipContext;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.MiningToolItem;
 import net.minecraft.item.ToolMaterial;
+import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.text.Text;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
@@ -21,8 +20,8 @@ public class OLGenericMiningTool extends MiningToolItem {
     private boolean useCharges = false;
     private int maxCharges = 1;
 
-    public OLGenericMiningTool(float attackDamage, float attackSpeed, ToolMaterial material, TagKey<Block> effectiveBlocks, Settings settings) {
-        super(attackDamage, attackSpeed, material, effectiveBlocks, settings.fireproof());
+    public OLGenericMiningTool(ToolMaterial material, TagKey<Block> effectiveBlocks, Item.Settings settings) {
+        super(material, effectiveBlocks, settings.fireproof());
     }
 
 
@@ -68,8 +67,8 @@ public class OLGenericMiningTool extends MiningToolItem {
     }
 
     @Override
-    public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+    public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
         OLHelper.appendTooltipHelper(stack, tooltip, isAwake(), getAmountPassives(), getId(), isUseCharges(), getMaxCharges());
-        super.appendTooltip(stack, world, tooltip, context);
+        super.appendTooltip(stack, context, tooltip, type);
     }
 }

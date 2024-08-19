@@ -1,10 +1,9 @@
 package com.github.faxundo.old_legends.event;
 
-import com.github.faxundo.old_legends.networking.OLPacket;
+import com.github.faxundo.old_legends.networking.packet.MainHandAbilityC2SPacket;
+import com.github.faxundo.old_legends.networking.packet.OffHandAbilityC2SPacket;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
-import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
-import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
 import org.lwjgl.glfw.GLFW;
@@ -19,16 +18,16 @@ public class KeyInputHandler {
 
     public static void registerKeyInputs() {
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
-            if (mainAbilityKey.wasPressed()) {
-                ClientPlayNetworking.send(OLPacket.MAIN_HAND_ABILITY, PacketByteBufs.create());
+            if (mainAbilityKey.wasPressed() && MainHandAbilityC2SPacket.canSend()) {
+                new MainHandAbilityC2SPacket(true).send();
             }
-            if (offAbilityKey.wasPressed()) {
-                ClientPlayNetworking.send(OLPacket.OFF_HAND_ABILITY, PacketByteBufs.create());
+            if (offAbilityKey.wasPressed() && OffHandAbilityC2SPacket.canSend()) {
+                new OffHandAbilityC2SPacket(true).send();
             }
         });
     }
 
-    public static void register () {
+    public static void register() {
         mainAbilityKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
                 MAIN_HAND_ABILITY,
                 InputUtil.Type.KEYSYM,

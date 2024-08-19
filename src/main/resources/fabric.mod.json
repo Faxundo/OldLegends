@@ -34,6 +34,6 @@
     "minecraft": "${minecraft_version}"
   },
   "suggests": {
-    "mod-menu": "9.0.0"
+    "mod-menu": "${modmenu_version}"
   }
 }

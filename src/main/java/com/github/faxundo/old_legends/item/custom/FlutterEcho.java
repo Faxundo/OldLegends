@@ -15,8 +15,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ToolMaterial;
+import net.minecraft.item.*;
 import net.minecraft.nbt.NbtList;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.sound.SoundCategory;
@@ -29,8 +28,8 @@ public class FlutterEcho extends OLGenericMiningTool {
     private BlockState blockMinedState;
     private BlockPos blockMinedPos;
 
-    public FlutterEcho(float attackDamage, float attackSpeed, ToolMaterial material, TagKey<Block> effectiveBlocks, Settings settings) {
-        super(attackDamage, attackSpeed, material, effectiveBlocks, settings);
+    public FlutterEcho(ToolMaterial material, TagKey<Block> effectiveBlocks, Item.Settings settings) {
+        super(material, effectiveBlocks, settings.attributeModifiers(FlutterEcho.createAttributeModifiers(ToolMaterials.NETHERITE,1.0f,-2.f)));
         blockMinedState = Blocks.AIR.getDefaultState();
         blockMinedPos = new BlockPos(0, -100, 0);
         setId("flutter_echo");
@@ -59,7 +58,7 @@ public class FlutterEcho extends OLGenericMiningTool {
     }
 
     @Override
-    public float getMiningSpeedMultiplier(ItemStack stack, BlockState state) {
+    public float getMiningSpeed(ItemStack stack, BlockState state) {
         return 10.0f;
     }
 
@@ -112,10 +111,10 @@ public class FlutterEcho extends OLGenericMiningTool {
             if (attacker instanceof PlayerEntity player) {
                 int hitChance = isAwake() ? OldLegends.CONFIG.flutterEcho.attackChance : OldLegends.CONFIG.flutterEcho.attackChanceAwake;
                 if (OLHelper.getRandomNumber(1, 100) <= hitChance) {
-                    player.playSound(SoundEvents.BLOCK_END_PORTAL_FRAME_FILL, SoundCategory.PLAYERS, 0.7f, -0.2f);
+                    player.playSound(SoundEvents.BLOCK_END_PORTAL_FRAME_FILL, 0.7f, -0.2f);
                     OLHelperParticle.spawnParticle(player.getWorld(), OLParticle.ECHO_PICKAXE, target.getX() + 0.23, target.getY() + 2.3, target.getZ() + 0.15,
                             0.3d, 0.3d, 0.3d);
-                    target.damage(attacker.getDamageSources().playerAttack(player), this.getAttackDamage() / 2);
+                    target.damage(attacker.getDamageSources().playerAttack(player), getMaterial().getAttackDamage() / 2);
 
                 }
             }

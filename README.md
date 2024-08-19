@@ -8,15 +8,17 @@ Explore the stories that time has forgotten, discover secrets that have been bur
 - Very customizable.
 - Add 7 new items.
 - Add 1 new Structure for explore and loot.
+- Add 1 new Enchantment
 - Add 3 new unique items:
     - **Emerald Mourning**: A powerful sword imbued with the power of death and revenge. Has 2 passive abilities and 1
       active ability.
     - **Swallows Storm**: An electrifying shield that devours lightning like cookies. Has 3 passive abilities and 1
       active ability.
     - **Flutter Echo**: A spike capable of altering the threads of time. Has 2 passive abilities and 1 active ability.
-- Add 2 new mechanics:
+- Add 3 new mechanics:
     - Unique mechanic of old legends items: **Awake**.
-    - Reliquary Mechanic: Offer sparkly items to Grinning Hoarder and receive a recompense for this.
+    - Reliquary: Offer sparkly items to Grinning Hoarder and receive a recompense for this.
+    - Rune Table: Used for crafting of runes and new enchantments.
 
 ## Awake
 

@@ -68,8 +68,7 @@ public class RuneTableBlock extends BlockWithEntity implements BlockEntityProvid
         super.onStateReplaced(state, world, pos, newState, moved);
     }
 
-    @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+    protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (!world.isClient) {
             NamedScreenHandlerFactory screenHandlerFactory = ((RuneTableBlockEntity) world.getBlockEntity(pos));
 

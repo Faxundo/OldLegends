@@ -7,9 +7,7 @@ import com.github.faxundo.old_legends.util.OLHelper;
 import com.github.faxundo.old_legends.util.OLHelperParticle;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.mob.IllagerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.item.ToolMaterial;
+import net.minecraft.item.*;
 import net.minecraft.particle.ParticleTypes;
 
 public class EmeraldMourning extends OLGenericSword {
@@ -17,8 +15,8 @@ public class EmeraldMourning extends OLGenericSword {
     private int damageIllager;
     private int damageIllagerAwake;
 
-    public EmeraldMourning(ToolMaterial toolMaterial, int attackDamage, float attackSpeed, Settings settings) {
-        super(toolMaterial, attackDamage, attackSpeed, settings);
+    public EmeraldMourning(ToolMaterial toolMaterial, Item.Settings settings) {
+        super(toolMaterial, settings.attributeModifiers(EmeraldMourning.createAttributeModifiers(ToolMaterials.NETHERITE,3,-2.4f)));
         setId("emerald_mourning");
         setAwake(false);
         setAmountPassives(2);
@@ -38,9 +36,9 @@ public class EmeraldMourning extends OLGenericSword {
         if (!attacker.getWorld().isClient()) {
             if (target instanceof IllagerEntity) {
                 if (isAwake()) {
-                    target.damage(attacker.getWorld().getDamageSources().generic(), (this.getAttackDamage() * damageIllagerAwake) / 100);
+                    target.damage(attacker.getWorld().getDamageSources().generic(), (getMaterial().getAttackDamage() * damageIllagerAwake) / 100);
                 } else {
-                    target.damage(attacker.getWorld().getDamageSources().generic(), (this.getAttackDamage() * damageIllager) / 100);
+                    target.damage(attacker.getWorld().getDamageSources().generic(), (getMaterial().getAttackDamage() * damageIllager) / 100);
                 }
                 if (attacker.isPlayer()) {
                     if (target.isDead()) {

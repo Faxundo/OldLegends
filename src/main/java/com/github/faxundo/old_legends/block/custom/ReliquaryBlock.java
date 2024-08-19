@@ -8,10 +8,11 @@ import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.Properties;
@@ -103,8 +104,7 @@ public class ReliquaryBlock extends BlockWithEntity implements BlockEntityProvid
         super.onStateReplaced(state, world, pos, newState, moved);
     }
 
-    @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+    protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (!world.isClient) {
             NamedScreenHandlerFactory screenHandlerFactory = ((ReliquaryBlockEntity) world.getBlockEntity(pos));
 
@@ -135,7 +135,7 @@ public class ReliquaryBlock extends BlockWithEntity implements BlockEntityProvid
     }
 
     @Override
-    public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
-        OLHelper.appendTooltipBlockHelper(stack, world, tooltip, options, "block.old_legends.reliquary.description");
+    public void appendTooltip(ItemStack stack, Item.TooltipContext context, List<Text> tooltip, TooltipType options) {
+        OLHelper.appendTooltipBlockHelper(stack, context, tooltip, options, "block.old_legends.reliquary.description");
     }
 }

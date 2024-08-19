@@ -4,7 +4,7 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.particle.*;
 import net.minecraft.client.world.ClientWorld;
-import net.minecraft.particle.DefaultParticleType;
+import net.minecraft.particle.SimpleParticleType;
 
 public class EchoPickAxeParticle extends SpriteBillboardParticle {
 
@@ -53,14 +53,14 @@ public class EchoPickAxeParticle extends SpriteBillboardParticle {
     }
 
     @Environment(EnvType.CLIENT)
-    public static class Factory implements ParticleFactory<DefaultParticleType> {
+    public static class Factory implements ParticleFactory<SimpleParticleType> {
         private final SpriteProvider sprites;
 
         public Factory(SpriteProvider spriteSet) {
             this.sprites = spriteSet;
         }
 
-        public Particle createParticle(DefaultParticleType particleType, ClientWorld level, double x, double y, double z,
+        public Particle createParticle(SimpleParticleType particleType, ClientWorld level, double x, double y, double z,
                                        double dx, double dy, double dz) {
             return new EchoPickAxeParticle(level, x, y, z, this.sprites, dx, dy, dz);
         }

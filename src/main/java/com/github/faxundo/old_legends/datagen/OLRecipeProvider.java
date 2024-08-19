@@ -10,13 +10,16 @@ import net.minecraft.data.server.recipe.SmithingTransformRecipeJsonBuilder;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.book.RecipeCategory;
+import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.util.Identifier;
+
+import java.util.concurrent.CompletableFuture;
 
 public class OLRecipeProvider extends FabricRecipeProvider {
 
 
-    public OLRecipeProvider(FabricDataOutput output) {
-        super(output);
+    public OLRecipeProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {
+        super(output, registryLookup);
     }
 
     @Override
