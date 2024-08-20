@@ -33,7 +33,7 @@ public class OLRecipeProvider extends FabricRecipeProvider {
                 .showNotification(true)
                 .criterion(hasItem(Items.NETHERITE_INGOT), conditionsFromItem(Items.NETHERITE_INGOT))
                 .criterion(hasItem(OLItem.PALE_GEM), conditionsFromItem(OLItem.PALE_GEM))
-                .offerTo(exporter, new Identifier(getRecipeName(OLItem.AWAKENING_UPGRADE)));
+                .offerTo(exporter, Identifier.of(getRecipeName(OLItem.AWAKENING_UPGRADE)));
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, OLBlock.RELIQUARY_BLOCK, 1)
                 .pattern("LOL")
                 .pattern("ODO")
@@ -43,7 +43,7 @@ public class OLRecipeProvider extends FabricRecipeProvider {
                 .input('D', OLItem.RELIQUARY_BLUEPRINT)
                 .showNotification(true)
                 .criterion(hasItem(OLItem.RELIQUARY_BLUEPRINT), conditionsFromItem(OLItem.RELIQUARY_BLUEPRINT))
-                .offerTo(exporter, new Identifier(getRecipeName(OLBlock.RELIQUARY_BLOCK)));
+                .offerTo(exporter, Identifier.of(getRecipeName(OLBlock.RELIQUARY_BLOCK)));
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, OLItem.BLANK_RUNE, 3)
                 .pattern(" L ")
                 .pattern("L L")
@@ -51,7 +51,7 @@ public class OLRecipeProvider extends FabricRecipeProvider {
                 .input('L', Items.POLISHED_DEEPSLATE)
                 .showNotification(true)
                 .criterion(hasItem(Items.LAPIS_LAZULI), conditionsFromItem(Items.LAPIS_LAZULI))
-                .offerTo(exporter, new Identifier(getRecipeName(OLItem.BLANK_RUNE)));
+                .offerTo(exporter, Identifier.of(getRecipeName(OLItem.BLANK_RUNE)));
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, OLBlock.RUNE_TABLE, 1)
                 .pattern("DOD")
                 .pattern("LEL")
@@ -62,7 +62,7 @@ public class OLRecipeProvider extends FabricRecipeProvider {
                 .input('E', OLItem.PALE_GEM)
                 .showNotification(true)
                 .criterion(hasItem(OLItem.PALE_GEM), conditionsFromItem(OLItem.PALE_GEM))
-                .offerTo(exporter, new Identifier(getRecipeName(OLBlock.RUNE_TABLE)));
+                .offerTo(exporter, Identifier.of(getRecipeName(OLBlock.RUNE_TABLE)));
 
 
         SmithingTransformRecipeJsonBuilder.create(Ingredient.ofStacks(OLItem.AWAKENING_UPGRADE.getDefaultStack()),
@@ -70,18 +70,18 @@ public class OLRecipeProvider extends FabricRecipeProvider {
                         Ingredient.ofStacks(OLItem.END_EXTRACT.getDefaultStack()),
                         RecipeCategory.COMBAT, OLItem.EMERALD_MOURNING_AWAKE)
                 .criterion(hasItem(OLItem.EMERALD_MOURNING), conditionsFromItem(OLItem.EMERALD_MOURNING))
-                .offerTo(exporter, new Identifier(getRecipeName(OLItem.EMERALD_MOURNING_AWAKE)));
+                .offerTo(exporter, Identifier.of(getRecipeName(OLItem.EMERALD_MOURNING_AWAKE)));
         SmithingTransformRecipeJsonBuilder.create(Ingredient.ofStacks(OLItem.AWAKENING_UPGRADE.getDefaultStack()),
                         Ingredient.ofStacks(OLItem.SWALLOWS_STORM.getDefaultStack()),
                         Ingredient.ofStacks(OLItem.END_EXTRACT.getDefaultStack()),
                         RecipeCategory.COMBAT, OLItem.SWALLOWS_STORM_AWAKE)
                 .criterion(hasItem(OLItem.SWALLOWS_STORM), conditionsFromItem(OLItem.SWALLOWS_STORM))
-                .offerTo(exporter, new Identifier(getRecipeName(OLItem.SWALLOWS_STORM_AWAKE)));
+                .offerTo(exporter, Identifier.of(getRecipeName(OLItem.SWALLOWS_STORM_AWAKE)));
         SmithingTransformRecipeJsonBuilder.create(Ingredient.ofStacks(OLItem.AWAKENING_UPGRADE.getDefaultStack()),
                         Ingredient.ofStacks(OLItem.FLUTTER_ECHO.getDefaultStack()),
                         Ingredient.ofStacks(OLItem.END_EXTRACT.getDefaultStack()),
                         RecipeCategory.COMBAT, OLItem.FLUTTER_ECHO_AWAKE)
                 .criterion(hasItem(OLItem.FLUTTER_ECHO), conditionsFromItem(OLItem.FLUTTER_ECHO))
-                .offerTo(exporter, new Identifier(getRecipeName(OLItem.FLUTTER_ECHO_AWAKE)));
+                .offerTo(exporter, Identifier.of(getRecipeName(OLItem.FLUTTER_ECHO_AWAKE)));
     }
 }

@@ -4,7 +4,10 @@ import com.github.faxundo.old_legends.OldLegends;
 import com.github.faxundo.old_legends.item.generic.OLGenericItem;
 import com.github.faxundo.old_legends.item.generic.OLGenericPage;
 import com.github.faxundo.old_legends.screen.custom.BookOfTheLegendsScreenHandler;
+import com.github.faxundo.old_legends.util.OLDataComponent;
 import com.github.faxundo.old_legends.util.OLHelper;
+import net.minecraft.component.ComponentType;
+import net.minecraft.component.DataComponentTypes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
@@ -28,22 +31,25 @@ public class BookOfTheLegends extends OLGenericItem {
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         if (!world.isClient) {
-            ItemStack stack = user.getMainHandStack();
-            NbtCompound nbtData = stack.getOrCreateNbt();
-            if (!nbtData.contains(OldLegends.MOD_ID + ".owner") && user.isSneaky() && !user.isCreative()) {
-                nbtData.putUuid(OldLegends.MOD_ID + ".owner", user.getUuid());
+            ItemStack itemStack = user.getMainHandStack();
+
+            if (itemStack.contains(OLDataComponent.OWNER)) {
+                String owner = itemStack.get(OLDataComponent.OWNER);
+                if (owner.equals(user.getUuid().toString())) {
+                    user.openHandledScreen(new SimpleNamedScreenHandlerFactory((syncId, playerInventory, playerEntity) ->
+                            new BookOfTheLegendsScreenHandler(syncId, playerInventory), this.getName()));
+                } else {
+                    user.sendMessage(Text.translatable("tooltip.old_legends.book_of_the_legends.no_owner").setStyle(OLHelper.getStyle("error")));
+                }
+            } else {
+                itemStack.set(OLDataComponent.OWNER, user.getUuid().toString());
                 Text text = Text.translatable("item.old_legends.book_of_the_legends")
                         .append(" ")
                         .append(Text.translatable("tooltip.old_legends.book_of_the_legends.of"))
                         .append(" ")
                         .append(user.getDisplayName())
                         .setStyle(OLHelper.getStyle("special"));
-                stack.setCustomName(text);
-            } else if (nbtData.contains(OldLegends.MOD_ID + ".owner") && nbtData.getUuid(OldLegends.MOD_ID + ".owner").equals(user.getUuid())) {
-                user.openHandledScreen(new SimpleNamedScreenHandlerFactory((syncId, playerInventory, playerEntity) ->
-                        new BookOfTheLegendsScreenHandler(syncId, playerInventory), this.getName()));
-            } else {
-                user.sendMessage(Text.translatable("tooltip.old_legends.book_of_the_legends.no_owner").setStyle(OLHelper.getStyle("error")));
+                itemStack.set(DataComponentTypes.CUSTOM_NAME, text);
             }
         }
         return super.use(world, user, hand);
@@ -54,19 +60,18 @@ public class BookOfTheLegends extends OLGenericItem {
         if (clickType != ClickType.RIGHT) {
             return false;
         } else {
-            NbtCompound nbtData = stack.getOrCreateNbt();
-            if (nbtData.contains(OldLegends.MOD_ID + ".owner")) {
-                ItemStack itemStack = slot.getStack();
-                if (itemStack.getItem() instanceof OLGenericPage) {
-                    if (!hasPage(stack, itemStack.getTranslationKey())) {
-                        addPage(stack, itemStack);
-                        player.sendMessage(itemName(itemStack), false);
-                        itemStack.decrement(1);
-                    } else {
-                        player.sendMessage(Text.translatable("tooltip.old_legends.book_of_the_legends.has_page").setStyle(OLHelper.getStyle("error")));
-                    }
+            if (!stack.contains(OLDataComponent.OWNER)) return false;
+            ItemStack itemStack = slot.getStack();
+            if (itemStack.getItem() instanceof OLGenericPage) {
+                if (!hasPage(OLDataComponent.EMERALD_MOURNING_PAGE, stack)) {
+                    addPage(OLDataComponent.EMERALD_MOURNING_PAGE, itemStack);
+                    player.sendMessage(itemName(itemStack), false);
+                    itemStack.decrement(1);
+                } else {
+                    player.sendMessage(Text.translatable("tooltip.old_legends.book_of_the_legends.has_page").setStyle(OLHelper.getStyle("error")));
                 }
             }
+
             return true;
         }
     }
@@ -91,13 +96,13 @@ public class BookOfTheLegends extends OLGenericItem {
                 .append("]").setStyle(OLHelper.getStyle("rare"));
     }
 
-    public void addPage(ItemStack book, ItemStack page) {
-        NbtCompound nbtData = book.getOrCreateNbt();
-        nbtData.putBoolean(page.getTranslationKey(), true);
+    public void addPage(ComponentType<Boolean> component, ItemStack book) {
+        if (!book.contains(component)) {
+            book.set(component,true);
+        }
     }
 
-    public boolean hasPage(ItemStack book, String page) {
-        NbtCompound nbtData = book.getOrCreateNbt();
-        return nbtData.contains(page);
+    public boolean hasPage(ComponentType<Boolean> component, ItemStack book) {
+       return book.contains(component);
     }
 }

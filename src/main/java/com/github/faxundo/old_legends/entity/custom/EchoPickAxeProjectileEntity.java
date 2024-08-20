@@ -42,9 +42,14 @@ public class EchoPickAxeProjectileEntity extends ThrownItemEntity {
     }
 
     @Override
-    public Packet<ClientPlayPacketListener> createSpawnPacket() {
-        return new EntitySpawnS2CPacket(this);
+    public void onSpawnPacket(EntitySpawnS2CPacket packet) {
+        super.onSpawnPacket(packet);
     }
+
+    //    @Override
+//    public Packet<ClientPlayPacketListener> createSpawnPacket() {
+//        return new EntitySpawnS2CPacket(this);
+//    }
 
     @Override
     public void tick() {

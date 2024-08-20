@@ -17,7 +17,7 @@ import static com.github.faxundo.old_legends.OldLegends.MOD_NAME;
 public class OLItemGroup {
 
     private static final RegistryKey<net.minecraft.item.ItemGroup> OLD_LEGENDS = RegistryKey.of(RegistryKeys.ITEM_GROUP,
-            new Identifier(OldLegends.MOD_ID, "old_legends"));
+            Identifier.of(OldLegends.MOD_ID, "old_legends"));
 
     public static void registerItemGroup () {
         LOGGER.info(">>> Registering " + MOD_NAME + " item groups.");
@@ -30,9 +30,9 @@ public class OLItemGroup {
                     entries.add(OLItem.END_EXTRACT);
                     entries.add(OLItem.AWAKENING_UPGRADE);
                     entries.add(OLItem.VENGEANCE_PAGE);
-                    entries.add(OLItem.VENGEANCE_ENCHANTMENT_1);
-                    entries.add(OLItem.VENGEANCE_ENCHANTMENT_2);
-                    entries.add(OLItem.VENGEANCE_ENCHANTMENT_3);
+//                    entries.add(OLItem.VENGEANCE_ENCHANTMENT_1);
+//                    entries.add(OLItem.VENGEANCE_ENCHANTMENT_2);
+//                    entries.add(OLItem.VENGEANCE_ENCHANTMENT_3);
                     entries.add(OLItem.BLANK_RUNE);
                     entries.add(OLItem.SKY_RUNE);
                     entries.add(OLItem.SKY_RUNE_PAGE);

@@ -10,8 +10,6 @@ import com.github.faxundo.old_legends.event.ServerTickHandler;
 import com.github.faxundo.old_legends.event.ShieldBlockHandler;
 import com.github.faxundo.old_legends.item.OLItem;
 import com.github.faxundo.old_legends.item.OLItemGroup;
-import com.github.faxundo.old_legends.networking.OLPacket;
-import com.github.faxundo.old_legends.particle.OLParticle;
 import com.github.faxundo.old_legends.screen.OLScreenHandler;
 import com.github.faxundo.old_legends.sound.OLSound;
 import com.github.faxundo.old_legends.util.LootTableModifier;
@@ -42,13 +40,11 @@ public class OldLegends implements ModInitializer {
         OLPredicateProvider.registerPredicateProvider();
         OLItem.registerOLItems();
         OLItemGroup.registerItemGroup();
-        OLPacket.registerC2SPackets();
 
         OLBlock.registerOLBlocks();
         OLScreenHandler.registerScreenHandler();
         OLBlockEntity.registerOLBlockEntities();
 
-        OLParticle.registerParticles();
         OLEffect.registerEffects();
         OLDataComponent.registerDataComponents();
 

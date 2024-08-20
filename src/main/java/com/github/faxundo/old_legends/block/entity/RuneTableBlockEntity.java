@@ -133,18 +133,18 @@ public class RuneTableBlockEntity extends BlockEntity implements ExtendedScreenH
                 }
             }
             // Time Rune
-            if (hasLapis.containsAll(Arrays.asList(3, 5, 7, 9)) && bookOfTheLegends.hasPage(inventory.get(BOOK_SLOT), pageTime)) {
-                output = OLItem.TIME_RUNE.getDefaultStack();
-                deleteList.addAll(Arrays.asList(3, 5, 7, 9));
-                //Death Rune
-            } else if (hasLapis.containsAll(Arrays.asList(3, 7)) && bookOfTheLegends.hasPage(inventory.get(BOOK_SLOT), pageDeath)) {
-                output = OLItem.DEATH_RUNE.getDefaultStack();
-                deleteList.addAll(Arrays.asList(3, 7));
-                // Sky Rune
-            } else if (hasLapis.containsAll(Arrays.asList(6, 8)) && bookOfTheLegends.hasPage(inventory.get(BOOK_SLOT), pageSky)) {
-                output = OLItem.SKY_RUNE.getDefaultStack();
-                deleteList.addAll(Arrays.asList(6, 8));
-            }
+//            if (hasLapis.containsAll(Arrays.asList(3, 5, 7, 9)) && bookOfTheLegends.hasPage(inventory.get(BOOK_SLOT), pageTime)) {
+//                output = OLItem.TIME_RUNE.getDefaultStack();
+//                deleteList.addAll(Arrays.asList(3, 5, 7, 9));
+//                //Death Rune
+//            } else if (hasLapis.containsAll(Arrays.asList(3, 7)) && bookOfTheLegends.hasPage(inventory.get(BOOK_SLOT), pageDeath)) {
+//                output = OLItem.DEATH_RUNE.getDefaultStack();
+//                deleteList.addAll(Arrays.asList(3, 7));
+//                // Sky Rune
+//            } else if (hasLapis.containsAll(Arrays.asList(6, 8)) && bookOfTheLegends.hasPage(inventory.get(BOOK_SLOT), pageSky)) {
+//                output = OLItem.SKY_RUNE.getDefaultStack();
+//                deleteList.addAll(Arrays.asList(6, 8));
+//            }
 
 
             ItemStack outputSlotStack = inventory.get(OUTPUT_SLOT);
@@ -183,29 +183,29 @@ public class RuneTableBlockEntity extends BlockEntity implements ExtendedScreenH
                 }
             }
 
-            if (bookOfTheLegends.hasPage(inventory.get(BOOK_SLOT), page)) {
-                ItemStack output = new ItemStack(Items.ENCHANTED_BOOK);
-
-                if (!(level >= 1)) return;
-                ItemStack outputSlotStack = inventory.get(OUTPUT_SLOT);
-//                if (isOutputSlotEmptyOrReceivable(outputSlotStack)) {
+//            if (bookOfTheLegends.hasPage(inventory.get(BOOK_SLOT), page)) {
+//                ItemStack output = new ItemStack(Items.ENCHANTED_BOOK);
 //
-//                    Enchantment enchantment = OLEnchantment.VENGEANCE;
-//                    Map<Enchantment, Integer> enchantments = new HashMap<>();
-//                    enchantments.put(enchantment, level);
-//
-//                    EnchantmentHelper.set(enchantments, output);
-//
-//
-//                    for (Integer index : deleteList) {
-//                        setStack(index, ItemStack.EMPTY);
-//                    }
-//
-//
-//                    this.setStack(OUTPUT_SLOT, output);
-//
-//                }
-            }
+//                if (!(level >= 1)) return;
+//                ItemStack outputSlotStack = inventory.get(OUTPUT_SLOT);
+////                if (isOutputSlotEmptyOrReceivable(outputSlotStack)) {
+////
+////                    Enchantment enchantment = OLEnchantment.VENGEANCE;
+////                    Map<Enchantment, Integer> enchantments = new HashMap<>();
+////                    enchantments.put(enchantment, level);
+////
+////                    EnchantmentHelper.set(enchantments, output);
+////
+////
+////                    for (Integer index : deleteList) {
+////                        setStack(index, ItemStack.EMPTY);
+////                    }
+////
+////
+////                    this.setStack(OUTPUT_SLOT, output);
+////
+////                }
+//            }
         }
     }
 

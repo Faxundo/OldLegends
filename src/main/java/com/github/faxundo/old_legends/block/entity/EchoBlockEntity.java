@@ -12,6 +12,7 @@ import net.minecraft.loot.LootTables;
 import net.minecraft.loot.context.LootContextParameterSet;
 import net.minecraft.loot.context.LootContextParameters;
 import net.minecraft.loot.context.LootContextTypes;
+import net.minecraft.registry.RegistryKey;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -75,8 +76,8 @@ public class EchoBlockEntity extends BlockEntity {
     }
 
     public List<ItemStack> getDroppedStacks(BlockState state, BlockPos pos, PlayerEntity player, ItemStack stack, LootContextParameterSet.Builder builder) {
-        Identifier identifier = state.getBlock().getLootTableId();
-        if (identifier == LootTables.EMPTY) {
+        RegistryKey<LootTable> identifier = state.getBlock().getLootTableKey();
+        if (identifier.equals(LootTables.EMPTY)) {
             return Collections.emptyList();
         } else {
 
@@ -86,7 +87,7 @@ public class EchoBlockEntity extends BlockEntity {
                     .add(LootContextParameters.THIS_ENTITY, player);
             LootContextParameterSet lootContextParameterSet = builder.build(LootContextTypes.BLOCK);
             ServerWorld serverWorld = lootContextParameterSet.getWorld();
-            LootTable lootTable = serverWorld.getServer().getLootManager().getLootTable(identifier);
+            LootTable lootTable = serverWorld.getServer().getReloadableRegistries().getLootTable(identifier);
 
             return lootTable.generateLoot(lootContextParameterSet);
 

@@ -23,7 +23,7 @@ public class FlutterEchoAwake extends FlutterEcho implements Ability {
     private int durabilityConsumed;
 
     public FlutterEchoAwake(ToolMaterial material, TagKey<Block> effectiveBlocks, Item.Settings settings) {
-        super(material, effectiveBlocks, settings.attributeModifiers(EmeraldMourning.createAttributeModifiers(ToolMaterials.NETHERITE,2.0f,-2.f)));
+        super(material, effectiveBlocks, settings.attributeModifiers(EmeraldMourning.createAttributeModifiers(ToolMaterials.NETHERITE,2,-2.f)));
         setAwake(true);
     }
 

@@ -13,6 +13,8 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.component.type.ItemEnchantmentsComponent;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
@@ -89,16 +91,17 @@ public class FlutterEcho extends OLGenericMiningTool {
         BlockEntity blockEntity = world.getBlockEntity(getBlockMinedPos());
         if (blockEntity instanceof EchoOreBlockEntity echoOreBlockEntity) {
             if (stack.hasEnchantments()) {
-                NbtList listEnchantments = stack.getEnchantments();
-                for (int i = 0; i < listEnchantments.size(); i++) {
-                    String enchantment = listEnchantments.getCompound(i).getString("id");
-                    short level = listEnchantments.getCompound(i).getShort("lvl");
-                    if (enchantment.contains("fortune")) {
-                        echoOreBlockEntity.setHasFortune(true);
-                        echoOreBlockEntity.setFortuneLevel(level);
-                        break;
-                    }
-                }
+                ItemEnchantmentsComponent listEnchantments = stack.getEnchantments();
+                OldLegends.LOGGER.info(listEnchantments.getEnchantments().toString());
+//                for (int i = 0; i < listEnchantments.getSize(); i++) {
+//                    String enchantment = listEnchantments.getCompound(i).getString("id");
+//                    short level = listEnchantments.getCompound(i).getShort("lvl");
+//                    if (enchantment.contains("fortune")) {
+//                        echoOreBlockEntity.setHasFortune(true);
+//                        echoOreBlockEntity.setFortuneLevel(level);
+//                        break;
+//                    }
+//                }
             }
             world.playSound(null, pos, SoundEvents.BLOCK_END_PORTAL_FRAME_FILL, SoundCategory.BLOCKS, 0.4f, -0.1f);
             echoOreBlockEntity.setOre(getBlockMinedState());

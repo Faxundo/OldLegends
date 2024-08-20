@@ -8,8 +8,9 @@ import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
 import org.lwjgl.glfw.GLFW;
 
-public class KeyInputHandler {
+import javax.swing.text.JTextComponent;
 
+public class KeyInputHandler {
     public static final String OL_KEY_CATEGORY = "key.category.old_legends";
     public static final String MAIN_HAND_ABILITY = "key.old_legends.main_hand_ability";
     public static final String OFF_HAND_ABILITY = "key.old_legends.off_hand_ability";
@@ -42,5 +43,4 @@ public class KeyInputHandler {
         ));
         registerKeyInputs();
     }
-
 }
