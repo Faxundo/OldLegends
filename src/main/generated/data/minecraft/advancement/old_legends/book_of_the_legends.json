@@ -1,0 +1,33 @@
+{
+  "parent": "minecraft:old_legends/rune_table",
+  "criteria": {
+    "book_of_the_legends": {
+      "conditions": {
+        "items": [
+          {
+            "items": "old_legends:book_of_the_legends"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancement.old_legends.book_of_the_legends.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "old_legends:book_of_the_legends"
+    },
+    "title": {
+      "translate": "advancement.old_legends.book_of_the_legends"
+    }
+  },
+  "requirements": [
+    [
+      "book_of_the_legends"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,7 +1,7 @@
 package com.github.faxundo.old_legends.event;
 
 import com.github.faxundo.old_legends.item.custom.FlutterEcho;
-import com.github.faxundo.old_legends.util.OLHelper;
+import com.github.faxundo.old_legends.util.OLTag;
 import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -15,7 +15,7 @@ public class PlayerBlockBreakAfterHandler implements PlayerBlockBreakEvents.Afte
     @Override
     public void afterBlockBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity) {
         if (!player.isCreative()
-                && OLHelper.isOreBlock(state)
+                && state.isIn(OLTag.Blocks.ORES)
                 && player.getMainHandStack().getItem() instanceof FlutterEcho flutterEcho) {
 
             flutterEcho.setBlockMinedState(state);

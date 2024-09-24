@@ -1,0 +1,33 @@
+{
+  "parent": "minecraft:old_legends/root",
+  "criteria": {
+    "pale_gem": {
+      "conditions": {
+        "items": [
+          {
+            "items": "old_legends:pale_gem"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancement.old_legends.pale_gem.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "old_legends:pale_gem"
+    },
+    "title": {
+      "translate": "advancement.old_legends.pale_gem"
+    }
+  },
+  "requirements": [
+    [
+      "pale_gem"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

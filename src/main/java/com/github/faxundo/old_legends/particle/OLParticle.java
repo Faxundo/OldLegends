@@ -7,6 +7,7 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 
 public class OLParticle {
+
     public static final SimpleParticleType LOCK = FabricParticleTypes.simple();
     public static final SimpleParticleType ECHO_PICKAXE = FabricParticleTypes.simple();
 

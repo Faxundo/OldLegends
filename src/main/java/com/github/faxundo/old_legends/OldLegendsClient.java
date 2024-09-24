@@ -19,9 +19,10 @@ public class OldLegendsClient implements ClientModInitializer {
 	@Override
 	public void onInitializeClient() {
 		KeyInputHandler.register();
-		OLPacket.registerS2CPackets();
 
 		OLScreen.registerScreen();
+
+		OLPacket.registerS2CPackets();
 
 		OLParticle.registerParticles();
 		ParticleFactoryRegistry.getInstance().register(OLParticle.LOCK, LockParticle.Factory::new);

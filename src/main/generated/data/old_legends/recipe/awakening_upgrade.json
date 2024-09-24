@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "minecraft:netherite_ingot"
+    },
+    "F": {
+      "item": "old_legends:pale_gem"
+    }
+  },
+  "pattern": [
+    " A ",
+    "AFA",
+    " A "
+  ],
+  "result": {
+    "count": 1,
+    "id": "old_legends:awakening_upgrade"
+  }
+}

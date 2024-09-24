@@ -11,10 +11,14 @@ base {
 }
 
 repositories {
-		maven { url "https://maven.shedaniel.me/" }
+	maven { url "https://maven.shedaniel.me/" }
 	maven { url "https://maven.terraformersmc.com/releases/" }
 	maven { url "https://jitpack.io" }
 	maven { url "https://api.modrinth.com/maven"}
+}
+
+fabricApi {
+	configureDataGeneration()
 }
 
 dependencies {
@@ -38,9 +42,9 @@ dependencies {
 	}
 
 	//Fabric Shield Lib
-	modImplementation "com.github.CrimsonDawn45:Fabric-Shield-Lib:v${project.fabric_shield_lib_version}"
-	modImplementation "maven.modrinth:midnightlib:${project.midnightlib_version}"
-	modImplementation "com.github.Chocohead:Fabric-ASM:v${project.fabricasm_version}"
+//	 modImplementation "com.github.CrimsonDawn45:Fabric-Shield-Lib:v${project.fabric_shield_lib_version}"
+//	 modImplementation "maven.modrinth:midnightlib:${project.midnightlib_version}"
+//	 modImplementation "com.github.Chocohead:Fabric-ASM:v${project.fabricasm_version}"
 	
 }
 

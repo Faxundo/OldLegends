@@ -1,8 +1,8 @@
 package com.github.faxundo.old_legends.event;
 
-import com.github.crimsondawn45.fabricshieldlib.lib.event.ShieldBlockCallback;
 import com.github.faxundo.old_legends.OldLegends;
-import com.github.faxundo.old_legends.item.custom.SwallowsStormItem;
+import com.github.faxundo.old_legends.event.callback.ShieldBlockCallback;
+import com.github.faxundo.old_legends.item.custom.SwallowsStorm;
 import com.github.faxundo.old_legends.util.OLDataComponent;
 import com.github.faxundo.old_legends.util.OLHelperParticle;
 import net.minecraft.entity.Entity;
@@ -12,14 +12,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.particle.DustParticleEffect;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
 import org.joml.Vector3f;
 
 public class ShieldBlockHandler implements ShieldBlockCallback {
 
     @Override
-    public ActionResult block(LivingEntity defender, DamageSource source, float amount, Hand hand, ItemStack shield) {
-
+    public ActionResult block(LivingEntity defender, DamageSource source, ItemStack shield) {
         if (!shield.contains(OLDataComponent.CHARGES)) return ActionResult.PASS;
 
         int maxCharges = OldLegends.CONFIG.swallowsStorm.maxCharges;
@@ -30,7 +28,7 @@ public class ShieldBlockHandler implements ShieldBlockCallback {
 
         int charges = shield.get(OLDataComponent.CHARGES);
 
-        if (shield.getItem() instanceof SwallowsStormItem swallowsStormItem) {
+        if (shield.getItem() instanceof SwallowsStorm swallowsStormItem) {
 
             if (charges == maxCharges || charges == maxChargesAwake) {
                 DustParticleEffect dustParticle = new DustParticleEffect(new Vector3f(73.0f, 59.0f, 90.0f), 1.0f);

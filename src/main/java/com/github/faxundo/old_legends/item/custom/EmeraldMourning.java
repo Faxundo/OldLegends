@@ -12,6 +12,11 @@ import net.minecraft.particle.ParticleTypes;
 
 public class EmeraldMourning extends OLGenericSword {
 
+    public static final String ABILITY_NAME_1 = "tooltip.old_legends.emerald_mourning_name_1";
+    public static final String ABILITY_1 = "tooltip.old_legends.emerald_mourning_1";
+    public static final String ABILITY_NAME_2 = "tooltip.old_legends.emerald_mourning_name_2";
+    public static final String ABILITY_2 = "tooltip.old_legends.emerald_mourning_2";
+
     private int damageIllager;
     private int damageIllagerAwake;
 

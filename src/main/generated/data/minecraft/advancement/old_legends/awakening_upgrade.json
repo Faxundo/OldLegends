@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:old_legends/end_extract",
+  "criteria": {
+    "awakening_upgrade": {
+      "conditions": {
+        "items": [
+          {
+            "items": "old_legends:awakening_upgrade"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancement.old_legends.awakening_upgrade.description"
+    },
+    "frame": "goal",
+    "icon": {
+      "count": 1,
+      "id": "old_legends:awakening_upgrade"
+    },
+    "title": {
+      "translate": "advancement.old_legends.awakening_upgrade"
+    }
+  },
+  "requirements": [
+    [
+      "awakening_upgrade"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

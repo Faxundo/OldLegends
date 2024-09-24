@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_flutter_echo": {
+      "conditions": {
+        "items": [
+          {
+            "items": "old_legends:flutter_echo"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "minecraft:flutter_echo_awake"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_flutter_echo"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "minecraft:flutter_echo_awake"
+    ]
+  }
+}

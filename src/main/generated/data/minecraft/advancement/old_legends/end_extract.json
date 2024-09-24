@@ -1,0 +1,33 @@
+{
+  "parent": "minecraft:old_legends/pale_gem",
+  "criteria": {
+    "end_extract": {
+      "conditions": {
+        "items": [
+          {
+            "items": "old_legends:end_extract"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancement.old_legends.end_extract.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "old_legends:end_extract"
+    },
+    "title": {
+      "translate": "advancement.old_legends.end_extract"
+    }
+  },
+  "requirements": [
+    [
+      "end_extract"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

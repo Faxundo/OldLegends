@@ -1,0 +1,33 @@
+{
+  "parent": "minecraft:old_legends/flutter_echo",
+  "criteria": {
+    "flutter_echo_awake": {
+      "conditions": {
+        "items": [
+          {
+            "items": "old_legends:flutter_echo_awake"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancement.old_legends.flutter_echo_awake.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "old_legends:flutter_echo_awake"
+    },
+    "title": {
+      "translate": "advancement.old_legends.flutter_echo_awake"
+    }
+  },
+  "requirements": [
+    [
+      "flutter_echo_awake"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

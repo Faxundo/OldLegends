@@ -1,0 +1,33 @@
+{
+  "parent": "minecraft:old_legends/emerald_mourning",
+  "criteria": {
+    "emerald_mourning_awake": {
+      "conditions": {
+        "items": [
+          {
+            "items": "old_legends:emerald_mourning_awake"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancement.old_legends.emerald_mourning_awake.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "old_legends:emerald_mourning_awake"
+    },
+    "title": {
+      "translate": "advancement.old_legends.emerald_mourning_awake"
+    }
+  },
+  "requirements": [
+    [
+      "emerald_mourning_awake"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

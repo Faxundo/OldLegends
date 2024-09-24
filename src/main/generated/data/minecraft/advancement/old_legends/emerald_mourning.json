@@ -1,0 +1,33 @@
+{
+  "parent": "minecraft:old_legends/root",
+  "criteria": {
+    "emerald_mourning": {
+      "conditions": {
+        "items": [
+          {
+            "items": "old_legends:emerald_mourning"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancement.old_legends.emerald_mourning.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "old_legends:emerald_mourning"
+    },
+    "title": {
+      "translate": "advancement.old_legends.emerald_mourning"
+    }
+  },
+  "requirements": [
+    [
+      "emerald_mourning"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

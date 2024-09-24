@@ -9,8 +9,12 @@ import net.minecraft.registry.Registry;
 
 public class OLEntities {
 
-    public static final EntityType<EchoPickAxeProjectileEntity> ECHO_PICKAXE_PROJECTILE = Registry.register(
-            Registries.ENTITY_TYPE, OldLegends.identifier("echo_pickaxe_projectile"),
-            EntityType.Builder.<EchoPickAxeProjectileEntity>create(EchoPickAxeProjectileEntity::new, SpawnGroup.MISC)
-                    .dimensions(0.25f, 0.25f).build());
+    public static EntityType<EchoPickAxeProjectileEntity> ECHO_PICKAXE_PROJECTILE;
+
+    public static void registerEntities() {
+        ECHO_PICKAXE_PROJECTILE = Registry.register(
+                Registries.ENTITY_TYPE, OldLegends.identifier("echo_pickaxe_projectile"),
+                EntityType.Builder.<EchoPickAxeProjectileEntity>create(EchoPickAxeProjectileEntity::new, SpawnGroup.MISC)
+                        .dimensions(0.25f, 0.25f).build());
+    }
 }

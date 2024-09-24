@@ -1,6 +1,7 @@
 package com.github.faxundo.old_legends.util;
 
 import com.github.faxundo.old_legends.OldLegends;
+import com.github.faxundo.old_legends.util.component.SwordDataComponent;
 import com.mojang.serialization.Codec;
 import net.minecraft.component.ComponentType;
 import net.minecraft.registry.Registries;
@@ -24,10 +25,10 @@ public class OLDataComponent {
             Identifier.of(OldLegends.MOD_ID, "owner"),
             ComponentType.<String>builder().codec(Codec.STRING).build()
     );
-    public static final ComponentType<Boolean> EMERALD_MOURNING_PAGE = Registry.register(
+    public static final ComponentType<String> PAGES = Registry.register(
             Registries.DATA_COMPONENT_TYPE,
-            Identifier.of(OldLegends.MOD_ID, "emerald_mourning_page"),
-            ComponentType.<Boolean>builder().codec(Codec.BOOL).build()
+            Identifier.of(OldLegends.MOD_ID, "pages"),
+            ComponentType.<String>builder().codec(Codec.STRING).build()
     );
 
     public static void registerDataComponents() {

@@ -1,0 +1,31 @@
+{
+  "type": "old_legends:vengeance",
+  "display_name": {
+    "translate": "enchantment.old_legends.vengeance"
+  },
+  "category": "armor",
+  "is_cursed": false,
+  "is_treasure": false,
+  "rarity": "rare",
+  "min_level": 1,
+  "max_level": 3,
+  "stackable": false,
+  "groups": ["armor"],
+  "conditions": [
+    {
+      "type": "minecraft:entity_properties",
+      "predicate": {
+        "entity": "minecraft:living_base",
+        "properties": {
+          "is_on_ground": true
+        }
+      },
+      "effects": [
+        {
+          "type": "old_legends:reflect",
+          "chance": 1
+        }
+      ]
+    }
+  ]
+}

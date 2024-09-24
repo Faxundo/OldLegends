@@ -1,16 +1,14 @@
 package com.github.faxundo.old_legends.item.generic;
 
-import com.github.crimsondawn45.fabricshieldlib.lib.object.FabricShieldItem;
 import com.github.faxundo.old_legends.util.OLHelper;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ShieldItem;
 import net.minecraft.item.tooltip.TooltipType;
-import net.minecraft.registry.tag.TagKey;
 import net.minecraft.text.Text;
 
 import java.util.List;
 
-public class OLGenericShield extends FabricShieldItem {
+public class OLGenericShield extends ShieldItem {
 
     private String id;
     private boolean isAwake = false;
@@ -18,9 +16,10 @@ public class OLGenericShield extends FabricShieldItem {
     private boolean useCharges = false;
     private int maxCharges = 1;
 
-    public OLGenericShield(Item.Settings settings, int coolDownTicks, int enchantability, TagKey<Item> repairItemTag) {
-        super(settings.fireproof(), coolDownTicks, enchantability, repairItemTag);
+    public OLGenericShield(Settings settings) {
+        super(settings.fireproof());
     }
+
 
     public void setId(String id) {
         this.id = "tooltip.old_legends." + id;

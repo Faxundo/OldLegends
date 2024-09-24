@@ -48,8 +48,6 @@ public class OLModelProvider extends FabricModelProvider {
         itemModelGenerator.register(OLItem.FLUTTER_ECHO, Models.HANDHELD);
         itemModelGenerator.register(OLItem.FLUTTER_ECHO_AWAKE, Models.HANDHELD);
         itemModelGenerator.register(OLItem.FLUTTER_ECHO_PAGE, Models.GENERATED);
-
-        itemModelGenerator.register(OLItem.VENGEANCE_PAGE, Models.GENERATED);
     }
 
 }

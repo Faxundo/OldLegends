@@ -4,15 +4,14 @@ import com.github.faxundo.old_legends.OldLegends;
 import com.github.faxundo.old_legends.item.custom.BookOfTheLegends;
 import com.github.faxundo.old_legends.item.custom.EmeraldMourning;
 import com.github.faxundo.old_legends.item.custom.FlutterEcho;
-import com.github.faxundo.old_legends.item.custom.SwallowsStormItem;
+import com.github.faxundo.old_legends.item.custom.SwallowsStorm;
 import com.github.faxundo.old_legends.item.custom.awake.EmeraldMourningAwake;
 import com.github.faxundo.old_legends.item.custom.awake.FlutterEchoAwake;
-import com.github.faxundo.old_legends.item.custom.awake.SwallowsStormAwakeItem;
+import com.github.faxundo.old_legends.item.custom.awake.SwallowsStormAwake;
 import com.github.faxundo.old_legends.item.generic.OLGenericBlueprint;
 import com.github.faxundo.old_legends.item.generic.OLGenericItem;
 import com.github.faxundo.old_legends.item.generic.OLGenericPage;
 import com.github.faxundo.old_legends.item.generic.OLGenericRune;
-import com.github.faxundo.old_legends.util.OLTag;
 import net.minecraft.item.Item;
 import net.minecraft.item.ToolMaterials;
 import net.minecraft.registry.Registries;
@@ -45,9 +44,9 @@ public class OLItem {
             new OLGenericPage(new Item.Settings()));
 
     public static final Item SWALLOWS_STORM = registerItem("swallows_storm",
-            new SwallowsStormItem(new Item.Settings().maxDamage(672), 90, 15, OLTag.Items.SKY_REPAIR));
+            new SwallowsStorm(new Item.Settings().maxDamage(672)));
     public static final Item SWALLOWS_STORM_AWAKE = registerItem("swallows_storm_awake",
-            new SwallowsStormAwakeItem(new Item.Settings().maxDamage(672 + 256), 80, 17, OLTag.Items.SKY_REPAIR));
+            new SwallowsStormAwake(new Item.Settings().maxDamage(672 + 256)));
     public static final Item SWALLOWS_STORM_PAGE = registerItem("swallows_storm_page",
             new OLGenericPage(new Item.Settings()));
 
@@ -78,15 +77,6 @@ public class OLItem {
             new OLGenericRune(new Item.Settings()));
     public static final Item TIME_RUNE_PAGE = registerItem("time_rune_page",
             new OLGenericPage(new Item.Settings()));
-
-    public static final Item VENGEANCE_PAGE = registerItem("vengeance_page",
-            new OLGenericPage(new Item.Settings()));
-//    public static final ItemStack VENGEANCE_ENCHANTMENT_1 = EnchantedBookItem.forEnchantment(
-//            new EnchantmentLevelEntry(OLEnchantment.VENGEANCE, 1));
-//    public static final ItemStack VENGEANCE_ENCHANTMENT_2 = EnchantedBookItem.forEnchantment(
-//            new EnchantmentLevelEntry(OLEnchantment.VENGEANCE, 2));
-//    public static final ItemStack VENGEANCE_ENCHANTMENT_3 = EnchantedBookItem.forEnchantment(
-//            new EnchantmentLevelEntry(OLEnchantment.VENGEANCE, 3));
 
 
     private static Item registerItem(String name, Item item) {

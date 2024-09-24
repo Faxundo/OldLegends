@@ -13,8 +13,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.thrown.ThrownItemEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.listener.ClientPlayPacketListener;
-import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.s2c.play.EntitySpawnS2CPacket;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.EntityHitResult;
@@ -26,6 +24,7 @@ public class EchoPickAxeProjectileEntity extends ThrownItemEntity {
     private int count = 0;
     private int timeLived = 0;
     private ItemStack stack;
+    private int extraLife = 0;
 
     public EchoPickAxeProjectileEntity(EntityType<? extends ThrownItemEntity> entityType, World world) {
         super(entityType, world);
@@ -34,6 +33,10 @@ public class EchoPickAxeProjectileEntity extends ThrownItemEntity {
     public EchoPickAxeProjectileEntity(LivingEntity livingEntity, World world, ItemStack stack) {
         super(OLEntities.ECHO_PICKAXE_PROJECTILE, livingEntity, world);
         this.stack = stack;
+    }
+
+    public void setExtraLife(int extraLife) {
+        this.extraLife = extraLife;
     }
 
     @Override
@@ -46,16 +49,11 @@ public class EchoPickAxeProjectileEntity extends ThrownItemEntity {
         super.onSpawnPacket(packet);
     }
 
-    //    @Override
-//    public Packet<ClientPlayPacketListener> createSpawnPacket() {
-//        return new EntitySpawnS2CPacket(this);
-//    }
-
     @Override
     public void tick() {
         super.tick();
         timeLived++;
-        if (timeLived >= (70 * OldLegends.CONFIG.flutterEcho.countLimit)) {
+        if (timeLived >= (70 * OldLegends.CONFIG.flutterEcho.countLimit) + extraLife) {
             this.discard();
         }
     }

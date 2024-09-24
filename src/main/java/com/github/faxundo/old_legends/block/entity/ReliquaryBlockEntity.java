@@ -3,6 +3,7 @@ package com.github.faxundo.old_legends.block.entity;
 import com.github.faxundo.old_legends.OldLegends;
 import com.github.faxundo.old_legends.block.ImplementedInventory;
 import com.github.faxundo.old_legends.block.OLBlockEntity;
+import com.github.faxundo.old_legends.block.custom.ReliquaryBlock;
 import com.github.faxundo.old_legends.item.OLItem;
 import com.github.faxundo.old_legends.item.generic.OLGenericRune;
 import com.github.faxundo.old_legends.particle.OLParticle;
@@ -77,12 +78,16 @@ public class ReliquaryBlockEntity extends BlockEntity implements ExtendedScreenH
         };
     }
 
+    public boolean isLocked () {
+        return lock == 1;
+    }
+
     @Override
     public void onOpen(PlayerEntity player) {
         player.playSound(SoundEvents.BLOCK_CHEST_OPEN, 0.6f, 0.0f);
         player.playSound(SoundEvents.BLOCK_AMETHYST_BLOCK_RESONATE, 1.4f, 0.0f);
         if (lock == 1)
-            player.sendMessage(Text.translatable("block.old_legends.reliquary.alert").setStyle(OLHelper.getStyle("error")));
+            player.sendMessage(Text.translatable(ReliquaryBlock.ALERT).setStyle(OLHelper.getStyle("error")));
     }
 
     @Override
@@ -126,25 +131,17 @@ public class ReliquaryBlockEntity extends BlockEntity implements ExtendedScreenH
 
     public void tick(World world, BlockPos pos, BlockState state) {
 
-        if (world.isClient) {
-            return;
-        }
-        if (!world.getRegistryKey().getValue().toShortTranslationKey().equals("overworld")) {
-            return;
-        }
-
-        if (lock == 0) {
-            return;
-        }
+        if (world.isClient) return;
+        if (!world.getRegistryKey().getValue().toShortTranslationKey().equals("overworld")) return;
+        if (lock == 0) return;
 
         if (!bl) {
             spawnLockParticle();
             bl = true;
         }
 
-        if (world.getTimeOfDay() != OldLegends.CONFIG.reliquary.grinningHoarderTime) {
-            return;
-        }
+        if (world.getTimeOfDay() != OldLegends.CONFIG.reliquary.grinningHoarderTime) return;
+
         world.playSound(null, pos, OLSound.GRINNING_HOARDER_LAUGH, SoundCategory.BLOCKS, 1.0F, 0.0F);
 
         inventory.clear();

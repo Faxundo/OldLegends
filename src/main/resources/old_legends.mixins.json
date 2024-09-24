@@ -4,10 +4,13 @@
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "HopperBlockEntityMixin",
-    "ItemMixin"
+    "ItemMixin",
+    "PlayerEntityMixin"
   ],
   "client": [
-
+    "ItemRendererAccessor",
+    "ItemRendererMixin",
+    "ModelLoaderMixin"
   ],
   "injectors": {
     "defaultRequire": 1

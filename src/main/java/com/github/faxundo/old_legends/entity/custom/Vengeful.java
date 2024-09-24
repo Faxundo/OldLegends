@@ -9,9 +9,6 @@ import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.data.DataTracker;
-import net.minecraft.entity.data.TrackedData;
-import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.mob.IllagerEntity;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.mob.Monster;
@@ -31,8 +28,8 @@ import net.minecraft.world.World;
 
 public class Vengeful extends ZombieVillagerEntity implements RangedAttackMob {
 
-    int TIME_LIVED = 0;
-    protected static final TrackedData<String> OWNER_UUID;
+    public String Owner = "";
+    private int timeLived = 0;
 
     private final BowAttackGoal<Vengeful> bowAttackGoal = new BowAttackGoal<>(this, 1.0, 20, 15.0F);
     private final MeleeAttackGoal meleeAttackGoal = new MeleeAttackGoal(this, 1.2, false) {
@@ -68,8 +65,8 @@ public class Vengeful extends ZombieVillagerEntity implements RangedAttackMob {
         this.targetSelector.add(2, new ActiveTargetGoal<>(this, IllagerEntity.class, true));
         this.targetSelector.add(3, new ActiveTargetGoal<>(this, PlayerEntity.class, 5, false, false, (player) -> {
             PlayerEntity playerEntity = (PlayerEntity) player;
-            String uUUID = playerEntity.getUuid().toString();
-            return !uUUID.equals(getOwnerUuid());
+            String uUID = playerEntity.getUuidAsString();
+            return !uUID.equals(getOwnerUuid());
         }));
         this.targetSelector.add(4, new ActiveTargetGoal<>(this, MobEntity.class, 5, false, false, (entity) -> {
             if (!(entity instanceof Vengeful)) {
@@ -79,34 +76,25 @@ public class Vengeful extends ZombieVillagerEntity implements RangedAttackMob {
         }));
     }
 
-    protected void initDataTracker(DataTracker.Builder builder) {
-        super.initDataTracker(builder);
-        builder.add(OWNER_UUID, "");
-    }
-
+    @Override
     public void writeCustomDataToNbt(NbtCompound nbt) {
         super.writeCustomDataToNbt(nbt);
-        nbt.putString("Owner", this.getOwnerUuid());
+        nbt.putString("Owner", this.Owner);
     }
 
+    @Override
     public void readCustomDataFromNbt(NbtCompound nbt) {
         super.readCustomDataFromNbt(nbt);
-        this.dataTracker.set(OWNER_UUID, nbt.getString("Owner"));
+        this.Owner = nbt.getString("Owner");
         this.updateAttackType();
     }
 
-    @Nullable
     public String getOwnerUuid() {
-        return this.dataTracker.get(OWNER_UUID);
+        return Owner;
     }
 
-    public void setOwnerUuid(@Nullable String uuid) {
-        this.dataTracker.set(OWNER_UUID, uuid);
-    }
-
-    public void setOwner(PlayerEntity player) {
-        String ownerUUID = player.getUuid().toString();
-        this.setOwnerUuid(ownerUUID);
+    public void setOwnerUuid(String owner) {
+        this.Owner = owner;
     }
 
     @Override
@@ -117,7 +105,7 @@ public class Vengeful extends ZombieVillagerEntity implements RangedAttackMob {
         double e = target.getBodyY(0.3333333333333333) - persistentProjectileEntity.getY();
         double f = target.getZ() - this.getZ();
         double g = Math.sqrt(d * d + f * f);
-        persistentProjectileEntity.setVelocity(d, e + g * 0.20000000298023224, f, 1.6F, (float)(14 - this.getWorld().getDifficulty().getId() * 4));
+        persistentProjectileEntity.setVelocity(d, e + g * 0.20000000298023224, f, 1.6F, (float) (14 - this.getWorld().getDifficulty().getId() * 4));
         this.playSound(SoundEvents.ENTITY_SKELETON_SHOOT, 1.0F, 1.0F / (this.getRandom().nextFloat() * 0.4F + 0.8F));
         this.getWorld().spawnEntity(persistentProjectileEntity);
     }
@@ -165,17 +153,12 @@ public class Vengeful extends ZombieVillagerEntity implements RangedAttackMob {
     @Override
     protected void mobTick() {
         int life = OldLegends.CONFIG.emeraldMourning.mobTime;
-        TIME_LIVED++;
-        if (TIME_LIVED == life) {
+        timeLived++;
+        if (timeLived == life) {
             this.kill();
         }
         super.mobTick();
     }
-
-//    @Override
-//    public EntityGroup getGroup() {
-//        return EntityGroup.UNDEAD;
-//    }
 
     @Override
     protected boolean shouldDropLoot() {
@@ -209,8 +192,5 @@ public class Vengeful extends ZombieVillagerEntity implements RangedAttackMob {
     public SoundEvent getDeathSound() {
         return OLSound.MOURNING_MOB_DEATH;
     }
-
-    static {
-        OWNER_UUID = DataTracker.registerData(Vengeful.class, TrackedDataHandlerRegistry.STRING);
-    }
 }
+

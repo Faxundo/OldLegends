@@ -1,0 +1,43 @@
+{
+  "values": [
+    "minecraft:experience_bottle",
+    "minecraft:emerald_block",
+    "minecraft:glistering_melon_slice",
+    "minecraft:emerald",
+    "minecraft:golden_carrot",
+    "minecraft:diamond",
+    "minecraft:diamond_axe",
+    "minecraft:diamond_hoe",
+    "minecraft:diamond_pickaxe",
+    "minecraft:diamond_shovel",
+    "minecraft:diamond_sword",
+    "minecraft:diamond_helmet",
+    "minecraft:diamond_chestplate",
+    "minecraft:diamond_leggings",
+    "minecraft:diamond_boots",
+    "minecraft:gold_ingot",
+    "minecraft:golden_axe",
+    "minecraft:golden_hoe",
+    "minecraft:golden_pickaxe",
+    "minecraft:golden_shovel",
+    "minecraft:golden_sword",
+    "minecraft:golden_helmet",
+    "minecraft:golden_chestplate",
+    "minecraft:golden_leggings",
+    "minecraft:golden_boots",
+    "minecraft:amethyst_shard",
+    "minecraft:diamond_block",
+    "minecraft:golden_apple",
+    "minecraft:gold_block",
+    "minecraft:totem_of_undying",
+    "minecraft:enchanted_golden_apple",
+    {
+      "id": "mythicmetals:midas_gold_ingot",
+      "required": false
+    },
+    {
+      "id": "mythicmetals:midas_gold_block",
+      "required": false
+    }
+  ]
+}

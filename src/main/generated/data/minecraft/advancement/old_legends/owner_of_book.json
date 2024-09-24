@@ -1,0 +1,33 @@
+{
+  "parent": "minecraft:old_legends/book_of_the_legends",
+  "criteria": {
+    "owner_of_book": {
+      "conditions": {
+        "items": [
+          {
+            "items": "old_legends:book_of_the_legends"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancement.old_legends.owner_of_book.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "old_legends:book_of_the_legends"
+    },
+    "title": {
+      "translate": "advancement.old_legends.owner_of_book"
+    }
+  },
+  "requirements": [
+    [
+      "owner_of_book"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

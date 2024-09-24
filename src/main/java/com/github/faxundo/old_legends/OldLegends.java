@@ -1,15 +1,18 @@
 package com.github.faxundo.old_legends;
 
-import com.github.crimsondawn45.fabricshieldlib.lib.event.ShieldBlockCallback;
 import com.github.faxundo.old_legends.block.OLBlock;
 import com.github.faxundo.old_legends.block.OLBlockEntity;
 import com.github.faxundo.old_legends.effect.OLEffect;
+import com.github.faxundo.old_legends.entity.OLEntities;
 import com.github.faxundo.old_legends.entity.custom.Vengeful;
 import com.github.faxundo.old_legends.event.PlayerBlockBreakAfterHandler;
+import com.github.faxundo.old_legends.event.PlayerBlockBreakBeforeHandler;
 import com.github.faxundo.old_legends.event.ServerTickHandler;
 import com.github.faxundo.old_legends.event.ShieldBlockHandler;
+import com.github.faxundo.old_legends.event.callback.ShieldBlockCallback;
 import com.github.faxundo.old_legends.item.OLItem;
 import com.github.faxundo.old_legends.item.OLItemGroup;
+import com.github.faxundo.old_legends.networking.OLPacket;
 import com.github.faxundo.old_legends.screen.OLScreenHandler;
 import com.github.faxundo.old_legends.sound.OLSound;
 import com.github.faxundo.old_legends.util.LootTableModifier;
@@ -35,11 +38,14 @@ public class OldLegends implements ModInitializer {
 
     @Override
     public void onInitialize() {
-        LOGGER.info(MOD_NAME + " is here!");
+        LOGGER.info("[ " + MOD_NAME + " ]" + " The old secrets will be revealed");
 
         OLPredicateProvider.registerPredicateProvider();
         OLItem.registerOLItems();
         OLItemGroup.registerItemGroup();
+
+        OLPacket.registerPayloads();
+        OLPacket.registerC2SPackets();
 
         OLBlock.registerOLBlocks();
         OLScreenHandler.registerScreenHandler();
@@ -52,13 +58,12 @@ public class OldLegends implements ModInitializer {
 
         OLSound.registerSounds();
         Vengeful.createMourningMobAttributes();
+        OLEntities.registerEntities();
 
-        ShieldBlockCallback.EVENT.register(new ShieldBlockHandler());
         ServerTickEvents.START_SERVER_TICK.register(new ServerTickHandler());
-
         PlayerBlockBreakEvents.AFTER.register(new PlayerBlockBreakAfterHandler());
-
-//        OLRecipe.registerRecipes();
+        PlayerBlockBreakEvents.BEFORE.register(new PlayerBlockBreakBeforeHandler());
+        ShieldBlockCallback.EVENT.register(new ShieldBlockHandler());
 
         AutoConfig.register(OLConfig.class, JanksonConfigSerializer::new);
         CONFIG = AutoConfig.getConfigHolder(OLConfig.class).getConfig();
@@ -66,7 +71,7 @@ public class OldLegends implements ModInitializer {
     }
 
     public static Identifier identifier(String path) {
-        return Identifier.of(OldLegends.MOD_ID, path);
+        return Identifier.of(MOD_ID, path);
     }
 
 }

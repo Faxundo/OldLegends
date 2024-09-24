@@ -1,0 +1,40 @@
+{
+  "parent": "minecraft:old_legends/pages_of_book",
+  "criteria": {
+    "craft_all_runes": {
+      "conditions": {
+        "items": [
+          {
+            "items": "old_legends:death_rune"
+          },
+          {
+            "items": "old_legends:time_rune"
+          },
+          {
+            "items": "old_legends:sky_rune"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancement.old_legends.craft_all_runes.description"
+    },
+    "frame": "goal",
+    "icon": {
+      "count": 1,
+      "id": "old_legends:death_rune"
+    },
+    "title": {
+      "translate": "advancement.old_legends.craft_all_runes"
+    }
+  },
+  "requirements": [
+    [
+      "craft_all_runes"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

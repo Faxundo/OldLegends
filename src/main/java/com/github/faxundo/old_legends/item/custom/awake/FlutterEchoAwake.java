@@ -2,7 +2,6 @@ package com.github.faxundo.old_legends.item.custom.awake;
 
 import com.github.faxundo.old_legends.OldLegends;
 import com.github.faxundo.old_legends.entity.custom.EchoPickAxeProjectileEntity;
-import com.github.faxundo.old_legends.item.OLItem;
 import com.github.faxundo.old_legends.item.custom.EmeraldMourning;
 import com.github.faxundo.old_legends.item.custom.FlutterEcho;
 import com.github.faxundo.old_legends.util.OLHelper;
@@ -19,11 +18,18 @@ import net.minecraft.world.World;
 
 public class FlutterEchoAwake extends FlutterEcho implements Ability {
 
+
+    public static final String ABILITY_AWAKE_1 = "tooltip.old_legends.flutter_echo_awake_1";
+    public static final String ABILITY_AWAKE_2 = "tooltip.old_legends.flutter_echo_awake_2";
+    public static final String ABILITY_NAME_AWAKE = "tooltip.old_legends.flutter_echo_name_active";
+    public static final String ABILITY_AWAKE = "tooltip.old_legends.flutter_echo_awake_active";
+
     private int cooldown;
     private int durabilityConsumed;
+    private int extraCount;
 
     public FlutterEchoAwake(ToolMaterial material, TagKey<Block> effectiveBlocks, Item.Settings settings) {
-        super(material, effectiveBlocks, settings.attributeModifiers(EmeraldMourning.createAttributeModifiers(ToolMaterials.NETHERITE,2,-2.f)));
+        super(material, effectiveBlocks, settings.attributeModifiers(EmeraldMourning.createAttributeModifiers(ToolMaterials.NETHERITE, 2, -2.f)));
         setAwake(true);
     }
 
@@ -32,25 +38,26 @@ public class FlutterEchoAwake extends FlutterEcho implements Ability {
         durabilityConsumed = OldLegends.CONFIG.flutterEcho.consumeDurability;
         World world = player.getWorld();
 
-        ItemStack itemStack = player.getStackInHand(OLHelper.getHandWithItem(player, OLItem.FLUTTER_ECHO_AWAKE));
-
-        if (player.getItemCooldownManager().isCoolingDown(this)) {
-            return;
-        }
+        if (player.getItemCooldownManager().isCoolingDown(this)) return;
 
         if (!world.isClient) {
             ItemStack abilityStack = OLHelper.getAbilityItemStack(player, this.getDefaultStack());
-
-            EchoPickAxeProjectileEntity echoPickaxeProjectile = new EchoPickAxeProjectileEntity(player, world, abilityStack);
-            echoPickaxeProjectile.setItem(itemStack);
-            echoPickaxeProjectile.setVelocity(player, player.getPitch(), player.getYaw(), 0.0F, 1.5F, 1.0F);
 
             player.playSound(SoundEvents.BLOCK_SCULK_CATALYST_BLOOM, 1.5f, -0.3f);
 
             abilityStack.damage((this.getDefaultStack().getMaxDamage() * durabilityConsumed) / 100, player, EquipmentSlot.MAINHAND);
 
-            world.spawnEntity(echoPickaxeProjectile);
-            player.getItemCooldownManager().set(this, cooldown);
+            if (!player.isCreative()) {
+                player.getItemCooldownManager().set(this, cooldown);
+            }
+
+            //Here is created the projectile
+            EchoPickAxeProjectileEntity echoPickaxeProjectile = new EchoPickAxeProjectileEntity(player, player.getWorld(), abilityStack);
+            echoPickaxeProjectile.setItem(abilityStack);
+            echoPickaxeProjectile.setVelocity(player, player.getPitch(), player.getYaw(), 0.0F, 1.5F, 1.0F);
+
+            //Spawn the projectile
+            player.getWorld().spawnEntity(echoPickaxeProjectile);
         }
     }
 }

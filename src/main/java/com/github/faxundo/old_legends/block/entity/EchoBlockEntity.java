@@ -16,7 +16,6 @@ import net.minecraft.registry.RegistryKey;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
@@ -70,7 +69,7 @@ public class EchoBlockEntity extends BlockEntity {
             world.removeBlock(pos, false);
             if (blockState != null) {
                 LootContextParameterSet.Builder builder = new LootContextParameterSet.Builder((ServerWorld) world);
-                ItemScatterer.spawn(this.getWorld(), pos, dropToInventory(getDroppedStacks(blockState, pos, player, stack, builder)));
+                ItemScatterer.spawn(world, pos, dropToInventory(getDroppedStacks(blockState, pos, player, stack, builder)));
             }
         }
     }

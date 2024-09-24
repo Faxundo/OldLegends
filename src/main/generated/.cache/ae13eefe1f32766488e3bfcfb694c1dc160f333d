@@ -1,4 +1,4 @@
-// 1.20.4	2024-07-10T00:22:32.9254412	Old Legends/Model Definitions
+// 1.21.1	2024-09-24T16:21:28.1610133	Old Legends/Model Definitions
 c1f9b21bf1430797b945338e1091a12b32951d4b assets\old_legends\models\block\echo_ore.json
 c767d244e0151754c6d7f22f65cecf6399901bfb assets\old_legends\models\item\flutter_echo_awake.json
 6044e4d48c59d1a8cbd042eddb7f7cf046958f02 assets\old_legends\models\item\reliquary_page.json
@@ -18,7 +18,6 @@ b6a39f789315f6716deab6699800b7c15f577273 assets\old_legends\models\item\swallows
 1b101754562d83221b362934dd00c930bc59fc29 assets\old_legends\models\item\emerald_mourning_page.json
 65ef144f2b852dab49371828d27cc5a9663ac547 assets\old_legends\models\item\book_of_the_legends.json
 07c1eb264601d8581ae6a25589a9855fd56b26e0 assets\old_legends\models\item\echo_ore.json
-848906d395d85f199b0071174db8a0c3039b81e3 assets\old_legends\models\item\vengeance_page.json
 57929f278aab8c5b1ad31e50fbedcff4f5b3798e assets\old_legends\models\item\time_rune.json
 c64ed66b228c652ef8aecf9118037266dd472819 assets\old_legends\models\item\flutter_echo_page.json
 a323bdfc8be8a4a3d2f5a4a7aa15629405bb7e2b assets\old_legends\models\item\rune_table.json

@@ -1,0 +1,33 @@
+{
+  "parent": "minecraft:old_legends/root",
+  "criteria": {
+    "flutter_echo": {
+      "conditions": {
+        "items": [
+          {
+            "items": "old_legends:flutter_echo"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancement.old_legends.flutter_echo.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "old_legends:flutter_echo"
+    },
+    "title": {
+      "translate": "advancement.old_legends.flutter_echo"
+    }
+  },
+  "requirements": [
+    [
+      "flutter_echo"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

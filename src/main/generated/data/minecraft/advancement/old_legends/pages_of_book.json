@@ -1,0 +1,33 @@
+{
+  "parent": "minecraft:old_legends/owner_of_book",
+  "criteria": {
+    "pages_of_book": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#old_legends:page"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancement.old_legends.pages_of_book.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "old_legends:death_rune_page"
+    },
+    "title": {
+      "translate": "advancement.old_legends.pages_of_book"
+    }
+  },
+  "requirements": [
+    [
+      "pages_of_book"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,25 +1,26 @@
 package com.github.faxundo.old_legends.util;
 
+import com.github.faxundo.old_legends.item.custom.BookOfTheLegends;
+import com.github.faxundo.old_legends.item.custom.SwallowsStorm;
 import com.github.faxundo.old_legends.item.generic.OLGenericItem;
 import com.github.faxundo.old_legends.item.generic.OLGenericPage;
 import com.github.faxundo.old_legends.item.generic.OLGenericRune;
-import net.minecraft.block.BlockState;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import net.minecraft.text.TextColor;
 import net.minecraft.util.Hand;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class OLHelper {
+
+    public static final String SHIFT_TOOLTIP = "tooltip.old_legends.shift";
 
     private static final Style UNCOMMON = getStyle("uncommon");
     private static final Style RARE = getStyle("rare");
@@ -99,6 +100,15 @@ public class OLHelper {
         return Text.translatable(item.getTranslationKey()).setStyle(NAME);
     }
 
+    public static void appendTooltipHelper(ItemStack itemStack, List<Text> tooltip) {
+        if (Screen.hasShiftDown()) {
+            tooltip.add(Text.translatable(BookOfTheLegends.USAGE).setStyle(SHIFT));
+        } else {
+            tooltip.add(Text.literal(""));
+            tooltip.add(Text.translatable(SHIFT_TOOLTIP).setStyle(SHIFT));
+        }
+    }
+
     public static void appendTooltipHelper(ItemStack itemStack, List<Text> tooltip, boolean awake, int amountPassives, String id, boolean useCharges, int maxCharges) {
 
         if (Screen.hasShiftDown()) {
@@ -106,23 +116,34 @@ public class OLHelper {
             if (awake) {
                 for (int i = 1; i <= amountPassives; i++) {
                     String j = String.valueOf(i);
-                    tooltip.add(Text.translatable(id + "_name_" + j).setStyle(ABILITY_NAME));
-                    tooltip.add(Text.translatable(id + "_awake_" + j).setStyle(ABILITY));
+                    tooltip.add(Text.literal("✦ ")
+                            .append(Text.translatable(id + "_name_" + j))
+                            .setStyle(ABILITY_NAME));
+                    tooltip.add(Text.literal(" ")
+                            .append(Text.translatable(id + "_awake_" + j))
+                            .setStyle(ABILITY));
                 }
-
-                tooltip.add(Text.translatable(id + "_name_active").setStyle(ABILITY_NAME_AWAKE));
-                tooltip.add(Text.translatable(id + "_awake_active").setStyle(ABILITY_AWAKE));
+                tooltip.add(Text.literal("✦ ")
+                        .append(Text.translatable(id + "_name_active"))
+                        .setStyle(ABILITY_NAME_AWAKE));
+                tooltip.add(Text.literal(" ")
+                        .append(Text.translatable(id + "_awake_active"))
+                        .setStyle(ABILITY_AWAKE));
             } else {
                 for (int i = 1; i <= amountPassives; i++) {
                     String j = String.valueOf(i);
-                    tooltip.add(Text.translatable(id + "_name_" + j).setStyle(ABILITY_NAME));
-                    tooltip.add(Text.translatable(id + "_" + j).setStyle(ABILITY));
+                    tooltip.add(Text.literal("✦ ")
+                            .append(Text.translatable(id + "_name_" + j))
+                            .setStyle(ABILITY_NAME));
+                    tooltip.add(Text.literal(" ")
+                            .append(Text.translatable(id + "_" + j))
+                            .setStyle(ABILITY));
                 }
             }
 
         } else {
             tooltip.add(Text.literal(""));
-            tooltip.add(Text.translatable("tooltip.old_legends.shift").setStyle(SHIFT));
+            tooltip.add(Text.translatable(SHIFT_TOOLTIP).setStyle(SHIFT));
         }
         if (useCharges) {
             tooltip.add(Text.literal(""));
@@ -130,7 +151,7 @@ public class OLHelper {
             if (itemStack.contains(OLDataComponent.CHARGES)) {
                 int charges = itemStack.get(OLDataComponent.CHARGES);
 
-                Text textCharges = Text.translatable("tooltip.old_legends.swallows_storm_charges")
+                Text textCharges = Text.translatable(SwallowsStorm.CHARGES)
                         .append(": " + charges + "/" + maxCharges)
                         .setStyle(CHARGES);
                 tooltip.add(textCharges);
@@ -204,45 +225,5 @@ public class OLHelper {
             }
         }
         return null;
-    }
-
-    public static boolean isOreBlock(BlockState state) {
-        return state.isIn(OLTag.Blocks.ORES);
-    }
-
-    public static List<Item> reliquaryItems() {
-        List<Item> itemList = new ArrayList<>();
-        itemList.add(Items.EXPERIENCE_BOTTLE);
-        itemList.add(Items.EMERALD_BLOCK);
-        itemList.add(Items.GLISTERING_MELON_SLICE);
-        itemList.add(Items.EMERALD);
-        itemList.add(Items.GOLDEN_CARROT);
-        itemList.add(Items.DIAMOND);
-        itemList.add(Items.DIAMOND_AXE);
-        itemList.add(Items.DIAMOND_HOE);
-        itemList.add(Items.DIAMOND_PICKAXE);
-        itemList.add(Items.DIAMOND_SHOVEL);
-        itemList.add(Items.DIAMOND_SWORD);
-        itemList.add(Items.DIAMOND_HELMET);
-        itemList.add(Items.DIAMOND_CHESTPLATE);
-        itemList.add(Items.DIAMOND_LEGGINGS);
-        itemList.add(Items.DIAMOND_BOOTS);
-        itemList.add(Items.GOLD_INGOT);
-        itemList.add(Items.GOLDEN_AXE);
-        itemList.add(Items.GOLDEN_HOE);
-        itemList.add(Items.GOLDEN_PICKAXE);
-        itemList.add(Items.GOLDEN_SHOVEL);
-        itemList.add(Items.GOLDEN_SWORD);
-        itemList.add(Items.GOLDEN_HELMET);
-        itemList.add(Items.GOLDEN_CHESTPLATE);
-        itemList.add(Items.GOLDEN_LEGGINGS);
-        itemList.add(Items.GOLDEN_BOOTS);
-        itemList.add(Items.AMETHYST_SHARD);
-        itemList.add(Items.DIAMOND_BLOCK);
-        itemList.add(Items.GOLDEN_APPLE);
-        itemList.add(Items.GOLD_BLOCK);
-        itemList.add(Items.TOTEM_OF_UNDYING);
-        itemList.add(Items.ENCHANTED_GOLDEN_APPLE);
-        return itemList;
     }
 }

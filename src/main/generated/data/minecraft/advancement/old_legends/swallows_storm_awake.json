@@ -1,0 +1,33 @@
+{
+  "parent": "minecraft:old_legends/swallows_storm",
+  "criteria": {
+    "swallows_storm_awake": {
+      "conditions": {
+        "items": [
+          {
+            "items": "old_legends:swallows_storm_awake"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancement.old_legends.swallows_storm_awake.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "old_legends:swallows_storm_awake"
+    },
+    "title": {
+      "translate": "advancement.old_legends.swallows_storm_awake"
+    }
+  },
+  "requirements": [
+    [
+      "swallows_storm_awake"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

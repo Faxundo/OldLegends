@@ -1,0 +1,35 @@
+{
+  "criteria": {
+    "icon": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:cobblestone"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "background": "old_legends:textures/gui/advancements/backgrounds/old_legends_background.png",
+    "description": {
+      "translate": "advancement.old_legends.icon.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "old_legends:icon"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancement.old_legends.icon"
+    }
+  },
+  "requirements": [
+    [
+      "icon"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

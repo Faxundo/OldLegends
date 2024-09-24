@@ -1,6 +1,7 @@
 package com.github.faxundo.old_legends.screen.custom;
 
 import com.github.faxundo.old_legends.OldLegends;
+import com.github.faxundo.old_legends.block.custom.ReliquaryBlock;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
@@ -24,14 +25,14 @@ public class ReliquaryScreen extends HandledScreen<ReliquaryScreenHandler> {
     @Override
     protected void init() {
         super.init();
-        lockButton = ButtonWidget.builder(Text.translatable("block.old_legends.button_name"), button -> {
+        lockButton = ButtonWidget.builder(Text.translatable(ReliquaryBlock.LOCK), button -> {
             if(this.client != null) {
                 this.client.interactionManager.clickButton(this.handler.syncId,0);
                 this.close();
             }
                 })
                 .dimensions((width / 2) - 14, (height / 2) - 28, 30, 15)
-                .tooltip(Tooltip.of(Text.translatable("tooltip.old_legends.button")))
+                .tooltip(Tooltip.of(Text.translatable(ReliquaryBlock.LOCK_DESCRIPTION)))
                 .build();
         addDrawableChild(lockButton);
     }

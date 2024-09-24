@@ -2,9 +2,9 @@ package com.github.faxundo.old_legends.screen.custom;
 
 import com.github.faxundo.old_legends.block.entity.ReliquaryBlockEntity;
 import com.github.faxundo.old_legends.screen.OLScreenHandler;
-import com.github.faxundo.old_legends.screen.slot.ReliquarySlot;
 import com.github.faxundo.old_legends.screen.data.ReliquaryData;
-import com.github.faxundo.old_legends.util.OLHelper;
+import com.github.faxundo.old_legends.screen.slot.ReliquarySlot;
+import com.github.faxundo.old_legends.util.OLTag;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.entity.player.PlayerEntity;
@@ -81,32 +81,33 @@ public class ReliquaryScreenHandler extends ScreenHandler {
 
     private int getItemPoints(Item item) {
         String transK = item.getTranslationKey();
-        if (!OLHelper.reliquaryItems().contains(item)) {
-            return 0;
-        }
         ItemStack itemStack = new ItemStack(item);
-        if (transK.contains("golden") && !itemStack.contains(DataComponentTypes.FOOD)) {
-            return 3;
-        } else if (transK.contains("diamond_") && !transK.contains("block")) {
-            return 2;
-        } else {
-            return switch (transK) {
-                case "item.minecraft.experience_bottle" -> -10;
-                case "item.minecraft.emerald_block" -> -4;
-                case "item.minecraft.glistering_melon_slice" -> -3;
-                case "item.minecraft.emerald" -> -2;
-                case "item.minecraft.golden_carrot" -> -1;
-                case "item.minecraft.diamond" -> +1;
-                case "item.minecraft.gold_ingot" -> +2;
-                case "item.minecraft.amethyst_shard" -> +3;
-                case "item.minecraft.diamond_block" -> +4;
-                case "item.minecraft.golden_apple" -> +5;
-                case "item.minecraft.gold_block" -> +6;
-                case "item.minecraft.totem_of_undying" -> +7;
-                case "item.minecraft.enchanted_golden_apple" -> +10;
-                default -> 0;
-            };
-        }
+        if (!itemStack.isIn(OLTag.Items.SPARKLE)) return 0;
+
+        return switch (transK) {
+            case "item.minecraft.experience_bottle" -> -10;
+            case "item.minecraft.emerald_block" -> -4;
+            case "item.minecraft.glistering_melon_slice" -> -3;
+            case "item.minecraft.emerald" -> -2;
+            case "item.minecraft.golden_carrot" -> -1;
+            case "item.minecraft.diamond" -> +1;
+            case "item.minecraft.gold_ingot" -> +2;
+            case "item.minecraft.amethyst_shard" -> +3;
+            case "item.minecraft.diamond_block" -> +4;
+            case "item.minecraft.golden_apple" -> +5;
+            case "item.minecraft.gold_block" -> +6;
+            case "item.minecraft.totem_of_undying" -> +7;
+            case "item.minecraft.enchanted_golden_apple" -> +10;
+            default -> {
+                if (transK.contains("gold") && !itemStack.contains(DataComponentTypes.FOOD)) {
+                    yield 3;
+                } else if (transK.contains("diamond") && !transK.contains("block")) {
+                    yield 2;
+                } else {
+                    yield 0;
+                }
+            }
+        };
     }
 
     private int getMultiplierForSlot(int index) {

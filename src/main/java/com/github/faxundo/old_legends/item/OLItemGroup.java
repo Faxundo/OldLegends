@@ -29,10 +29,6 @@ public class OLItemGroup {
                     entries.add(OLItem.PALE_GEM);
                     entries.add(OLItem.END_EXTRACT);
                     entries.add(OLItem.AWAKENING_UPGRADE);
-                    entries.add(OLItem.VENGEANCE_PAGE);
-//                    entries.add(OLItem.VENGEANCE_ENCHANTMENT_1);
-//                    entries.add(OLItem.VENGEANCE_ENCHANTMENT_2);
-//                    entries.add(OLItem.VENGEANCE_ENCHANTMENT_3);
                     entries.add(OLItem.BLANK_RUNE);
                     entries.add(OLItem.SKY_RUNE);
                     entries.add(OLItem.SKY_RUNE_PAGE);

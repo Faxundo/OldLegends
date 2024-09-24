@@ -17,7 +17,10 @@ import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.Properties;
 import net.minecraft.text.Text;
-import net.minecraft.util.*;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.BlockMirror;
+import net.minecraft.util.BlockRotation;
+import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -31,6 +34,10 @@ import java.util.List;
 
 public class ReliquaryBlock extends BlockWithEntity implements BlockEntityProvider {
 
+    public static final String DESCRIPTION = "block.old_legends.reliquary.description";
+    public static final String LOCK = "block.old_legends.reliquary.lock";
+    public static final String LOCK_DESCRIPTION = "block.old_legends.reliquary.lock_description";
+    public static final String ALERT = "block.old_legends.reliquary.alert";
     public static final MapCodec<ReliquaryBlock> CODEC = createCodec(ReliquaryBlock::new);
     public static final VoxelShape SHAPE = VoxelShapes.union(
             Block.createCuboidShape(1, 0, 2, 15, 5, 14),
@@ -38,7 +45,7 @@ public class ReliquaryBlock extends BlockWithEntity implements BlockEntityProvid
             Block.createCuboidShape(7, 3, 1, 9, 6, 2));
 
     public ReliquaryBlock(Settings settings) {
-        super(settings.nonOpaque().strength(20f).requiresTool().resistance(1200F));
+        super(settings.nonOpaque().strength(20f).requiresTool().resistance(1200f));
         setDefaultState(getDefaultState().with(Properties.HORIZONTAL_FACING, Direction.NORTH));
     }
 
@@ -104,7 +111,8 @@ public class ReliquaryBlock extends BlockWithEntity implements BlockEntityProvid
         super.onStateReplaced(state, world, pos, newState, moved);
     }
 
-    protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+    @Override
+    protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
         if (!world.isClient) {
             NamedScreenHandlerFactory screenHandlerFactory = ((ReliquaryBlockEntity) world.getBlockEntity(pos));
 
@@ -136,6 +144,6 @@ public class ReliquaryBlock extends BlockWithEntity implements BlockEntityProvid
 
     @Override
     public void appendTooltip(ItemStack stack, Item.TooltipContext context, List<Text> tooltip, TooltipType options) {
-        OLHelper.appendTooltipBlockHelper(stack, context, tooltip, options, "block.old_legends.reliquary.description");
+        OLHelper.appendTooltipBlockHelper(stack, context, tooltip, options, DESCRIPTION);
     }
 }

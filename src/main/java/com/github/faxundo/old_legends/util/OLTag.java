@@ -31,6 +31,8 @@ public class OLTag {
                 createTag("sky_repair");
         public static final TagKey<Item> SHIELD =
                 createTag("shield");
+        public static final TagKey<Item> SPARKLE =
+                createTag("sparkle");
 
 
         private static TagKey<Item> createTag(String name) {

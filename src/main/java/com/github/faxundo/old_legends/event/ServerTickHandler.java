@@ -27,10 +27,10 @@ public class ServerTickHandler implements ServerTickEvents.StartTick {
         World world = server.getOverworld();
         if (world.isThundering()) {
 
-            int stormChance = OldLegends.CONFIG.swallowsStorm.stormChance;
+            int stormChance = OldLegends.CONFIG.swallowsStorm.chance;
             int maxCharges = OldLegends.CONFIG.swallowsStorm.maxCharges;
             int maxChargesAwake = OldLegends.CONFIG.swallowsStorm.maxChargesAwake;
-            int cooldownTicks = OldLegends.CONFIG.swallowsStorm.stormCooldown;
+            int cooldownTicks = OldLegends.CONFIG.swallowsStorm.cooldown;
 
 
             for (PlayerEntity player : world.getPlayers()) {

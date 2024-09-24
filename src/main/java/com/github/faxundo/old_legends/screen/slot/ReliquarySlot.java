@@ -1,12 +1,9 @@
 package com.github.faxundo.old_legends.screen.slot;
 
-import com.github.faxundo.old_legends.util.OLHelper;
+import com.github.faxundo.old_legends.util.OLTag;
 import net.minecraft.inventory.Inventory;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.screen.slot.Slot;
-
-import java.util.List;
 
 public class ReliquarySlot extends Slot {
 
@@ -21,8 +18,7 @@ public class ReliquarySlot extends Slot {
 
     @Override
     public boolean canInsert(ItemStack stack) {
-        List<Item> itemList = OLHelper.reliquaryItems();
-        return itemList.contains(stack.getItem());
+        return stack.isIn(OLTag.Items.SPARKLE);
     }
 
     public boolean isFull () {

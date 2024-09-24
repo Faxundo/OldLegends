@@ -1,4 +1,4 @@
-// 1.20.4	2024-07-10T00:22:32.9134397	Old Legends/Tags for minecraft:block
-be50eab169b90a473dcf9572f3bd0d55c712e6fa data\minecraft\tags\blocks\mineable\pickaxe.json
-be50eab169b90a473dcf9572f3bd0d55c712e6fa data\minecraft\tags\blocks\needs_diamond_tool.json
-946e08e4358372798d62babba9738f43cfb5453b data\old_legends\tags\blocks\ores.json
+// 1.21.1	2024-09-24T16:21:28.150013	Old Legends/Tags for minecraft:block
+3243da6542fecc5236fd630673cf8ebb3950444c data\minecraft\tags\block\needs_diamond_tool.json
+dcbeae9bd17bf8158cf535e63f021584c7b4d1c0 data\old_legends\tags\block\ores.json
+3243da6542fecc5236fd630673cf8ebb3950444c data\minecraft\tags\block\mineable\pickaxe.json

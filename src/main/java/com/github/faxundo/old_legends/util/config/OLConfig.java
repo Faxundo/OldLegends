@@ -8,7 +8,6 @@ import me.shedaniel.autoconfig.annotation.ConfigEntry;
 public class OLConfig implements ConfigData {
 
 
-
     @ConfigEntry.Gui.Tooltip
     public boolean enableAwakening = true;
     public int paleGemDesertWellWeight = 1;
@@ -24,9 +23,35 @@ public class OLConfig implements ConfigData {
     public final Enchantment enchantment = new Enchantment();
 
     public static class Enchantment {
-        @ConfigEntry.Gui.Tooltip
-        public int vengeanceCooldown = 140;
-        public int vengeanceDurability = 3;
+        @ConfigEntry.Gui.CollapsibleObject
+        public final Vengeance vengeance = new Vengeance();
+        @ConfigEntry.Gui.CollapsibleObject
+        public final Ecovery ecovery = new Ecovery();
+        @ConfigEntry.Gui.CollapsibleObject
+        public final Sparkle sparkle = new Sparkle();
+
+
+        public static class Vengeance {
+
+        }
+
+        public static class Ecovery {
+            @ConfigEntry.Gui.Tooltip
+            public double probability = 1;
+            @ConfigEntry.Gui.Tooltip
+            public double heal = 1;
+            @ConfigEntry.Gui.Tooltip
+            public int extraCount = 3;
+        }
+
+        public static class Sparkle {
+            @ConfigEntry.Gui.Tooltip
+            public double probability = 1;
+            @ConfigEntry.Gui.Tooltip
+            public double distance = 1.5d;
+            @ConfigEntry.Gui.Tooltip
+            public float damage = 1;
+        }
     }
 
     @ConfigEntry.Gui.CollapsibleObject
@@ -66,12 +91,12 @@ public class OLConfig implements ConfigData {
         public boolean enable = true;
         public float weight = 0.5f;
         public int maxCharges = 30;
-        public int stormHeal = 6;
+        public int heal = 6;
         @ConfigEntry.Gui.Tooltip
-        public int stormHealLost = 10;
-        public int stormChance = 5;
+        public int healLost = 10;
+        public int chance = 5;
         @ConfigEntry.Gui.Tooltip
-        public int stormCooldown = 200;
+        public int cooldown = 200;
         @ConfigEntry.Gui.Tooltip
         public int consumeDurability = 1;
         @ConfigEntry.Gui.Tooltip

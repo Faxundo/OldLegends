@@ -1,0 +1,29 @@
+{
+  "parent": "minecraft:old_legends/root",
+  "criteria": {
+    "rune": {
+      "conditions": {
+        "recipe_id": "old_legends:blank_rune"
+      },
+      "trigger": "minecraft:recipe_crafted"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancement.old_legends.rune.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "old_legends:blank_rune"
+    },
+    "title": {
+      "translate": "advancement.old_legends.rune"
+    }
+  },
+  "requirements": [
+    [
+      "rune"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

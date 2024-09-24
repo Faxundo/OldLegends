@@ -14,7 +14,7 @@ public class LockParticle extends SpriteBillboardParticle {
     private int rest = 0;
 
     public LockParticle(ClientWorld level, double xCoord, double yCoord, double zCoord,
-                           SpriteProvider spriteSet, double xd, double yd, double zd) {
+                        SpriteProvider spriteSet, double xd, double yd, double zd) {
         super(level, xCoord, yCoord, zCoord, xd, yd, zd);
         this.velocityMultiplier = 0.6F;
         this.x = xCoord;
@@ -36,28 +36,23 @@ public class LockParticle extends SpriteBillboardParticle {
     @Override
     public void tick() {
         super.tick();
-        if (world.getTimeOfDay() == OldLegends.CONFIG.reliquary.grinningHoarderTime) this.markDead();
+        if (world.getTimeOfDay() == OldLegends.CONFIG.reliquary.grinningHoarderTime) age = 3000;
         if (rest != 10) {
             rest++;
             if (moveUp <= 0 && moveDown != 0) {
                 moveUp = 0;
                 moveDown = 0;
-            } else if (moveUp <= 40 && moveDown == 0) {
+            } else if (moveUp <= 30 && moveDown == 0) {
                 moveUp++;
-                this.y = y + 0.01;
+                move(0, 0.01, 0);
             } else {
                 moveUp--;
                 moveDown++;
-                this.y = this.y - 0.01;
+                move(0, -0.01, 0);
             }
         } else {
             rest--;
         }
-    }
-
-    @Override
-    public void move(double dx, double dy, double dz) {
-
     }
 
     @Override

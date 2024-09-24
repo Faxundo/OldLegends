@@ -1,6 +1,7 @@
 package com.github.faxundo.old_legends.datagen;
 
 import com.github.faxundo.old_legends.block.OLBlock;
+import com.github.faxundo.old_legends.compability.MythicMetals;
 import com.github.faxundo.old_legends.util.OLTag;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
@@ -26,7 +27,8 @@ public class OLBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .forceAddTag(BlockTags.DIAMOND_ORES)
                 .forceAddTag(BlockTags.IRON_ORES)
                 .forceAddTag(BlockTags.COPPER_ORES)
-                .forceAddTag(BlockTags.COAL_ORES);
+                .forceAddTag(BlockTags.COAL_ORES)
+                .addOptional(MythicMetals.ORES);
         getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE)
                 .add(OLBlock.RELIQUARY_BLOCK)
                 .add(OLBlock.RUNE_TABLE);
