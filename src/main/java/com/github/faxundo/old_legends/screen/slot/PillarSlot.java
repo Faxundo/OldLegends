@@ -43,10 +43,5 @@ public class PillarSlot extends Slot {
         }
         return false;
     }
-
-    @Override
-    public int getMaxItemCount() {
-        return 1;
-    }
 }
 

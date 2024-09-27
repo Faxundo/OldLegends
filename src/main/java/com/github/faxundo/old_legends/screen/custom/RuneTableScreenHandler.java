@@ -13,11 +13,14 @@ import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.Slot;
+import net.minecraft.screen.slot.SlotActionType;
+
+import java.util.Map;
 
 public class RuneTableScreenHandler extends ScreenHandler {
 
     private final Inventory inventory;
-    public final RuneTableBlockEntity blockEntity;
+    private final RuneTableBlockEntity blockEntity;
 
     public RuneTableScreenHandler(int syncId, PlayerInventory inventory, RuneTableData data) {
         this(syncId, inventory, inventory.player.getWorld().getBlockEntity(data.pos()));
@@ -29,7 +32,6 @@ public class RuneTableScreenHandler extends ScreenHandler {
         this.inventory = ((Inventory) blockEntity);
         inventory.onOpen(playerInventory.player);
         this.blockEntity = ((RuneTableBlockEntity) blockEntity);
-
 
         this.addSlot(new BookOfTheLegendsSlot(inventory, 0, 13, 16));
         this.addSlot(new Slot(inventory, 1, 80, 54));
@@ -90,5 +92,37 @@ public class RuneTableScreenHandler extends ScreenHandler {
         for (int col = 0; col < 9; ++col) {
             this.addSlot(new Slot(playerInventory, col, 8 + col * 18, 179));
         }
+    }
+
+    @Override
+    public void onSlotClick(int slotIndex, int button, SlotActionType actionType, PlayerEntity player) {
+
+        if (slotIndex == RuneTableBlockEntity.OUTPUT_SLOT) {
+            if (!blockEntity.getItemOutput().isEmpty() && blockEntity.getCraftOk()) {
+                ItemStack craftedItem = blockEntity.getItemOutput().copy();
+
+                //Give the output item to the player
+                player.getInventory().offerOrDrop(craftedItem);
+
+                //Iteration for eliminate ingredients
+                for (Map.Entry<Integer, Integer> entry : blockEntity.getDeleteList().entrySet()) {
+                    int slot = entry.getKey();
+                    int amountToDelete = entry.getValue();
+                    ItemStack itemStack = inventory.getStack(slot);
+                    if (!itemStack.isEmpty() && itemStack.getCount() >= amountToDelete) {
+                        itemStack.decrement(amountToDelete);
+                    }
+                }
+
+                //Reset the output
+                blockEntity.getItems().set(RuneTableBlockEntity.OUTPUT_SLOT, ItemStack.EMPTY);
+                blockEntity.setCraftOk(false);
+                blockEntity.setItemOutput(ItemStack.EMPTY);
+                blockEntity.clearDeleteList();
+                blockEntity.clearLapisList();
+            }
+
+        }
+        super.onSlotClick(slotIndex, button, actionType, player);
     }
 }

@@ -6,6 +6,7 @@ import com.github.faxundo.old_legends.item.OLItem;
 import com.github.faxundo.old_legends.item.custom.BookOfTheLegends;
 import com.github.faxundo.old_legends.screen.custom.RuneTableScreenHandler;
 import com.github.faxundo.old_legends.screen.data.RuneTableData;
+import com.github.faxundo.old_legends.util.OLTag;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -26,9 +27,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class RuneTableBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory, ImplementedInventory {
 
@@ -37,11 +36,49 @@ public class RuneTableBlockEntity extends BlockEntity implements ExtendedScreenH
     private boolean southPillar;
     private boolean eastPillar;
     private boolean westPillar;
-    private int BOOK_SLOT = 0;
-    private int OUTPUT_SLOT = 10;
+    public static final int BOOK_SLOT = 0;
+    public static final int OUTPUT_SLOT = 10;
+    public static final int MARKER_SLOT = 1;
+
+    private ItemStack itemOutput = ItemStack.EMPTY;
+    private boolean craftOk = false;
+    private Map<Integer, Integer> deleteList = new HashMap<>();
+    private List<Integer> lapisList = new ArrayList<>();
+
+    private final List<Integer> timeRune = Arrays.asList(3, 5, 7, 9);
+    private final List<Integer> deathRune = Arrays.asList(3, 7);
+    private final List<Integer> skyRune = Arrays.asList(6, 8);
 
     public RuneTableBlockEntity(BlockPos pos, BlockState state) {
         super(OLBlockEntity.RUNE_TABLE_BLOCK_ENTITY, pos, state);
+    }
+
+    public ItemStack getItemOutput() {
+        return itemOutput;
+    }
+
+    public void setItemOutput(ItemStack itemOutput) {
+        this.itemOutput = itemOutput;
+    }
+
+    public boolean getCraftOk() {
+        return craftOk;
+    }
+
+    public void setCraftOk(boolean craftOk) {
+        this.craftOk = craftOk;
+    }
+
+    public Map<Integer, Integer> getDeleteList() {
+        return deleteList;
+    }
+
+    public void clearDeleteList() {
+        deleteList.clear();
+    }
+
+    public void clearLapisList() {
+        lapisList.clear();
     }
 
     @Override
@@ -86,14 +123,22 @@ public class RuneTableBlockEntity extends BlockEntity implements ExtendedScreenH
         this.eastPillar = hasAndSpawnPillar(world, pos, 3, 0, 0);
         this.westPillar = hasAndSpawnPillar(world, pos, -3, 0, 0);
 
-        if (inventory.get(1).getItem().equals(Items.BOOK)) {
-            craftEnchantment();
+        //Clear meta-data
+        if (!(inventory.get(BOOK_SLOT).getItem().equals(OLItem.BOOK_OF_THE_LEGENDS)
+                || inventory.get(MARKER_SLOT).isIn(OLTag.Items.CAN_AWAKE)
+                || inventory.get(MARKER_SLOT).getItem().equals(OLItem.BLANK_RUNE)) && !inventory.get(OUTPUT_SLOT).isEmpty() || verifyIngredients()) {
+            clear();
+        }
+
+        //Craft methods
+        if (inventory.get(MARKER_SLOT).isIn(OLTag.Items.CAN_AWAKE)) {
             markDirty(world, pos, state);
             return;
         }
-        if (inventory.get(1).getItem().equals(OLItem.BLANK_RUNE)) {
+        if (inventory.get(MARKER_SLOT).getItem().equals(OLItem.BLANK_RUNE)) {
             craftRune();
             markDirty(world, pos, state);
+            return;
         }
     }
 
@@ -108,105 +153,89 @@ public class RuneTableBlockEntity extends BlockEntity implements ExtendedScreenH
                 && world.getBlockState(pos.up(2)).getBlock().equals(Blocks.AMETHYST_CLUSTER);
     }
 
-    private boolean isOutputSlotEmptyOrReceivable(ItemStack output) {
-        ItemStack stack = this.getStack(OUTPUT_SLOT);
-        return stack.isEmpty() || (stack.getItem() == output.getItem() && stack.getCount() < stack.getMaxCount());
-    }
-
     public void craftRune() {
+
         if (inventory.get(BOOK_SLOT).getItem() instanceof BookOfTheLegends bookOfTheLegends) {
-            String pageDeath = "item.old_legends.death_rune_page";
-            String pageSky = "item.old_legends.sky_rune_page";
-            String pageTime = "item.old_legends.time_rune_page";
-            boolean craftOk = false;
 
-            ItemStack output = ItemStack.EMPTY;
-            List<Integer> deleteList = new ArrayList<>();
-            List<Integer> hasLapis = new ArrayList<>();
+            deleteList.put(1, 1);
 
-            deleteList.add(1);
-
+            //Check what slots have lapis
             for (int i = 2; i < inventory.size(); i++) {
                 Item itemSlot = inventory.get(i).getItem();
                 if (itemSlot.equals(Items.LAPIS_LAZULI)) {
-                    hasLapis.add(i);
+                    lapisList.add(i);
                 }
             }
+
             // Time Rune
-//            if (hasLapis.containsAll(Arrays.asList(3, 5, 7, 9)) && bookOfTheLegends.hasPage(inventory.get(BOOK_SLOT), pageTime)) {
-//                output = OLItem.TIME_RUNE.getDefaultStack();
-//                deleteList.addAll(Arrays.asList(3, 5, 7, 9));
-//                //Death Rune
-//            } else if (hasLapis.containsAll(Arrays.asList(3, 7)) && bookOfTheLegends.hasPage(inventory.get(BOOK_SLOT), pageDeath)) {
-//                output = OLItem.DEATH_RUNE.getDefaultStack();
-//                deleteList.addAll(Arrays.asList(3, 7));
-//                // Sky Rune
-//            } else if (hasLapis.containsAll(Arrays.asList(6, 8)) && bookOfTheLegends.hasPage(inventory.get(BOOK_SLOT), pageSky)) {
-//                output = OLItem.SKY_RUNE.getDefaultStack();
-//                deleteList.addAll(Arrays.asList(6, 8));
-//            }
-
-
-            ItemStack outputSlotStack = inventory.get(OUTPUT_SLOT);
-            if (outputSlotStack.isEmpty()) {
-                this.setStack(OUTPUT_SLOT, output);
-            } else if (outputSlotStack.getItem() == output.getItem() && outputSlotStack.getCount() < outputSlotStack.getMaxCount()) {
-                outputSlotStack.increment(1);
-            } else {
-                return;
+            if (lapisList.containsAll(timeRune) && bookOfTheLegends.hasPage(inventory.get(BOOK_SLOT), new ItemStack(OLItem.TIME_RUNE_PAGE))
+                    && slotsIsEmpty(Arrays.asList(2, 4, 6, 8))) {
+                itemOutput = OLItem.TIME_RUNE.getDefaultStack();
+                timeRune.forEach(slot -> deleteList.put(slot, 1));
+                //Death Rune
+            } else if (lapisList.containsAll(deathRune) && bookOfTheLegends.hasPage(inventory.get(BOOK_SLOT), new ItemStack(OLItem.DEATH_RUNE_PAGE))
+                    && slotsIsEmpty(Arrays.asList(2, 4, 5, 6, 8, 9))) {
+                itemOutput = OLItem.DEATH_RUNE.getDefaultStack();
+                deathRune.forEach(slot -> deleteList.put(slot, 1));
+                // Sky Rune
+            } else if (lapisList.containsAll(skyRune) && bookOfTheLegends.hasPage(inventory.get(BOOK_SLOT), new ItemStack(OLItem.SKY_RUNE_PAGE))
+                    && slotsIsEmpty(Arrays.asList(2, 4, 5, 7, 9))) {
+                itemOutput = OLItem.SKY_RUNE.getDefaultStack();
+                skyRune.forEach(slot -> deleteList.put(slot, 1));
             }
 
-            craftOk = true;
-
-            if (!(output.equals(ItemStack.EMPTY)) && craftOk) {
-                for (Integer i : deleteList) {
-                    inventory.get(i).decrement(1);
-                }
+            //Mark ready to craft
+            if (isOutputSlotEmptyOrReceivable(itemOutput)) {
+                inventory.set(OUTPUT_SLOT, itemOutput);
+                craftOk = true;
             }
         }
     }
 
-    public void craftEnchantment() {
-        if (inventory.get(BOOK_SLOT).getItem() instanceof BookOfTheLegends bookOfTheLegends) {
+    public void clear() {
+        itemOutput = ItemStack.EMPTY;
+        deleteList.clear();
+        lapisList.clear();
+        setItemOutput(itemOutput);
+        inventory.set(OUTPUT_SLOT, itemOutput);
+        craftOk = false;
+    }
 
-            String page = "item.old_legends.vengeance_page";
-            int level = 0;
-            List<Integer> deleteList = new ArrayList<>();
-            deleteList.add(1);
-
-            for (int i = 2; i < inventory.size(); i++) {
-                Item itemSlot = inventory.get(i).getItem();
-                if (level == 3) break;
-                if (itemSlot.equals(OLItem.DEATH_RUNE)) {
-                    deleteList.add(i);
-                    level++;
-                }
-            }
-
-//            if (bookOfTheLegends.hasPage(inventory.get(BOOK_SLOT), page)) {
-//                ItemStack output = new ItemStack(Items.ENCHANTED_BOOK);
-//
-//                if (!(level >= 1)) return;
-//                ItemStack outputSlotStack = inventory.get(OUTPUT_SLOT);
-////                if (isOutputSlotEmptyOrReceivable(outputSlotStack)) {
-////
-////                    Enchantment enchantment = OLEnchantment.VENGEANCE;
-////                    Map<Enchantment, Integer> enchantments = new HashMap<>();
-////                    enchantments.put(enchantment, level);
-////
-////                    EnchantmentHelper.set(enchantments, output);
-////
-////
-////                    for (Integer index : deleteList) {
-////                        setStack(index, ItemStack.EMPTY);
-////                    }
-////
-////
-////                    this.setStack(OUTPUT_SLOT, output);
-////
-////                }
-//            }
+    public boolean verifyIngredients() {
+        ItemStack outputStackCopy = itemOutput.copy();
+        if (outputStackCopy.isEmpty()) return false;
+        if (outputStackCopy.equals(OLItem.DEATH_RUNE.getDefaultStack())) {
+            return checkIngredients(deathRune);
+        } else if (outputStackCopy.equals(OLItem.TIME_RUNE.getDefaultStack())) {
+            return checkIngredients(timeRune);
+        } else if (outputStackCopy.equals(OLItem.SKY_RUNE.getDefaultStack())) {
+            return checkIngredients(skyRune);
         }
+        return true;
+    }
+
+    private boolean checkIngredients(List<Integer> runeSlots) {
+        for (Integer runeSlot : runeSlots) {
+            ItemStack stackInSlot = inventory.get(runeSlot);
+            if (stackInSlot.isEmpty() || !stackInSlot.getItem().equals(Items.LAPIS_LAZULI)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean slotsIsEmpty(List<Integer> slots) {
+        for (Integer slot : slots) {
+            if (!inventory.get(slot).isEmpty()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean isOutputSlotEmptyOrReceivable(ItemStack output) {
+        ItemStack stack = this.getStack(OUTPUT_SLOT);
+        return stack.isEmpty() || (stack.getItem() == output.getItem() && stack.getCount() < stack.getMaxCount());
     }
 
     @Override
