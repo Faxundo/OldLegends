@@ -16,7 +16,7 @@ Explore the stories that time has forgotten, discover secrets that have been bur
 - Add 3 new mechanics:
     - Unique mechanic of old legends items: **Awake**.
     - Reliquary: Offer sparkly items to Grinning Hoarder and receive a recompense for this.
-    - Rune Table: Used for crafting of runes and new enchantments.
+    - Rune Table: Used for crafting of runes.
 
 ## Awake
 
