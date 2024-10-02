@@ -1,11 +1,11 @@
-// 1.21.1	2024-09-24T16:21:28.145012	Old Legends/Tags for minecraft:item
+// 1.21.1	2024-10-01T16:01:21.7761841	Old Legends/Tags for minecraft:item
 ca11bcf6cea4473199a8d95d788cf3a7528c6d52 data\old_legends\tags\item\rune.json
 c8c1a493a5539c44e3bac10881bcbeab9f52ca31 data\minecraft\tags\item\swords.json
 e2845713ec7c153120a9a47534cbb7719937c585 data\old_legends\tags\item\shield.json
 fc7785c324b5d8dc297f162a153f89c586681c7c data\old_legends\tags\item\sky_repair.json
 95617ea1b24367ff9a585407b1961007f90c453f data\minecraft\tags\item\trim_templates.json
-d0b8e2c6b4aefba9d991b7299b99130e9a1ba4fb data\minecraft\tags\item\trim_materials.json
 9f34eee5e3b73d656dc5cc0d7bb3b3e315ab979b data\old_legends\tags\item\page.json
+d0b8e2c6b4aefba9d991b7299b99130e9a1ba4fb data\minecraft\tags\item\trim_materials.json
 9af2e1a279eeebe06521edfaa7a613b8779f217b data\old_legends\tags\item\can_awake.json
 4bac99114866f80f0dc3b61089ebbfa2b2003b6d data\old_legends\tags\item\sparkle.json
 351fe691946264a50aa11291a67d1f75acb17d70 data\minecraft\tags\item\pickaxes.json

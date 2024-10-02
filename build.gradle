@@ -15,6 +15,13 @@ repositories {
 	maven { url "https://maven.terraformersmc.com/releases/" }
 	maven { url "https://jitpack.io" }
 	maven { url "https://api.modrinth.com/maven"}
+	maven {
+		name = "Modrinth"
+		url = "https://api.modrinth.com/maven"
+		content {
+			includeGroup "maven.modrinth"
+		}
+	}
 }
 
 fabricApi {
@@ -41,11 +48,10 @@ dependencies {
 		exclude(group: "net.fabricmc.fabric-api")
 	}
 
-	//Fabric Shield Lib
-//	 modImplementation "com.github.CrimsonDawn45:Fabric-Shield-Lib:v${project.fabric_shield_lib_version}"
-//	 modImplementation "maven.modrinth:midnightlib:${project.midnightlib_version}"
-//	 modImplementation "com.github.Chocohead:Fabric-ASM:v${project.fabricasm_version}"
-	
+    //Structurized Reborn
+	modImplementation "maven.modrinth:Wd844r7Q:${structurized_reborn_version}"
+	include("maven.modrinth:Wd844r7Q:${structurized_reborn_version}")
+
 }
 
 processResources {

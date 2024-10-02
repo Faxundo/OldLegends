@@ -2,6 +2,8 @@ package com.github.faxundo.old_legends.datagen.lang;
 
 import com.github.faxundo.old_legends.block.OLBlock;
 import com.github.faxundo.old_legends.block.custom.ReliquaryBlock;
+import com.github.faxundo.old_legends.block.custom.RuneTableBlock;
+import com.github.faxundo.old_legends.effect.OLEffect;
 import com.github.faxundo.old_legends.event.KeyInputHandler;
 import com.github.faxundo.old_legends.item.OLItem;
 import com.github.faxundo.old_legends.item.custom.BookOfTheLegends;
@@ -12,6 +14,7 @@ import com.github.faxundo.old_legends.item.custom.awake.EmeraldMourningAwake;
 import com.github.faxundo.old_legends.item.custom.awake.FlutterEchoAwake;
 import com.github.faxundo.old_legends.item.custom.awake.SwallowsStormAwake;
 import com.github.faxundo.old_legends.util.OLHelper;
+import com.github.faxundo.old_legends.villager.OLVillager;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
 import net.minecraft.registry.RegistryWrapper;
@@ -89,6 +92,7 @@ public class OLSpanishLanguageProvider extends FabricLanguageProvider {
 
         //Blocks
         translationBuilder.add(OLBlock.RUNE_TABLE, "Mesa de Runas");
+        translationBuilder.add(RuneTableBlock.INVALID_WISE, "Expande la aldea para tener otro Sabio");
         translationBuilder.add(OLBlock.ECHO_BLOCK, "Eco de Bloque");
         translationBuilder.add(OLBlock.ECHO_ORE, "Eco de Mineral");
 
@@ -114,6 +118,12 @@ public class OLSpanishLanguageProvider extends FabricLanguageProvider {
 
         //Tooltip
         translationBuilder.add(OLHelper.SHIFT_TOOLTIP, "▶ Shift");
+
+        //Villager
+        translationBuilder.add(OLVillager.SAGE_NAME,"Sabio");
+
+        //Effects
+        translationBuilder.add(OLEffect.BANE_OF_THE_VILLAGE,"Villano del Pueblo");
 
         //Advancements
         translationBuilder.add(advancementName("icon"), "Old Legends");
@@ -166,6 +176,12 @@ public class OLSpanishLanguageProvider extends FabricLanguageProvider {
         translationBuilder.add(configName("paleGemTrailsRuinsRareWeight"), "Probabilidad de Gema Pálida en Ruina Perdida Rara");
         translationBuilder.add(configName("deathRuneSnifferDigging"), "Probabilidad de Runa de la Muerte cuando el Sniffer excava");
         translationBuilder.add(configName("skyRuneSnifferDigging"), "Probabilidad de Runa del Cielo cuando el Sniffer excava");
+
+        translationBuilder.add(configName("runeTable"), "Mesa de Runas");
+        translationBuilder.add(configName("runeTable.range"), "Rango");
+        translationBuilder.add(configTooltip("runeTable.range"), "Define el rango abstracto para determinar el area de una 'aldea'");
+        translationBuilder.add(configName("runeTable.maxVillagers"), "Máximo de Aldeanos");
+        translationBuilder.add(configTooltip("runeTable.maxVillagers"), "Cuantos aldeanos se necesitan para tener otro Sabio");
 
         translationBuilder.add(configName("emeraldMourning"), "Luto Esmeralda");
         translationBuilder.add(configName("emeraldMourning.enable"), "Habilitar Luto Esmeralda");

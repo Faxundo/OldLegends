@@ -1,7 +1,7 @@
 package com.github.faxundo.old_legends.datagen;
 
 import com.github.faxundo.old_legends.block.OLBlock;
-import com.github.faxundo.old_legends.compability.MythicMetals;
+import com.github.faxundo.old_legends.integration.MythicMetals;
 import com.github.faxundo.old_legends.util.OLTag;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;

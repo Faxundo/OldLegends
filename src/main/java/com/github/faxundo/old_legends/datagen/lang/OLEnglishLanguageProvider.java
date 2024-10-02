@@ -2,6 +2,8 @@ package com.github.faxundo.old_legends.datagen.lang;
 
 import com.github.faxundo.old_legends.block.OLBlock;
 import com.github.faxundo.old_legends.block.custom.ReliquaryBlock;
+import com.github.faxundo.old_legends.block.custom.RuneTableBlock;
+import com.github.faxundo.old_legends.effect.OLEffect;
 import com.github.faxundo.old_legends.event.KeyInputHandler;
 import com.github.faxundo.old_legends.item.OLItem;
 import com.github.faxundo.old_legends.item.custom.BookOfTheLegends;
@@ -12,6 +14,7 @@ import com.github.faxundo.old_legends.item.custom.awake.EmeraldMourningAwake;
 import com.github.faxundo.old_legends.item.custom.awake.FlutterEchoAwake;
 import com.github.faxundo.old_legends.item.custom.awake.SwallowsStormAwake;
 import com.github.faxundo.old_legends.util.OLHelper;
+import com.github.faxundo.old_legends.villager.OLVillager;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
 import net.minecraft.registry.RegistryWrapper;
@@ -89,6 +92,7 @@ public class OLEnglishLanguageProvider extends FabricLanguageProvider {
 
         //Blocks
         translationBuilder.add(OLBlock.RUNE_TABLE, "Rune Table");
+        translationBuilder.add(RuneTableBlock.INVALID_WISE, "Expand the village for keep other Wise");
         translationBuilder.add(OLBlock.ECHO_BLOCK, "Echo Block");
         translationBuilder.add(OLBlock.ECHO_ORE, "Echo Ore");
 
@@ -114,6 +118,12 @@ public class OLEnglishLanguageProvider extends FabricLanguageProvider {
 
         //Tooltip
         translationBuilder.add(OLHelper.SHIFT_TOOLTIP, "▶ Shift");
+
+        //Villager
+        translationBuilder.add(OLVillager.SAGE_NAME,"Sage");
+
+        //Effects
+        translationBuilder.add(OLEffect.BANE_OF_THE_VILLAGE,"Bane of the Village");
 
         //Advancements
         translationBuilder.add(advancementName("icon"), "Old Legends");
@@ -166,6 +176,12 @@ public class OLEnglishLanguageProvider extends FabricLanguageProvider {
         translationBuilder.add(configName("paleGemTrailsRuinsRareWeight"), "Pale Gem Trails Ruins Rare Weight");
         translationBuilder.add(configName("deathRuneSnifferDigging"), "Death Rune Weight when Sniffer Digging");
         translationBuilder.add(configName("skyRuneSnifferDigging"), "Sky Rune Weight when Sniffer Digging");
+
+        translationBuilder.add(configName("runeTable"), "Rune Table");
+        translationBuilder.add(configName("runeTable.range"), "Range");
+        translationBuilder.add(configTooltip("runeTable.range"), "This range defines the abstract size of a 'village'");
+        translationBuilder.add(configName("runeTable.maxVillagers"), "Max Villagers");
+        translationBuilder.add(configTooltip("runeTable.maxVillagers"), "How much villagers need for keep other wise");
 
         translationBuilder.add(configName("emeraldMourning"), "Emerald Mourning");
         translationBuilder.add(configName("emeraldMourning.enable"), "Enable Emerald Mourning");

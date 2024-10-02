@@ -37,6 +37,7 @@
     "fabric-api": "*"
   },
   "suggests": {
-    "mod-menu": ">=11.0.1"
+    "mod-menu": ">=11.0.1",
+    "mythicmetals": ">=0.21.1+1.21"
   }
 }

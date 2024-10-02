@@ -5,8 +5,11 @@ import com.github.faxundo.old_legends.item.custom.SwallowsStorm;
 import com.github.faxundo.old_legends.item.generic.OLGenericItem;
 import com.github.faxundo.old_legends.item.generic.OLGenericPage;
 import com.github.faxundo.old_legends.item.generic.OLGenericRune;
+import com.github.faxundo.old_legends.villager.OLVillager;
 import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.entity.passive.VillagerEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -15,6 +18,9 @@ import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import net.minecraft.text.TextColor;
 import net.minecraft.util.Hand;
+import net.minecraft.util.math.Box;
+import net.minecraft.village.VillagerProfession;
+import net.minecraft.world.World;
 
 import java.util.List;
 
@@ -225,5 +231,13 @@ public class OLHelper {
             }
         }
         return null;
+    }
+
+    public static int amountOfWise(World world, Box box) {
+        List<VillagerEntity> wise = world.getEntitiesByType(EntityType.VILLAGER, box, villagerEntity -> {
+            VillagerProfession villagerProfession = villagerEntity.getVillagerData().getProfession();
+            return villagerProfession.equals(OLVillager.SAGE);
+        });
+        return wise.size();
     }
 }

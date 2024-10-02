@@ -5,10 +5,7 @@ import com.github.faxundo.old_legends.block.OLBlockEntity;
 import com.github.faxundo.old_legends.effect.OLEffect;
 import com.github.faxundo.old_legends.entity.OLEntities;
 import com.github.faxundo.old_legends.entity.custom.Vengeful;
-import com.github.faxundo.old_legends.event.PlayerBlockBreakAfterHandler;
-import com.github.faxundo.old_legends.event.PlayerBlockBreakBeforeHandler;
-import com.github.faxundo.old_legends.event.ServerTickHandler;
-import com.github.faxundo.old_legends.event.ShieldBlockHandler;
+import com.github.faxundo.old_legends.event.*;
 import com.github.faxundo.old_legends.event.callback.ShieldBlockCallback;
 import com.github.faxundo.old_legends.item.OLItem;
 import com.github.faxundo.old_legends.item.OLItemGroup;
@@ -19,11 +16,15 @@ import com.github.faxundo.old_legends.util.LootTableModifier;
 import com.github.faxundo.old_legends.util.OLDataComponent;
 import com.github.faxundo.old_legends.util.OLPredicateProvider;
 import com.github.faxundo.old_legends.util.config.OLConfig;
+import com.github.faxundo.old_legends.villager.OLTrades;
+import com.github.faxundo.old_legends.villager.OLVillager;
+import com.github.faxundo.old_legends.world.village.OLStructures;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
+import net.fabricmc.fabric.api.event.player.UseBlockCallback;
 import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -60,14 +61,20 @@ public class OldLegends implements ModInitializer {
         Vengeful.createMourningMobAttributes();
         OLEntities.registerEntities();
 
+        OLVillager.registerVillagers();
+        OLTrades.registerOLTrades();
+        OLStructures.registerVillageStructure();
+
         ServerTickEvents.START_SERVER_TICK.register(new ServerTickHandler());
         PlayerBlockBreakEvents.AFTER.register(new PlayerBlockBreakAfterHandler());
         PlayerBlockBreakEvents.BEFORE.register(new PlayerBlockBreakBeforeHandler());
         ShieldBlockCallback.EVENT.register(new ShieldBlockHandler());
+        UseBlockCallback.EVENT.register(new UseBlockHandler());
 
         AutoConfig.register(OLConfig.class, JanksonConfigSerializer::new);
         CONFIG = AutoConfig.getConfigHolder(OLConfig.class).getConfig();
 
+//        DeeperAndDarker.modExists();
     }
 
     public static Identifier identifier(String path) {

@@ -21,6 +21,8 @@ import org.jetbrains.annotations.Nullable;
 
 public class RuneTableBlock extends BlockWithEntity implements BlockEntityProvider {
 
+    public static final String INVALID_WISE = "block.old_legends.rune_table.invalid.wise";
+
     public static final MapCodec<RuneTableBlock> CODEC = createCodec(RuneTableBlock::new);
     public static final VoxelShape SHAPE = VoxelShapes.union(
             Block.createCuboidShape(0, 0, 0, 16, 13, 16),

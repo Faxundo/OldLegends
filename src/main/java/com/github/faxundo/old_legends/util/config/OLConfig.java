@@ -20,38 +20,13 @@ public class OLConfig implements ConfigData {
     public int skyRuneSnifferDigging = 1;
 
     @ConfigEntry.Gui.CollapsibleObject
-    public final Enchantment enchantment = new Enchantment();
+    public final RuneTable runeTable = new RuneTable();
 
-    public static class Enchantment {
-        @ConfigEntry.Gui.CollapsibleObject
-        public final Vengeance vengeance = new Vengeance();
-        @ConfigEntry.Gui.CollapsibleObject
-        public final Ecovery ecovery = new Ecovery();
-        @ConfigEntry.Gui.CollapsibleObject
-        public final Sparkle sparkle = new Sparkle();
-
-
-        public static class Vengeance {
-
-        }
-
-        public static class Ecovery {
-            @ConfigEntry.Gui.Tooltip
-            public double probability = 1;
-            @ConfigEntry.Gui.Tooltip
-            public double heal = 1;
-            @ConfigEntry.Gui.Tooltip
-            public int extraCount = 3;
-        }
-
-        public static class Sparkle {
-            @ConfigEntry.Gui.Tooltip
-            public double probability = 1;
-            @ConfigEntry.Gui.Tooltip
-            public double distance = 1.5d;
-            @ConfigEntry.Gui.Tooltip
-            public float damage = 1;
-        }
+    public static class RuneTable {
+        @ConfigEntry.Gui.Tooltip
+        public int range = 80;
+        @ConfigEntry.Gui.Tooltip
+        public int maxVillagers = 8;
     }
 
     @ConfigEntry.Gui.CollapsibleObject

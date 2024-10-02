@@ -27,6 +27,7 @@ public class OLDataGen implements DataGeneratorEntrypoint {
         pack.addProvider(OLEnglishLanguageProvider::new);
         pack.addProvider(OLSpanishLanguageProvider::new);
         pack.addProvider(OLAdvancementProvider::new);
+        pack.addProvider(OLPoiProvider::new);
 
     }
 

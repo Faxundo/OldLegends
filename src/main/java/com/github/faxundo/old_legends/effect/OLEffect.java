@@ -1,15 +1,21 @@
 package com.github.faxundo.old_legends.effect;
 
+import com.github.faxundo.old_legends.OldLegends;
+import com.github.faxundo.old_legends.effect.custom.BaneOfTheVillage;
+import net.minecraft.entity.effect.StatusEffect;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
+
 public class OLEffect {
 
-//    public static StatusEffect ANCIENT_KNOWLEDGE;
+    public static StatusEffect BANE_OF_THE_VILLAGE;
 
-//    public static StatusEffect registerAncientKnowledge(String name) {
-//        return Registry.register(Registries.STATUS_EFFECT, OldLegends.identifier(name),
-//                new AncientKnowledge(StatusEffectCategory.BENEFICIAL, 80143255));
-//    }
+    public static StatusEffect registerBaneOfTheVillage(String name) {
+        return Registry.register(Registries.STATUS_EFFECT, OldLegends.identifier(name),
+                new BaneOfTheVillage());
+    }
 
     public static void registerEffects(){
-//        ANCIENT_KNOWLEDGE = registerAncientKnowledge("ancient_knowledge");
+        BANE_OF_THE_VILLAGE = registerBaneOfTheVillage("bane_of_the_village");
     }
 }

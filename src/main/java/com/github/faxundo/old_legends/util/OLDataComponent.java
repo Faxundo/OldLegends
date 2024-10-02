@@ -1,14 +1,11 @@
 package com.github.faxundo.old_legends.util;
 
 import com.github.faxundo.old_legends.OldLegends;
-import com.github.faxundo.old_legends.util.component.SwordDataComponent;
 import com.mojang.serialization.Codec;
 import net.minecraft.component.ComponentType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
-
-import java.util.UUID;
 
 import static com.github.faxundo.old_legends.OldLegends.LOGGER;
 import static com.github.faxundo.old_legends.OldLegends.MOD_NAME;
